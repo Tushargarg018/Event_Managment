@@ -1,0 +1,6 @@
+@EM.Api_HostAddress = http://localhost:5250
+
+GET {{EM.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
