@@ -19,8 +19,8 @@ namespace EM.Business
         {
             CreateMap<Organizer, OrganizerBo>();
             CreateMap<OrganizerBo, OrganizerDto>();
-            CreateMap<LoginDto, LoginBo>();
-            CreateMap<LoginResponseBo, LoginResponseDto>();
+            CreateMap<LoginDto, LoginResponseBO>();
+            CreateMap<LoginResponseBO, LoginResponseDto>();
         }
     }
 }

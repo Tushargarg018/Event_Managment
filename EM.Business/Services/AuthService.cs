@@ -87,7 +87,7 @@ namespace EM.Business.Services
         public OrganizerBo ValidateOrganizer(string email, string password)
         {
             var user = orgRepo.GetOrganizerByEmailAndPassword(email, password).Result;
-            if (user == null)
+            if (user == null || user.Status==0)
             {
                 return null;
             }
@@ -101,20 +101,19 @@ namespace EM.Business.Services
         /// </summary>
         /// <param name="loginDto"></param>
         /// <returns></returns>
-        public LoginResponseBo OrgLogin(LoginBo loginBo)
+        public LoginResponseBO OrganizerLogin(LoginDto loginDto)
         {
-            var validUser = ValidateOrganizer(loginBo.Email, loginBo.Password);
+            var validUser = ValidateOrganizer(loginDto.Email, loginDto.Password);
             if (validUser==null)
             {
-                return null;
+                return null; //????? Common Handler Global error
             }
-            var token = GenerateToken(validUser.Name, loginBo.Email);
-            LoginResponseBo response = new LoginResponseBo();
-            response.status = "success";
-            response.token = token;
-            response.organizer = validUser;
+            var token = GenerateToken(validUser.Name, loginDto.Email);
+            LoginResponseBO response = new LoginResponseBO();
+            response.Token = token;
+            response.Organizer = validUser;
             return response;
         }
-
+        
     }
 }
