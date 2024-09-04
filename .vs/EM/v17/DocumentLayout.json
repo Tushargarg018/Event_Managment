@@ -1,0 +1,343 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.api\\validations\\loginvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\validations\\loginvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.business\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.api\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.core\\dtos\\response\\success\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\response\\success\\loginresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.business\\bos\\response\\success\\loginresponsebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\response\\success\\loginresponsebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.business\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.core\\dtos\\request\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.business\\bos\\objects\\organizerbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\objects\\organizerbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.business\\bos\\request\\loginbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\request\\loginbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.core\\dtos\\objects\\organizerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\objects\\organizerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.data\\repositories\\organizerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\repositories\\organizerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.data\\repositories\\iorganizerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\repositories\\iorganizerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.core\\dtos\\response\\errors\\invalidcredentialsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\response\\errors\\invalidcredentialsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|c:\\users\\unthinkable-lap\\desktop\\emapi\\em_api\\em.data\\entities\\organizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\entities\\organizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginValidator.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\Validations\\LoginValidator.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Validations\\LoginValidator.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\Validations\\LoginValidator.cs",
+              "RelativeToolTip": "EM.Api\\Validations\\LoginValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T05:32:45.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "EM.Api\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAowDsAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T07:11:46.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginBo.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\BOs\\Request\\LoginBo.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\Request\\LoginBo.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\BOs\\Request\\LoginBo.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\Request\\LoginBo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T04:01:11.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OrganizerDto.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Objects\\OrganizerDto.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Objects\\OrganizerDto.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Objects\\OrganizerDto.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Objects\\OrganizerDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA8AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T07:04:27.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Response\\Success\\LoginResponseDto.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Response\\Success\\LoginResponseDto.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Response\\Success\\LoginResponseDto.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Response\\Success\\LoginResponseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T07:00:54.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\Program.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\Program.cs",
+              "RelativeToolTip": "EM.Api\\Program.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAACgAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T07:10:13.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrganizerBo.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\BOs\\Objects\\OrganizerBo.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\Objects\\OrganizerBo.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\BOs\\Objects\\OrganizerBo.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\Objects\\OrganizerBo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T12:35:57.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\Services\\AuthService.cs",
+              "RelativeToolTip": "EM.Business\\Services\\AuthService.cs",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAAwHUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T09:15:26.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "EM.Api\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\MappingProfile.cs",
+              "RelativeToolTip": "EM.Api\\MappingProfile.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAABYAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T12:33:34.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginResponseBo.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\BOs\\Response\\Success\\LoginResponseBo.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\Response\\Success\\LoginResponseBo.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\BOs\\Response\\Success\\LoginResponseBo.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\Response\\Success\\LoginResponseBo.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T12:41:50.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Services\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Business\\Services\\IAuthService.cs",
+              "RelativeToolTip": "EM.Business\\Services\\IAuthService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T08:49:08.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T08:34:29.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrganizerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\Repositories\\OrganizerRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Repositories\\OrganizerRepository.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\Repositories\\OrganizerRepository.cs",
+              "RelativeToolTip": "EM.Data\\Repositories\\OrganizerRepository.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwCMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T06:14:02.996Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IOrganizerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\Repositories\\IOrganizerRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IOrganizerRepository.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\Repositories\\IOrganizerRepository.cs",
+              "RelativeToolTip": "EM.Data\\Repositories\\IOrganizerRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T06:07:15.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "EM.Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\AppDbContext.cs",
+              "RelativeToolTip": "EM.Data\\AppDbContext.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAA3wCoAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T10:31:24.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "InvalidCredentialsDto.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Response\\Errors\\InvalidCredentialsDto.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Response\\Errors\\InvalidCredentialsDto.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Core\\DTOs\\Response\\Errors\\InvalidCredentialsDto.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Response\\Errors\\InvalidCredentialsDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T06:55:45.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "EM.Api\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\appsettings.Development.json",
+              "RelativeToolTip": "EM.Api\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-03T05:30:11.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "EM.Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Api\\appsettings.json",
+              "RelativeToolTip": "EM.Api\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-02T07:12:49.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Organizer.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\Entities\\Organizer.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Entities\\Organizer.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\Desktop\\EMAPI\\em_api\\EM.Data\\Entities\\Organizer.cs",
+              "RelativeToolTip": "EM.Data\\Entities\\Organizer.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T08:55:41.855Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
