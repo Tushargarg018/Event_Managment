@@ -6,6 +6,7 @@ using EM.Core.DTOs.Request;
 using EM.Data;
 using EM.Data.Entities;
 using EM.Data.Repositories;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -41,8 +42,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 
 //Fluent validation
-builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
-
+//builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
+builder.Services.AddValidatorsFromAssembly(typeof(LoginValidator).Assembly);
 //
 
 
@@ -82,7 +83,8 @@ builder.Services.AddAuthorization(options =>
 var app = builder.Build();
 
 //Configuring Exception Middleware
-app.ConfigureExceptionHandler();
+//app.ConfigureExceptionHandler();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

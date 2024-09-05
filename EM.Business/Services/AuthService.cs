@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EM.Business.BOs.Objects;
 using EM.Business.BOs.Request;
+using EM.Business.Exceptions;
 using EM.Core.DTOs.Objects;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response.Success;
@@ -88,9 +89,13 @@ namespace EM.Business.Services
         public OrganizerBo ValidateOrganizer(string email, string password)
         {
             var user = orgRepo.GetOrganizerByEmailAndPassword(email, password).Result;
-            if (user == null || user.Status==0)
+            if (user == null)
             {
-                return null;
+                throw new UserNotFoundException("User Not Found");
+            }
+            else if(user.Status == 0)
+            {
+                throw new UserInactiveException("User is Inactive");
             }
             OrganizerBo organizerBo = new OrganizerBo();
             _mapper.Map(user, organizerBo);
@@ -105,10 +110,6 @@ namespace EM.Business.Services
         public LoginResponseBO OrganizerLogin(LoginDto loginDto)
         {
             var validUser = ValidateOrganizer(loginDto.Email, loginDto.Password);
-            if (validUser==null)
-            {
-                throw new UserNotFoundException();
-            }
             var token = GenerateToken(validUser.Name, loginDto.Email);
             LoginResponseBO response = new LoginResponseBO();
             response.Token = token;

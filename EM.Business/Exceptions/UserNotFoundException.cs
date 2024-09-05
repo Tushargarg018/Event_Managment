@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace EM.Data.Exceptions
 {
-    public class UserNotFoundException : NotFoundException
+    public class UserNotFoundException : Exception
     {
-        public UserNotFoundException() : base("User Not Found! ")
+        public UserNotFoundException()
         {
+        }
+
+        public UserNotFoundException(string message) : base(message)
+        {
+
         }
     }
 }
