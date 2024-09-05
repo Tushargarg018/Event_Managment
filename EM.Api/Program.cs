@@ -1,3 +1,5 @@
+using EM.Api;
+using EM.Api.Validations;
 using EM.Business;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
@@ -39,7 +41,10 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 
 //Fluent validation
-builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginDto>());
+builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
+
+//
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -76,6 +81,9 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
+//Configuring Exception Middleware
+app.ConfigureExceptionHandler();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -86,7 +94,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

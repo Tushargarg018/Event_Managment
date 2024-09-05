@@ -2,11 +2,13 @@ using AutoMapper;
 using EM.Business.BOs.Request;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
+using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Errors;
 using EM.Core.DTOs.Response.Success;
 using EM.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EM.Api.Controllers
 {
@@ -40,16 +42,18 @@ namespace EM.Api.Controllers
             invalid.message = "Invalid Credentials";
             if (!ModelState.IsValid)
             {
-                return BadRequest(invalid);
+                var errors = ModelState
+                    .Where(ms => ms.Value.Errors.Count > 0)
+                    .SelectMany(ms => ms.Value.Errors.Select(e => e.ErrorMessage))
+                    .ToList();
+                var error = new ResponseDTO<LoginResponseDto>(new LoginResponseDto(), "Failure", "Organizer Login Failed", errors);
+                return Ok("error");
             }
             var response = authservice.OrganizerLogin(loginDto);
-            if (response == null)
-            {
-                return Unauthorized(invalid);
-            }
             LoginResponseDto loginResponseDto = new LoginResponseDto();
             _mapper.Map(response, loginResponseDto);
-            return Ok(loginResponseDto);
+            var resultResponse = new ResponseDTO<LoginResponseDto>(loginResponseDto, "Success", "Organizer Login Successful", null);
+            return Ok(resultResponse);
         }
 
         [Authorize(Policy ="UserPolicy")]

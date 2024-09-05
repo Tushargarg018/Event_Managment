@@ -6,11 +6,28 @@ using System.Threading.Tasks;
 
 namespace EM.Core.DTOs.Response
 {
-    public class ResponseDTO
+    public class ResponseDTO<T>
     {
-        public string status { get; set; }
-        public string message { get; set; }
-        public List<DataDTO> data { get; set; }   //GENERIC IMPLEMENTATION PENDING
-        public List<ErrorDTO> error { get; set;}
+        public T Data { get; set; }
+        public string Status {  get; set; }
+        public string Message { get; set; }
+        public List<string> Errors { get; set; }
+
+        public ResponseDTO()
+        {
+            Errors = new List<string>();
+        }
+        public ResponseDTO(T data, string status, string message, List<string> errors)
+        {
+            Data = data;
+            Status = status;
+            Message = message;
+            //Errors = errors ?? new List<string>();
+            if (Errors == null)
+            {
+                Errors = new List<string>();
+            }
+            else Errors = errors;
+        }
     }
 }

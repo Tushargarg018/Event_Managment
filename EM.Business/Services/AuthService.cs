@@ -6,6 +6,7 @@ using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response.Success;
 using EM.Data;
 using EM.Data.Entities;
+using EM.Data.Exceptions;
 using EM.Data.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -106,7 +107,7 @@ namespace EM.Business.Services
             var validUser = ValidateOrganizer(loginDto.Email, loginDto.Password);
             if (validUser==null)
             {
-                return null; //????? Common Handler Global error
+                throw new UserNotFoundException();
             }
             var token = GenerateToken(validUser.Name, loginDto.Email);
             LoginResponseBO response = new LoginResponseBO();
