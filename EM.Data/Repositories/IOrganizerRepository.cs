@@ -10,7 +10,8 @@ namespace EM.Data.Repositories
     public interface IOrganizerRepository
     {
         public Task<IEnumerable<Organizer>> GetOrganizers();
-        public Task<Organizer> GetOrganizerByEmailAndPassword(string email, string password);
+        public Organizer GetOrganizerByEmailAndPassword(string email, string password);
         public Task<Organizer> GetOrganizerByEmail(string email);
+        public Task<Organizer> GetOrganizerById(int id);
     }
 }

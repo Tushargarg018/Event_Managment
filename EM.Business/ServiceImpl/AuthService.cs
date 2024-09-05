@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using EM.Business.BOs.Objects;
-using EM.Business.BOs.Request;
+using EM.Business.BOs;
 using EM.Business.Exceptions;
+using EM.Business.Services;
 using EM.Core.DTOs.Objects;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response.Success;
@@ -21,7 +21,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Business.Services
+namespace EM.Business.ServiceImpl
 {
     public class AuthService : IAuthService
     {
@@ -48,10 +48,10 @@ namespace EM.Business.Services
         {
             try
             {
-                var user = orgRepo.GetOrganizerByEmail(Email);
+                var user =  orgRepo.GetOrganizerByEmail(Email);
                 //var userList = orgRepo.GetOrganizers();
                 //var user = userList.FirstOrDefault(x=>x.Email==Email);
-                if(user == null)
+                if (user == null)
                 {
                     return string.Empty;
                 }
@@ -67,9 +67,9 @@ namespace EM.Business.Services
                 var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims,
                     expires: DateTime.UtcNow.AddMinutes(10),
                     signingCredentials: credentials
-                    ); 
-                var tokenVal =  new JwtSecurityTokenHandler().WriteToken(token);
-                return tokenVal; 
+                    );
+                var tokenVal = new JwtSecurityTokenHandler().WriteToken(token);
+                return tokenVal;
             }
             catch (Exception)
             {
@@ -88,12 +88,12 @@ namespace EM.Business.Services
         /// </returns>
         public OrganizerBo ValidateOrganizer(string email, string password)
         {
-            var user = orgRepo.GetOrganizerByEmailAndPassword(email, password).Result;
+            var user = orgRepo.GetOrganizerByEmailAndPassword(email, password);
             if (user == null)
             {
                 throw new UserNotFoundException("User Not Found");
             }
-            else if(user.Status == 0)
+            else if (user.Status == 0)
             {
                 throw new UserInactiveException("User is Inactive");
             }
@@ -116,6 +116,6 @@ namespace EM.Business.Services
             response.Organizer = validUser;
             return response;
         }
-        
+
     }
 }

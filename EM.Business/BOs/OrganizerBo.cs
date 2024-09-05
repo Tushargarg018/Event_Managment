@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Business.BOs.Objects
+namespace EM.Business.BOs
 {
     public class OrganizerBo
     {

@@ -16,9 +16,4 @@
     <ProjectReference Include="..\EM.Data\EM.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BOs\Response\Errors\" />
-    <Folder Include="BOs\Response\Success\" />
-  </ItemGroup>
-
 </Project>
