@@ -48,7 +48,7 @@ namespace EM.Business.ServiceImpl
         {
             try
             {
-                var user =  orgRepo.GetOrganizerByEmail(Email);
+                var user =  orgRepo.GetOrganizerByEmail(Email).Result;
                 //var userList = orgRepo.GetOrganizers();
                 //var user = userList.FirstOrDefault(x=>x.Email==Email);
                 if (user == null)

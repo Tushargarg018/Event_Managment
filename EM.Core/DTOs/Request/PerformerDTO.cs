@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace EM.Core.DTOs.Request
         public string Bio {  get; set; }
         [JsonPropertyName("profile_pic")]
         public string ProfilePic { get; set; }
-        [JsonPropertyName("organizer_id")]
-        public string OrganizerId { get; set; }
+        public IFormFile? ImageFile { get; set; }
+
     }
 }

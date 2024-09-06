@@ -14,14 +14,14 @@ namespace EM.Api.Controllers
 {
     [ApiController]
     [Route("api/em")]
-    public class apiController : ControllerBase
+    public class OrganizerController : ControllerBase
     {
-        private readonly ILogger<apiController> _logger;
+        private readonly ILogger<OrganizerController> _logger;
         private readonly IAuthService authservice;
         private readonly IMapper _mapper;
         private readonly IValidator<LoginDto> _loginValidator;
 
-        public apiController(ILogger<apiController> logger, IAuthService repo, IMapper mapper, IValidator<LoginDto> loginValidator)
+        public OrganizerController(ILogger<OrganizerController> logger, IAuthService repo, IMapper mapper, IValidator<LoginDto> loginValidator)
         {
             _logger = logger;
             authservice = repo;
@@ -56,20 +56,6 @@ namespace EM.Api.Controllers
             _mapper.Map(response, loginResponseDto);
             var resultResponse = new ResponseDTO<LoginResponseDTO>(loginResponseDto, "Success", "Organizer Login Successful", null);
             return Ok(resultResponse);
-        }
-
-        [Authorize(Policy ="UserPolicy")]
-        [HttpPost("performer")]
-        public IActionResult AddPerformer(PerformerDTO performerDto)
-        {
-            var handler = new JwtSecurityTokenHandler();
-            var authHeader = Request.Headers.Authorization;
-            var token = authHeader.ToString().Substring("Bearer ".Length).Trim();
-            var jwtToken = handler.ReadJwtToken(token);
-            var claims = jwtToken.Claims;
-            var organizerId = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
-            int org = int.Parse(organizerId);
-            return Ok(org);
         }
     }
 }

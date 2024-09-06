@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EM.Business\EM.Business.csproj" />
+    <ProjectReference Include="..\ImageManipulation.Data\ImageManipulation.Data.csproj" />
   </ItemGroup>
 
 </Project>

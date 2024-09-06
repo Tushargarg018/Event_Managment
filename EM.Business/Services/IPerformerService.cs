@@ -1,4 +1,5 @@
-﻿using EM.Data.Entities;
+﻿using EM.Business.BOs;
+using EM.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace EM.Business.Services
 {
     public interface IPerformerService
     {
-        //Performer = new (dto, organier)
+        public PerformerBO AddPerformer(PerformerBO performerBO);
     }
 }

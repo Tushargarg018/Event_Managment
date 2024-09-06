@@ -20,6 +20,8 @@ namespace EM.Api.Mapper
             CreateMap<OrganizerBo, OrganizerDto>();
             CreateMap<LoginDto, LoginResponseBO>();
             CreateMap<LoginResponseBO, LoginResponseDTO>();
+            CreateMap<Performer, PerformerBO>();
+            CreateMap<PerformerDTO,  PerformerBO>();
         }
     }
 }

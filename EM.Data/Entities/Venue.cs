@@ -21,7 +21,7 @@ namespace EM.Data.Entities
         public int City { get; set; }
         public int State { get; set; }
         public int Country { get; set; }
-        public DateTime Created_on { get; set; }
+        public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public int OrganizerId { get; set; }
         public string Description { get; set; }

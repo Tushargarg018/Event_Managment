@@ -35,7 +35,7 @@ namespace EM.Data.RepositoryImpl
                 ModifiedOn = DateTime.UtcNow
             };
             context.Performers.Add(performer);
-            context.SaveChanges();
+            context.SaveChangesAsync();
             return performer;
         }
     }
