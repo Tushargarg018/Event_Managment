@@ -1,43 +1,28 @@
-<<<<<<< HEAD
 using EM.Api.Mapper;
 using EM.Business.Repository;
 using EM.Business.Services;
-=======
 using EM.Api;
-using EM.Api.Mapper;
 using EM.Api.Validations;
-using EM.Business.ServiceImpl;
-using EM.Business.Services;
-using EM.Core.DTOs.Request;
->>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
 using EM.Data;
-using EM.Data.Entities;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.OpenApi.Models;
+using EM.Business.ServiceImpl;
 using EM.Data.Repositories;
 using EM.Data.RepositoryImpl;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using ImageManipulation.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using System.Text;
-using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // Add services to the container.
 
-<<<<<<< HEAD
 builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IStateService, StateService>();
 builder.Services.AddScoped<ICityService , CityService>();
-=======
-
->>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
 
 // Load appsettings.json and environment-specific configurations
 Configuration
@@ -48,9 +33,6 @@ Configuration
 
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DbCon")));
-
-<<<<<<< HEAD
-=======
 //Adding Dependencies
 
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -62,7 +44,6 @@ builder.Services.AddScoped<IPerformerService, PerformerService>();
 builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
 
 //Register AutoMapper
->>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddControllers();
@@ -113,8 +94,6 @@ builder.Services.AddSwaggerGen(options =>
 	});
 });
 
-<<<<<<< HEAD
-=======
 
 builder.Services.AddAuthentication(options =>
 {
@@ -137,14 +116,11 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-builder.Services.AddAuthorization(options =>
-{
-	options.AddPolicy("UserPolicy", policy =>
-		policy.RequireClaim("Id"));
-});
+builder.Services.AddAuthorizationBuilder()
+	.AddPolicy("UserPolicy", policy =>
+	policy.RequireClaim("Id"));
 
 
->>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
 var app = builder.Build();
 
 //Configuring Exception Middleware

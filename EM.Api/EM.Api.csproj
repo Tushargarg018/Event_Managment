@@ -13,12 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-=======
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
->>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,11 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EM.Business\EM.Business.csproj" />
-<<<<<<< HEAD
     <ProjectReference Include="..\EM.Core\EM.Core.csproj" />
-=======
-    <ProjectReference Include="..\ImageManipulation.Data\ImageManipulation.Data.csproj" />
->>>>>>> cad3ae3dc4920a67dd9ff6fbb36a72f79aa95e13
   </ItemGroup>
 
 </Project>

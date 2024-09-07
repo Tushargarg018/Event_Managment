@@ -4,7 +4,6 @@ using EM.Business.Repository;
 using EM.Core.DTOS.Response.Success;
 using EM.Data;
 using EM.Data.Entities;
-using EM.Data.Migrations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

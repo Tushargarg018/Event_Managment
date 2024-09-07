@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240903082804_City")]
-    partial class City
+    [Migration("20240907144724_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,22 +29,25 @@ namespace EM.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<int>("StateId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("state_id");
 
                     b.HasKey("Id");
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("city", (string)null);
 
                     b.HasData(
                         new
@@ -3671,44 +3674,56 @@ namespace EM.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("BasePrice")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("base_price");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<DateTime>("EndDatetime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("end_datetime");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<int>("OrganizerId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("organizer_id");
 
                     b.Property<int>("PerformerId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("performer_id");
 
                     b.Property<DateTime>("StartDatetime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("start_datetime");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("title");
 
                     b.Property<int>("VenueId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("status")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("venue_id");
 
                     b.HasKey("Id");
 
@@ -3718,119 +3733,143 @@ namespace EM.Data.Migrations
 
                     b.HasIndex("VenueId");
 
-                    b.ToTable("Events");
+                    b.ToTable("event", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.EventDocument", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<int>("EventId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("event_id");
 
                     b.Property<string>("FilePath")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("file_path");
 
                     b.Property<string>("FileType")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("file_type");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("title");
 
                     b.Property<int>("Type")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("type");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("EventDocuments");
+                    b.ToTable("event_document", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.EventOffer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<decimal>("Discount")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("discount");
 
                     b.Property<int>("EventId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("event_id");
 
                     b.Property<int>("GroupSize")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("group_size");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<int>("Status")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
 
                     b.Property<int>("TotalOffers")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("total_offers");
 
                     b.Property<int>("Type")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("type");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("EventOffers");
+                    b.ToTable("event_offer", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.EventTicketCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Capacity")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("capacity");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<int>("EventId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("event_id");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<int>("Price")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("price");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("EventTicketCategories");
+                    b.ToTable("event_ticket_category", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.Organizer", b =>
@@ -3842,296 +3881,310 @@ namespace EM.Data.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("email");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organizers");
+                    b.ToTable("organizer", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.Performer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Bio")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("bio");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<int>("OrganizerId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("organizer_id");
 
                     b.Property<string>("Profile")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("profile");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrganizerId");
 
-                    b.ToTable("Performers");
+                    b.ToTable("performer", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.State", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("integer");
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("integer")
+                        .HasColumnName("country_id");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
+                    b.ToTable("state", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CountryId = 1,
-                            Name = "ANDHRA PRADESH"
+                            Name = "Andhra Pradesh"
                         },
                         new
                         {
                             Id = 2,
                             CountryId = 1,
-                            Name = "ASSAM"
+                            Name = "Assam"
                         },
                         new
                         {
                             Id = 3,
                             CountryId = 1,
-                            Name = "ARUNACHAL PRADESH"
+                            Name = "Arunachal Pradesh"
                         },
                         new
                         {
                             Id = 4,
                             CountryId = 1,
-                            Name = "BIHAR"
+                            Name = "Bihar"
                         },
                         new
                         {
                             Id = 5,
                             CountryId = 1,
-                            Name = "GUJRAT"
+                            Name = "Gujrat"
                         },
                         new
                         {
                             Id = 6,
                             CountryId = 1,
-                            Name = "HARYANA"
+                            Name = "Haryana"
                         },
                         new
                         {
                             Id = 7,
                             CountryId = 1,
-                            Name = "HIMACHAL PRADESH"
+                            Name = "Himachal Pradesh"
                         },
                         new
                         {
                             Id = 8,
                             CountryId = 1,
-                            Name = "JAMMU & KASHMIR"
+                            Name = "Jammu & Kashmir"
                         },
                         new
                         {
                             Id = 9,
                             CountryId = 1,
-                            Name = "KARNATAKA"
+                            Name = "Karnataka"
                         },
                         new
                         {
                             Id = 10,
                             CountryId = 1,
-                            Name = "KERALA"
+                            Name = "Kerala"
                         },
                         new
                         {
                             Id = 11,
                             CountryId = 1,
-                            Name = "MADHYA PRADESH"
+                            Name = "Madhya Pradesh"
                         },
                         new
                         {
                             Id = 12,
                             CountryId = 1,
-                            Name = "MAHARASHTRA"
+                            Name = "Maharashtra"
                         },
                         new
                         {
                             Id = 13,
                             CountryId = 1,
-                            Name = "MANIPUR"
+                            Name = "Manipur"
                         },
                         new
                         {
                             Id = 14,
                             CountryId = 1,
-                            Name = "MEGHALAYA"
+                            Name = "Meghalaya"
                         },
                         new
                         {
                             Id = 15,
                             CountryId = 1,
-                            Name = "MIZORAM"
+                            Name = "Mizoram"
                         },
                         new
                         {
                             Id = 16,
                             CountryId = 1,
-                            Name = "NAGALAND"
+                            Name = "Nagaland"
                         },
                         new
                         {
                             Id = 17,
                             CountryId = 1,
-                            Name = "ORISSA"
+                            Name = "Orissa"
                         },
                         new
                         {
                             Id = 18,
                             CountryId = 1,
-                            Name = "PUNJAB"
+                            Name = "Punjab"
                         },
                         new
                         {
                             Id = 19,
                             CountryId = 1,
-                            Name = "RAJASTHAN"
+                            Name = "Rajasthan"
                         },
                         new
                         {
                             Id = 20,
                             CountryId = 1,
-                            Name = "SIKKIM"
+                            Name = "Sikkim"
                         },
                         new
                         {
                             Id = 21,
                             CountryId = 1,
-                            Name = "TAMIL NADU"
+                            Name = "Tamil Nadu"
                         },
                         new
                         {
                             Id = 22,
                             CountryId = 1,
-                            Name = "TRIPURA"
+                            Name = "Tripura"
                         },
                         new
                         {
                             Id = 23,
                             CountryId = 1,
-                            Name = "UTTAR PRADESH"
+                            Name = "Uttar Pradesh"
                         },
                         new
                         {
                             Id = 24,
                             CountryId = 1,
-                            Name = "WEST BENGAL"
+                            Name = "West Bengal"
                         },
                         new
                         {
                             Id = 25,
                             CountryId = 1,
-                            Name = "DELHI"
+                            Name = "Delhi"
                         },
                         new
                         {
                             Id = 26,
                             CountryId = 1,
-                            Name = "GOA"
+                            Name = "Goa"
                         },
                         new
                         {
                             Id = 27,
                             CountryId = 1,
-                            Name = "PONDICHERY"
+                            Name = "Pondichery"
                         },
                         new
                         {
                             Id = 28,
                             CountryId = 1,
-                            Name = "LAKSHDWEEP"
+                            Name = "Lakshadweep"
                         },
                         new
                         {
                             Id = 29,
                             CountryId = 1,
-                            Name = "DAMAN & DIU"
+                            Name = "Daman & Diu"
                         },
                         new
                         {
                             Id = 30,
                             CountryId = 1,
-                            Name = "DADRA & NAGAR"
+                            Name = "Dadra & Nagar Haveli"
                         },
                         new
                         {
                             Id = 31,
                             CountryId = 1,
-                            Name = "CHANDIGARH"
+                            Name = "Chandigarh"
                         },
                         new
                         {
                             Id = 32,
                             CountryId = 1,
-                            Name = "ANDAMAN & NICOBAR"
+                            Name = "Andaman & Nicobar"
                         },
                         new
                         {
                             Id = 33,
                             CountryId = 1,
-                            Name = "UTTARANCHAL"
+                            Name = "Uttarakhand"
                         },
                         new
                         {
                             Id = 34,
                             CountryId = 1,
-                            Name = "JHARKHAND"
+                            Name = "Jharkhand"
                         },
                         new
                         {
                             Id = 35,
                             CountryId = 1,
-                            Name = "CHATTISGARH"
+                            Name = "Chhattisgarh"
                         });
                 });
 
@@ -4139,58 +4192,71 @@ namespace EM.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AddressLine1")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("address_line1");
 
                     b.Property<string>("AddressLine2")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("address_line2");
 
                     b.Property<int>("City")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("city");
 
                     b.Property<int>("Country")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("country");
 
-                    b.Property<DateTime>("Created_on")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<int>("MaxCapacity")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("max_capacity");
 
                     b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<int>("OrganizerId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("organizer_id");
 
                     b.Property<int>("State")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("state");
 
                     b.Property<int>("Type")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("type");
 
                     b.Property<int>("ZipCode")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("zip_code");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrganizerId");
 
-                    b.ToTable("Venues");
+                    b.ToTable("venue", (string)null);
                 });
 
             modelBuilder.Entity("EM.Data.Entities.City", b =>
