@@ -29,7 +29,7 @@ namespace EM.Api
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var statusCode = HttpStatusCode.InternalServerError;
-            var message = "An unexpected error occured";
+            var message = ex.Message;
             if (ex is UnauthorizedAccessException)
             {
                 statusCode = HttpStatusCode.Forbidden;

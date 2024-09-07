@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EM.Core.DTOs.Response.Success
 {
-    public class LoginResponseDto
+    public class LoginResponseDTO
     {
         public string token { get; set; }
         public OrganizerDto? organizer { get; set; }

@@ -4,20 +4,25 @@ using EM.Business.Repository;
 using EM.Business.Services;
 =======
 using EM.Api;
+using EM.Api.Mapper;
 using EM.Api.Validations;
-using EM.Business;
+using EM.Business.ServiceImpl;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
 >>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
 using EM.Data;
 using EM.Data.Entities;
 using EM.Data.Repositories;
+using EM.Data.RepositoryImpl;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using ImageManipulation.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json;
 
@@ -51,6 +56,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrganizerRepository, OrganizerRepository>();
 
+//File Services
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IPerformerService, PerformerService>();
+builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
+
 //Register AutoMapper
 >>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -60,12 +70,48 @@ builder.Services.AddControllers();
 //Fluent validation
 //builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
 builder.Services.AddValidatorsFromAssembly(typeof(LoginValidator).Assembly);
-//
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader(); ;
+        });
+});
+
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+	options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+	{
+		Name = "Authorization",
+		In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+		Description = "Enter Token starting with Bearer",
+		Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+		BearerFormat = "JWT",
+		Scheme = "bearer"
+	});
+	options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+	{
+		{
+			new OpenApiSecurityScheme
+			{
+				Name = "Bearer",
+				In = ParameterLocation.Header,
+				Reference = new OpenApiReference
+				{
+					Id = "Bearer",
+					Type = ReferenceType.SecurityScheme
+				}
+			},
+			new List<string>()
+		}
+	});
+});
 
 <<<<<<< HEAD
 =======
@@ -105,13 +151,21 @@ var app = builder.Build();
 //app.ConfigureExceptionHandler();
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
+// mapping Uploads folder to Resources folder 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+    RequestPath = "/Resources"
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

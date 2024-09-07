@@ -20,4 +20,8 @@
 >>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Response\Errors\" />
+  </ItemGroup>
+
 </Project>

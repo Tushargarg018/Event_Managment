@@ -1,5 +1,4 @@
-﻿using EM.Business.BOs.Objects;
-using EM.Business.BOs.Request;
+﻿using EM.Business.BOs;
 using EM.Core.DTOs.Objects;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response.Success;
@@ -19,6 +18,7 @@ namespace EM.Business.Services
         OrganizerBo ValidateOrganizer(string email, string password);
         public string GenerateToken(string Name, string Email);
         public LoginResponseBO OrganizerLogin(LoginDto loginDto);
+
     }
 }
 

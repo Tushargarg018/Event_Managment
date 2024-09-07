@@ -35,7 +35,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EM.Business\EM.Business.csproj" />
+<<<<<<< HEAD
     <ProjectReference Include="..\EM.Core\EM.Core.csproj" />
+=======
+    <ProjectReference Include="..\ImageManipulation.Data\ImageManipulation.Data.csproj" />
+>>>>>>> cad3ae3dc4920a67dd9ff6fbb36a72f79aa95e13
   </ItemGroup>
 
 </Project>
