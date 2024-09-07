@@ -9,8 +9,8 @@ namespace EM.Business.Services
 {
         public interface IFileService
         {
+            public byte[] GetImageAsByteArray(string RequestPath);
             Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId);
             void DeleteImage(string imageFileName);
         }
-    
 }
