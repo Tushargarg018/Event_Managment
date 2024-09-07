@@ -8,6 +8,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace EM.Api.Controllers
@@ -59,5 +60,22 @@ namespace EM.Api.Controllers
             var response = new ResponseDTO<PerformerBO>(performer, "Success", "Performer Added Successfully", null);
             return Ok(response);
         }
+
+        private readonly string _imagesDirectory = Path.Combine(Directory.GetCurrentDirectory(),"");
+
+        [Authorize(Policy ="UserPolicy")]
+        [HttpGet("getProfilePic")]
+        public async Task<IActionResult> GetImage(string filePath)
+        {
+            string fileLocation = Path.Combine(_imagesDirectory, filePath);
+
+            if (!System.IO.File.Exists(fileLocation))
+            {
+                return NotFound(new ResponseDTO<PerformerBO>(null, "Failure", "File Not Found", null));
+            }
+            var image = _fileService.GetImageAsByteArray(fileLocation);
+            return File(image, "application/octet-stream", filePath);
+        }
+
     }
 }

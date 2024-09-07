@@ -88,7 +88,9 @@ namespace EM.Business.ServiceImpl
         /// </returns>
         public OrganizerBo ValidateOrganizer(string email, string password)
         {
-            var user = orgRepo.GetOrganizerByEmailAndPassword(email, password);
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var encodedPassword = Convert.ToBase64String(bytes);
+            var user = orgRepo.GetOrganizerByEmailAndPassword(email, encodedPassword);
             if (user == null)
             {
                 throw new UserNotFoundException("User Not Found");
