@@ -7,10 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="DTOs\Common\" />
     <Folder Include="DTOs\Request\" />
     <Folder Include="DTOs\Objects\" />
     <Folder Include="DTOs\Response\Error\" />
+=======
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.2" />
+>>>>>>> 8bbd26dc4674baacd877b0e205f5f09211f6d01f
   </ItemGroup>
 
 </Project>
