@@ -1,4 +1,5 @@
 ﻿using EM.Data.Entities;
+using EM.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -64,10 +65,15 @@ namespace EM.Data
             modelBuilder.Entity<State>()
                     .HasMany(o => o.Cities)
                     .WithOne(og => og.State)
-                    .HasForeignKey(p => p.StateId);
+                    .HasForeignKey(p => p.StateId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<State>().HasData(StateSeed.GetStates());
+
+            modelBuilder.Entity<City>().HasData(CitySeed.GetCities());
+
+
         }
-
-
 
     }
 }

@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Business\\ServiceImpl\\StateService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EM.Business\\ServiceImpl\\StateService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Business\\BOs\\StateBO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EM.Business\\BOs\\StateBO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Data\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EM.Data\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StateService.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Business\\ServiceImpl\\StateService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\StateService.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Business\\ServiceImpl\\StateService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\StateService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T18:14:12.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StateBO.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Business\\BOs\\StateBo.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\StateBo.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Business\\BOs\\StateBo.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\StateBo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T17:55:32.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "EM.Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Unthinkable-Lap\\source\\repos\\em_api_1\\EM.Data\\AppDbContext.cs",
+              "RelativeToolTip": "EM.Data\\AppDbContext.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T17:53:10.688Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

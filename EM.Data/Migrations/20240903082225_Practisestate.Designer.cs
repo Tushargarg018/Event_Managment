@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240830111507_INIT")]
-    partial class INIT
+    [Migration("20240903082225_Practisestate")]
+    partial class Practisestate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace EM.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("EM.Data.Models.City", b =>
+            modelBuilder.Entity("EM.Data.Entities.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace EM.Data.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Event", b =>
+            modelBuilder.Entity("EM.Data.Entities.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +101,7 @@ namespace EM.Data.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.EventDocument", b =>
+            modelBuilder.Entity("EM.Data.Entities.EventDocument", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +140,7 @@ namespace EM.Data.Migrations
                     b.ToTable("EventDocuments");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.EventOffer", b =>
+            modelBuilder.Entity("EM.Data.Entities.EventOffer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -179,7 +179,7 @@ namespace EM.Data.Migrations
                     b.ToTable("EventOffers");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.EventTicketCategory", b =>
+            modelBuilder.Entity("EM.Data.Entities.EventTicketCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -213,7 +213,7 @@ namespace EM.Data.Migrations
                     b.ToTable("EventTicketCategories");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Organizer", b =>
+            modelBuilder.Entity("EM.Data.Entities.Organizer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,7 +247,7 @@ namespace EM.Data.Migrations
                     b.ToTable("Organizers");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Performer", b =>
+            modelBuilder.Entity("EM.Data.Entities.Performer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -283,7 +283,7 @@ namespace EM.Data.Migrations
                     b.ToTable("Performers");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.State", b =>
+            modelBuilder.Entity("EM.Data.Entities.State", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -301,9 +301,23 @@ namespace EM.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("States");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            Name = "ANDHRA PRADESH"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 1,
+                            Name = "ASSAM"
+                        });
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Venue", b =>
+            modelBuilder.Entity("EM.Data.Entities.Venue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -361,9 +375,9 @@ namespace EM.Data.Migrations
                     b.ToTable("Venues");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.City", b =>
+            modelBuilder.Entity("EM.Data.Entities.City", b =>
                 {
-                    b.HasOne("EM.Data.Models.State", "State")
+                    b.HasOne("EM.Data.Entities.State", "State")
                         .WithMany("Cities")
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -372,21 +386,21 @@ namespace EM.Data.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Event", b =>
+            modelBuilder.Entity("EM.Data.Entities.Event", b =>
                 {
-                    b.HasOne("EM.Data.Models.Organizer", "Organizer")
+                    b.HasOne("EM.Data.Entities.Organizer", "Organizer")
                         .WithMany("Events")
                         .HasForeignKey("OrganizerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EM.Data.Models.Performer", "Performer")
+                    b.HasOne("EM.Data.Entities.Performer", "Performer")
                         .WithMany("Events")
                         .HasForeignKey("PerformerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EM.Data.Models.Venue", "Venue")
+                    b.HasOne("EM.Data.Entities.Venue", "Venue")
                         .WithMany("Events")
                         .HasForeignKey("VenueId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -399,9 +413,9 @@ namespace EM.Data.Migrations
                     b.Navigation("Venue");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.EventDocument", b =>
+            modelBuilder.Entity("EM.Data.Entities.EventDocument", b =>
                 {
-                    b.HasOne("EM.Data.Models.Event", "Event")
+                    b.HasOne("EM.Data.Entities.Event", "Event")
                         .WithMany("EventDocuments")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -410,9 +424,9 @@ namespace EM.Data.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.EventOffer", b =>
+            modelBuilder.Entity("EM.Data.Entities.EventOffer", b =>
                 {
-                    b.HasOne("EM.Data.Models.Event", "Event")
+                    b.HasOne("EM.Data.Entities.Event", "Event")
                         .WithMany("EventOffers")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -421,9 +435,9 @@ namespace EM.Data.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.EventTicketCategory", b =>
+            modelBuilder.Entity("EM.Data.Entities.EventTicketCategory", b =>
                 {
-                    b.HasOne("EM.Data.Models.Event", "Event")
+                    b.HasOne("EM.Data.Entities.Event", "Event")
                         .WithMany("EventTicketCategories")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -432,9 +446,9 @@ namespace EM.Data.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Performer", b =>
+            modelBuilder.Entity("EM.Data.Entities.Performer", b =>
                 {
-                    b.HasOne("EM.Data.Models.Organizer", "Organizer")
+                    b.HasOne("EM.Data.Entities.Organizer", "Organizer")
                         .WithMany("Performers")
                         .HasForeignKey("OrganizerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -443,9 +457,9 @@ namespace EM.Data.Migrations
                     b.Navigation("Organizer");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Venue", b =>
+            modelBuilder.Entity("EM.Data.Entities.Venue", b =>
                 {
-                    b.HasOne("EM.Data.Models.Organizer", "Organizer")
+                    b.HasOne("EM.Data.Entities.Organizer", "Organizer")
                         .WithMany("Venues")
                         .HasForeignKey("OrganizerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -454,7 +468,7 @@ namespace EM.Data.Migrations
                     b.Navigation("Organizer");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Event", b =>
+            modelBuilder.Entity("EM.Data.Entities.Event", b =>
                 {
                     b.Navigation("EventDocuments");
 
@@ -463,7 +477,7 @@ namespace EM.Data.Migrations
                     b.Navigation("EventTicketCategories");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Organizer", b =>
+            modelBuilder.Entity("EM.Data.Entities.Organizer", b =>
                 {
                     b.Navigation("Events");
 
@@ -472,17 +486,17 @@ namespace EM.Data.Migrations
                     b.Navigation("Venues");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Performer", b =>
+            modelBuilder.Entity("EM.Data.Entities.Performer", b =>
                 {
                     b.Navigation("Events");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.State", b =>
+            modelBuilder.Entity("EM.Data.Entities.State", b =>
                 {
                     b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("EM.Data.Models.Venue", b =>
+            modelBuilder.Entity("EM.Data.Entities.Venue", b =>
                 {
                     b.Navigation("Events");
                 });
