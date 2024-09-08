@@ -51,6 +51,7 @@ builder.Services.AddControllers();
 //Fluent validation
 //builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
 builder.Services.AddValidatorsFromAssembly(typeof(LoginValidator).Assembly);
+builder.Services.AddScoped<StateIdValidator>();
 
 builder.Services.AddCors(options =>
 {

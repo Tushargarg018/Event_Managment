@@ -10,5 +10,6 @@ namespace EM.Business.Repository
     public interface IStateRepository
     {
         public Task<IEnumerable<State>> GetStateList(int CountryId);
-    }
+		Task<bool> StateExistsAsync(int stateId);
+	}
 }

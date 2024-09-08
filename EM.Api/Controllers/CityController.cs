@@ -1,6 +1,11 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
+using EM.Api.Validations;
 using EM.Business.Repository;
+using EM.Core.DTOs.Request;
+using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Success;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +17,14 @@ namespace EM.Api.Controllers
     {
         private readonly ICityService cityService;
         private readonly IMapper mapper;
+		private readonly IValidator<int> _stateIdValidator;
 
-        public CityController(ICityService cityService , IMapper mapper)
+		public CityController(ICityService cityService , IMapper mapper,StateIdValidator stateIdValidator)
         {
             this.cityService = cityService;
             this.mapper = mapper;
-        }
+		    _stateIdValidator = stateIdValidator;
+		}
 
         /// <summary>
         /// Retrieves a list of cities based on the provided state ID.
@@ -31,54 +38,32 @@ namespace EM.Api.Controllers
         /// </returns>
 
         [HttpGet("{state_id}/cities")]
-        //[Route("api/em/{state_id}/cities")]
         public async Task<IActionResult> GetCityList(int state_id)
         {
-            try
+			var stateValid = await _stateIdValidator.ValidateAsync(state_id);
+			if (!stateValid.IsValid)
+			{
+				return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Invalid state ID")
+					.WithErrors(stateValid.Errors.Select(e => e.ErrorMessage).ToList()));
+			}
+			try
             {
                 var cities = await cityService.GetCities(state_id);
-                if (cities == null)
-                {
+				if (cities == null || !cities.Any())
+				{
+					return NotFound(new ResponseDTO<object>(Array.Empty<object>(), "success", "No cities found for the given state"));
+				}
+				var citiesDto = mapper.Map<List<CityDto>>(cities);
+				return Ok(new ResponseDTO<List<CityDto>>(citiesDto, "success", "Cities retrieved successfully"));             
 
-                    return NotFound(new
-                    {
-                        status = "success",
-                        message = "no state found",
-                        data = (object)null
-                    });
 
-                }
-                var citiesdto = new List<CityDto>();
-                mapper.Map(cities, citiesdto);
-                Console.WriteLine(citiesdto);
-                if(!citiesdto.Any()){
-                    return NotFound(new
-                    {
-                        status = "success",
-                        message = "No cities found for the given state",
-                        data = (object)null
-                    });
-                }
-                else
-                {
-                    return Ok(new
-                    {
-                        status = "success",
-                        message = "cities retrieved successfully",
-                        data = citiesdto
-                    });
-                }
-                
-            }
+			}
             catch (Exception ex) 
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new
-                {
-                    status = "failure",
-                    message = "An unexpected error occured",
-                    data = (object)null
-                });
-            }
+				return StatusCode(StatusCodes.Status500InternalServerError,
+			new ResponseDTO<object>(Array.Empty<object>(), "failure", "An unexpected error occurred")
+				.WithErrors(new List<string> { ex.Message }));
+			}
             
         }
     }

@@ -22,5 +22,10 @@ namespace EM.Business.Services
         {
             return await appDbContext.States.Where(s=>s.CountryId== CountryId).ToListAsync();
         }
-    }
+
+		public async Task<bool> StateExistsAsync(int stateId)
+		{
+			return await appDbContext.States.AnyAsync(s => s.Id == stateId);
+		}
+	}
 }
