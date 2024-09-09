@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
-using EM.Business.Repository;
 using EM.Core.DTOS.Response.Success;
 using EM.Data;
 using EM.Data.Entities;
+using EM.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

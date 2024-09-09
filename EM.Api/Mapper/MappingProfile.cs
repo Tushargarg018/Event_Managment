@@ -22,12 +22,18 @@ namespace EM.Api.Mapper
 
             CreateMap<City, CityBo>();
             CreateMap<CityBo, CityDto>();
+
             CreateMap<Organizer, OrganizerBo>();
             CreateMap<OrganizerBo, OrganizerDto>();
+
             CreateMap<LoginDto, LoginResponseBO>();
             CreateMap<LoginResponseBO, LoginResponseDTO>();
+
             CreateMap<Performer, PerformerBO>();
             CreateMap<PerformerDTO,  PerformerBO>();
+
+            CreateMap<Venue, VenueBO>();
+            CreateMap<VenueBO, VenueResponseDTO>();
         }
     }
 }

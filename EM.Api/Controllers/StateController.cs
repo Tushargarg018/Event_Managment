@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
-using EM.Business.Repository;
+using EM.Business.Services;
+using EM.Core.DTOs.Response;
 using EM.Core.DTOS.Response.Success;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,33 +44,20 @@ namespace EM.Api.Controllers
                     mapper.Map(states, statedto);
                     if (statedto == null)
                     {
-                        return NotFound(new
-                        {
-                            status = "success",
-                            message = "states not found",
-                            data = (object)null
-                        });
+                        
+
+                        return NotFound(new ResponseDTO<object>(Array.Empty<object>() , "success" , "states not found"));
                     }
                     else
                     {
-                        return Ok(new
-                        {
-                            status = "success",
-                            message = "states retrieved successfully",
-                            data = statedto
-                        }
-                    );
+                        return Ok(new ResponseDTO<List<StateDto>>(statedto , "success" , "states retrieved successfully"));
                     }
                     
                 }
                 else
                 {
-                    return NotFound(new
-                    {
-                        status = "success",
-                        message = "country not available",
-                        data = (object)null
-                    });
+
+                    return NotFound(new ResponseDTO<object>(Array.Empty<object>, "success" , "Country not available"));
                 }
             }
             catch (Exception ex)
@@ -82,10 +70,9 @@ namespace EM.Api.Controllers
                     data = (object)null
                 });
 
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<object>(Array.Empty<object>(), "failure", "An unexpected error occurred" , new List<string> { ex.Message}));
             }
-            
-            
-            
+
         }
 
     }

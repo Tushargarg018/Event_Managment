@@ -1,5 +1,4 @@
 using EM.Api.Mapper;
-using EM.Business.Repository;
 using EM.Business.Services;
 using EM.Api;
 using EM.Api.Validations;
@@ -14,15 +13,23 @@ using EM.Data.RepositoryImpl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using EM.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // Add services to the container.
 
+//State 
 builder.Services.AddScoped<IStateRepository, StateRepository>();
-builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IStateService, StateService>();
-builder.Services.AddScoped<ICityService , CityService>();
+//City
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICityService, CityService>();
+//Venue
+builder.Services.AddScoped<IVenueService, VenueService>();
+builder.Services.AddScoped<IVenueRepository, VenueRepository>();
+
+
 
 // Load appsettings.json and environment-specific configurations
 Configuration
@@ -34,6 +41,9 @@ Configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DbCon")));
 //Adding Dependencies
+
+
+
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrganizerRepository, OrganizerRepository>();

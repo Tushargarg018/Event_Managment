@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using EM.Core.DTOs.Request;
-using EM.Business.Repository;
+using EM.Data.Repositories;
 
 namespace EM.Api.Validations
 {
-	public class StateIdValidator : AbstractValidator<int>
+    public class StateIdValidator : AbstractValidator<int>
 	{
 		private readonly IStateRepository _stateRepository;
 		public StateIdValidator(IStateRepository stateRepository)

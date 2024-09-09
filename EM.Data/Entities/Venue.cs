@@ -89,7 +89,7 @@ namespace EM.Data.Entities
         [Column("modified_on")]
 		public DateTime ModifiedOn { get; set; }
 
-        public required Organizer Organizer { get; set; }
+        public  Organizer Organizer { get; set; }
         public virtual ICollection<Event> Events { get; set; }
     }
 }

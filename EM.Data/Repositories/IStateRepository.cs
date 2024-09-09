@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Business.Repository
+namespace EM.Data.Repositories
 {
     public interface IStateRepository
     {
         public Task<IEnumerable<State>> GetStateList(int CountryId);
-		Task<bool> StateExistsAsync(int stateId);
-	}
+        Task<bool> StateExistsAsync(int stateId);
+    }
 }

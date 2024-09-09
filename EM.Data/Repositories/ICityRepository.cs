@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Business.Repository
+namespace EM.Data.Repositories
 {
     public interface ICityRepository
     {
