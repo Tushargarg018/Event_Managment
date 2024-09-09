@@ -12,8 +12,6 @@ namespace EM.Core.DTOs.Request
     {
         public string Name { get; set; }
         public string Bio {  get; set; }
-        //[JsonPropertyName("profile_pic")]
-        //public string ProfilePic { get; set; }
         public IFormFile? ImageFile { get; set; }
 
     }

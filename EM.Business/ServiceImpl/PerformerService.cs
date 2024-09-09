@@ -30,5 +30,12 @@ namespace EM.Business.ServiceImpl
             _mapper.Map(performer, performerResponseBo);
             return performerResponseBo;
         }
+        public PerformerBO GetPerformer(int Id)
+        {
+            var performer = _repository.GetPerformerById(Id);
+            var performerBo = new PerformerBO();
+            _mapper.Map(performer, performerBo);
+            return performerBo;
+        }
     }
 }

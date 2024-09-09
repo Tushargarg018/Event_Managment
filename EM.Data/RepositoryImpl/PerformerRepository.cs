@@ -38,5 +38,16 @@ namespace EM.Data.RepositoryImpl
             context.SaveChangesAsync();
             return performer;
         }
+
+        public Performer GetPerformerById(int Id)
+        {
+            var performer =  context.Performers.FindAsync(Id);
+            return performer.Result;
+        }
+
+        public async Task<bool> PerformerExistsAsync(int performerId)
+        {
+            return await context.Performers.AnyAsync(p => p.Id == performerId);
+        }
     }
 }

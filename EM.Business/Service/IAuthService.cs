@@ -18,7 +18,7 @@ namespace EM.Business.Services
         OrganizerBo ValidateOrganizer(string email, string password);
         public string GenerateToken(string Name, string Email);
         public LoginResponseBO OrganizerLogin(LoginDto loginDto);
-
+        public int GetOrganizerIdFromToken(string authHeader);
     }
 }
 

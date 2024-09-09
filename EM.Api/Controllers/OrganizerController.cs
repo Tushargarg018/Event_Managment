@@ -49,12 +49,12 @@ namespace EM.Api.Controllers
                     errors.Add(error.ErrorMessage);
                 }
                 //return Ok(errors);
-                return BadRequest(new ResponseDTO<LoginResponseDTO>(null, "Failure", "Validation Errors", errors));
+                return BadRequest(new ResponseDTO<LoginResponseDTO>(null, "failure", "Validation Errors", errors));
             }
             var response = authservice.OrganizerLogin(loginDto);
             LoginResponseDTO loginResponseDto = new LoginResponseDTO();
             _mapper.Map(response, loginResponseDto);
-            var resultResponse = new ResponseDTO<LoginResponseDTO>(loginResponseDto, "Success", "Organizer Login Successful", null);
+            var resultResponse = new ResponseDTO<LoginResponseDTO>(loginResponseDto, "success", "Organizer Login Successful", null);
             return Ok(resultResponse);
         }
     }

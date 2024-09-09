@@ -13,13 +13,13 @@ namespace EM.Data.Entities
         /// title of the event
         /// </summary>
         [Column("title")]
-		public required string Title { get; set; }
+		public string Title { get; set; }
 
         /// <summary>
         /// Description of the event
         /// </summary>
         [Column("description")]
-		public required string Description { get; set; }
+		public  string Description { get; set; }
         /// <summary>
         /// base price of the event
         /// </summary>

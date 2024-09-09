@@ -26,7 +26,7 @@ namespace EM.Business.ServiceImpl
             throw new NotImplementedException();
         }
 
-        public async Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId)
+        public async Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId, string baseUrl)
         {
             if (imageFile == null)
             {
@@ -50,9 +50,9 @@ namespace EM.Business.ServiceImpl
             var fileNameWithPath = Path.Combine(path, fileName);
             string[] parts = fileNameWithPath.Split('\\');
 
-            int startIndex = Array.IndexOf(parts, "Uploads");
+            int startIndex = Array.IndexOf(parts, "Uploads/profile");
             string imagePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
-            string responsePath = "http://localhost:5250\\" + imagePath;
+            string responsePath = baseUrl + imagePath;
             string url = responsePath.Replace('\\', '/');
             using var stream = new FileStream(fileNameWithPath, FileMode.Create);
             await imageFile.CopyToAsync(stream);

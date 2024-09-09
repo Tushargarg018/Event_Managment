@@ -2,6 +2,7 @@
 using EM.Business.BOs;
 using EM.Core.DTOs.Objects;
 using EM.Core.DTOs.Request;
+using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Success;
 using EM.Core.DTOS.Response.Success;
 using EM.Data.Entities;
@@ -28,6 +29,11 @@ namespace EM.Api.Mapper
             CreateMap<LoginResponseBO, LoginResponseDTO>();
             CreateMap<Performer, PerformerBO>();
             CreateMap<PerformerDTO,  PerformerBO>();
+            CreateMap<EventDTO, EventBO>();
+            CreateMap<EventBO, Event>();
+            CreateMap<Event, EventBO>();
+            CreateMap<Performer, PerformerBO>();
+            CreateMap<PerformerBO, PerformerResponseDTO>();
         }
     }
 }
