@@ -24,25 +24,10 @@ namespace EM.Business.ServiceImpl
 
         public async Task<VenueBO> AddVenue(VenueRequestDTO venueRequestDTO , int organizerId)
         {
-            /*Venue venue = new Venue(venueRequestDTO.Name);
-            
-            venue.Name = venueRequestDTO.Name;
-            venue.Type = venueRequestDTO.Type;
-            venue.MaxCapacity = venueRequestDTO.MaxCapacity;
-            venue.AddressLine1 = venueRequestDTO.AddressLine1;
-            venue.AddressLine2 = venueRequestDTO.AddressLine2;
-            venue.ZipCode = venueRequestDTO.ZipCode;
-            venue.City = venueRequestDTO.City;
-            venue.State = venueRequestDTO.State;
-            venue.Country = venueRequestDTO.Country;
-            venue.OrganizerId = venueRequestDTO.OrganizerId;
-            venue.Description = venueRequestDTO.Description;
-            venue.CreatedOn = DateTime.UtcNow;
-            venue.ModifiedOn = DateTime.UtcNow;*/
 
             Venue venue = new Venue
             {
-                Name = venueRequestDTO.Name,           // Required property
+                Name = venueRequestDTO.Name,           
                 Type = venueRequestDTO.Type,
                 MaxCapacity = venueRequestDTO.MaxCapacity,
                 AddressLine1 = venueRequestDTO.AddressLine1,
