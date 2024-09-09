@@ -1,4 +1,5 @@
 ﻿using EM.Data.Entities;
+using EM.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -29,7 +30,18 @@ namespace EM.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Organizer>()
+
+			modelBuilder.Entity<Organizer>().ToTable("organizer");
+			modelBuilder.Entity<Performer>().ToTable("performer");
+			modelBuilder.Entity<Venue>().ToTable("venue");
+			modelBuilder.Entity<Event>().ToTable("event");
+			modelBuilder.Entity<State>().ToTable("state");
+			modelBuilder.Entity<City>().ToTable("city");
+			modelBuilder.Entity<EventDocument>().ToTable("event_document");
+			modelBuilder.Entity<EventOffer>().ToTable("event_offer");
+			modelBuilder.Entity<EventTicketCategory>().ToTable("event_ticket_category");
+
+			modelBuilder.Entity<Organizer>()
                     .HasMany(o => o.Performers)
                     .WithOne(og => og.Organizer)
                     .HasForeignKey(p => p.OrganizerId);
@@ -64,10 +76,15 @@ namespace EM.Data
             modelBuilder.Entity<State>()
                     .HasMany(o => o.Cities)
                     .WithOne(og => og.State)
-                    .HasForeignKey(p => p.StateId);
+                    .HasForeignKey(p => p.StateId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<State>().HasData(StateSeed.GetStates());
+
+            modelBuilder.Entity<City>().HasData(CitySeed.GetCities());
+
+
         }
-
-
 
     }
 }

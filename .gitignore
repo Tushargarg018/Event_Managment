@@ -19,7 +19,8 @@ bld/
 
 # VS Code files
 .vscode/
-
+.vs/
+**/.vs/
 # Rider project files
 .idea/
 
@@ -121,3 +122,4 @@ resharper.xml
 !.gitignore
 tmp/
 temp/
+/EM.Api/Uploads/
