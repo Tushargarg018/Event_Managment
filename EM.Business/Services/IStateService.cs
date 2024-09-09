@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Business.Repository
+namespace EM.Business.Services
 {
-    public interface ICityService
+    public interface IStateService
     {
-        public Task<IEnumerable<CityBo>> GetCities(int StateId);
+        public Task<IEnumerable<StateBo>> GetStates(int CountryId);
     }
 }

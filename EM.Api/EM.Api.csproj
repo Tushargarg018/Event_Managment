@@ -35,4 +35,8 @@
     <ProjectReference Include="..\EM.Core\EM.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Uploads\Profiles\" />
+  </ItemGroup>
+
 </Project>

@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Common\" />
-    <Folder Include="DTOs\Request\" />
+    <Compile Remove="DTOs\Common\**" />
+    <EmbeddedResource Remove="DTOs\Common\**" />
+    <None Remove="DTOs\Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DTOs\Objects\" />
     <Folder Include="DTOs\Response\Error\" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.8" />
