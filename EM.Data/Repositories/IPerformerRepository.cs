@@ -10,7 +10,8 @@ namespace EM.Data.Repositories
     public interface IPerformerRepository
     {
         public Performer AddPerformer(string name, string bio, string profile_pic, int organizer_id);
-        public Performer GetPerformerById(int Id);
+        public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId);
         public Task<bool> PerformerExistsAsync(int performerId);
+
     }
 }

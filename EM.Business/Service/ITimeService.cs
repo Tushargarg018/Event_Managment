@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace EM.Business.Service
-{
-    public interface ITimeService
-    {
-        public DateTime ConvertISTToUTC(string date);
-        public DateTime ConvertTimeFromUTC(DateTime date);
-    }
-}
+//namespace EM.Business.Service
+//{
+//    public interface ITimeService
+//    {
+//        public DateTime ConvertISTToUTC(string date);
+//        public DateTime ConvertTimeFromUTC(DateTime date);
+//    }
+//}

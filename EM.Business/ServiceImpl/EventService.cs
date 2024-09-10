@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
-using EM.Business.Service;
 using EM.Business.Services;
+using EM.Core.Helpers;
 using EM.Data.Entities;
 using EM.Data.Repositories;
 using System;
@@ -16,13 +16,12 @@ namespace EM.Business.ServiceImpl
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
-        private readonly ITimeService _timeservice;
+     
 
-        public EventService(IEventRepository eventRepository, IMapper mapper, ITimeService timeservice)
+        public EventService(IEventRepository eventRepository, IMapper mapper)
         {
             _eventRepository = eventRepository;
             _mapper = mapper;
-            _timeservice = timeservice;
         }
         public EventBO AddEvent(EventBO eventBO)
         {
@@ -36,8 +35,8 @@ namespace EM.Business.ServiceImpl
             var createEvent = new Event();
 
             //Setting the conerted string dates inside Event entity
-            createEvent.StartDatetime = _timeservice.ConvertISTToUTC(startDateString);
-            createEvent.EndDatetime = _timeservice.ConvertISTToUTC(endDateString);
+            createEvent.StartDatetime = TimeConversionHelper.ConvertISTToUTC(startDateString);
+            createEvent.EndDatetime = TimeConversionHelper.ConvertISTToUTC(endDateString);
 
             //_mapper.Map(eventBO, createEvent);
             createEvent.Title = eventBO.Title;
@@ -54,8 +53,8 @@ namespace EM.Business.ServiceImpl
             var responseEvent = _eventRepository.AddEvent(createEvent);
             //_mapper.Map(responseEvent, eventBO);
             //Created Modified need to be converted in IST string 
-            eventBO.CreatedOn = _timeservice.ConvertTimeFromUTC(responseEvent.CreatedOn);
-            eventBO.ModifiedOn = _timeservice.ConvertTimeFromUTC(responseEvent.ModifiedOn);
+            eventBO.CreatedOn = TimeConversionHelper.ConvertTimeFromUTC(responseEvent.CreatedOn);
+            eventBO.ModifiedOn = TimeConversionHelper.ConvertTimeFromUTC(responseEvent.ModifiedOn);
             return eventBO;
         }
     }

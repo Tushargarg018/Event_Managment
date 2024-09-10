@@ -58,9 +58,9 @@ namespace EM.Api.Validations
         private bool ValidateDate(EventDTO e)
         {
             DateTime startDateTime;
-            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
+            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "yyyy-MM-ddTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
             DateTime endDateTime;
-            bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out endDateTime);
+            bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "yyyy-MM-ddTHH:mm", null, System.Globalization.DateTimeStyles.None, out endDateTime);
             if (isValidStartTime && isValidEndTime)
             {
                 return true;
@@ -71,16 +71,16 @@ namespace EM.Api.Validations
         private bool ValidateStartDate(EventDTO e)
         {
             DateTime startDateTime;
-            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
+            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "yyyy-MM-ddTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
             return startDateTime > DateTime.UtcNow.AddDays(1);
         }
 
         private bool ValidateDateRange(EventDTO e)
         {
             DateTime startDateTime;
-            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
+            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "yyyy-MM-ddTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
             DateTime endDateTime;
-            bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out endDateTime);
+            bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "yyyy-MM-ddTHH:mm", null, System.Globalization.DateTimeStyles.None, out endDateTime);
             if (isValidStartTime && isValidEndTime)
             {
                 return startDateTime < endDateTime;

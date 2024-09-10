@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace EM.Business.Services
 {
-
     public interface IAuthService
     {
         OrganizerBo ValidateOrganizer(string email, string password);

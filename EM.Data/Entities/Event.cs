@@ -76,8 +76,6 @@ namespace EM.Data.Entities
         /// 
         [Column("modified_on")]
 		public DateTime ModifiedOn { get; set; }
-        
-
 		public Organizer Organizer { get; set; }
 		public Performer Performer { get; set; }
 		public Venue Venue { get; set; }

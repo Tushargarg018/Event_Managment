@@ -24,6 +24,8 @@ namespace EM.Data.RepositoryImpl
                               .FirstOrDefault();
             var eventId = lastId + 1;
             eventToAdd.Id = eventId;
+            eventToAdd.CreatedOn = DateTime.UtcNow;
+            eventToAdd.ModifiedOn = DateTime.UtcNow;
             context.Events.Add(eventToAdd);
             context.SaveChangesAsync();
             return eventToAdd;

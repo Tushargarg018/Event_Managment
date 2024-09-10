@@ -129,6 +129,5 @@ namespace EM.Business.ServiceImpl
             int organizerId = int.Parse(organizerClaim);
             return organizerId;
         }
-
     }
 }

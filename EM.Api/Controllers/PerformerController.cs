@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
+using EM.Core.Helpers;
 using EM.Business.ServiceImpl;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
@@ -41,7 +42,7 @@ namespace EM.Api.Controllers
         public async Task<IActionResult> AddPerformer(PerformerDTO performerDto)
         {
             var authHeader = Request.Headers.Authorization;
-            var organizerId = _authservice.GetOrganizerIdFromToken(authHeader.ToString());
+            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
 
             if (performerDto.ImageFile?.Length > 1 * 1024 * 1024)
             {
@@ -74,6 +75,17 @@ namespace EM.Api.Controllers
             }
             var image = _fileService.GetImageAsByteArray(fileLocation);
             return File(image, "application/octet-stream", filePath);
+        }
+
+        [Authorize(Policy ="UserPolicy")]
+        [HttpGet("performer")]
+        public async Task<IActionResult> GetPerformers()
+        {
+            var authHeader = Request.Headers.Authorization;
+            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+            var performerList = _performerService.GetPerformers(organizerId);
+            var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
+            return Ok(response);
         }
     }
 }
