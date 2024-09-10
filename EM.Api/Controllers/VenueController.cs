@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EM.Api.Validations;
+using EM.Business.BOs;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
@@ -55,33 +56,23 @@ namespace EM.Api.Controllers
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
 
             }
-
             try
             {
-                // Add the venue using the service layer
+
                 var venueResponse = await venueService.AddVenue(venueRequestDTO , organizerId);
                 var venueResponseDTO = new VenueResponseDTO();
-                mapper.Map(venueResponse, venueResponseDTO); // Map the response to the DTO
+                mapper.Map(venueResponse, venueResponseDTO); 
 
                 if (venueResponse == null)
                 {
-                    // Return a success response with a message if no venue was added
-                    
-                    return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No venue added yet"));
-
+                  return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No venue added yet"));
                 }
 
-                // Return a success response with the venue data
-
                 return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue added successfully"));
-
 
             }
             catch (Exception ex)
             {
-                // Return a 500 Internal Server Error response in case of an exception
-                
-
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<Object>(), "failure" , "An unexpected error occurred" , new List<string> { ex.Message}));
             }
         }
@@ -110,29 +101,17 @@ namespace EM.Api.Controllers
 
             try
             {
-                // Retrieve all venues using the service layer
-                var venueResponse = await venueService.GetAllVenue(organizerId);
-                var venueResponseDTO = new List<VenueResponseDTO>();
-                mapper.Map(venueResponse, venueResponseDTO); // Map the response to the DTO
+				var venueResponse = await venueService.GetAllVenue(organizerId);
+				var venueResponseDTO = mapper.Map<List<VenueResponseDTO>>(venueResponse);
 
-                // Return a success response with the list of venues
-                
-                return Ok(new ResponseDTO<List<VenueResponseDTO>>(venueResponseDTO, "success", "Venue list retrieved successfully"));   
+				return Ok(new ResponseDTO<List<VenueResponseDTO>>(venueResponseDTO, "success", "Venue list retrieved successfully"));   
 
             }
             catch (Exception ex)
             {
-                // Return a 500 Internal Server Error response in case of an exception
-                
-
                 return StatusCode(StatusCodes.Status500InternalServerError , new ResponseDTO<Object>(Array.Empty<object>() , "failure", "An unexpected error occurred" , new List<string> { ex.Message}));
             }
         }
-
-
-
-
-
 
         /// <summary>
         /// Retrieves a specific venue by its ID.
@@ -140,17 +119,14 @@ namespace EM.Api.Controllers
         /// <param name="VenueId">The ID of the venue to retrieve</param>
         /// <returns>IActionResult with the venue data</returns>
         [HttpGet("venue/{VenueId}")]
-        public async Task<IActionResult> GetVenue(int VenueId)
+        public async Task<IActionResult> GetVenue(int venueId)
         {
-
-
             try
             {
                 // Retrieve the venue by ID using the service layer
-                var venueResponse = await venueService.GetVenue(VenueId);
+                var venueResponse = await venueService.GetVenue(venueId);
                 var venueResponseDTO = new VenueResponseDTO();
-                mapper.Map(venueResponse, venueResponseDTO); // Map the response to the DTO
-
+                mapper.Map(venueResponse, venueResponseDTO); 
 
                 if (venueResponse == null)
                 {

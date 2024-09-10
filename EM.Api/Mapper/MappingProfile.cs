@@ -32,7 +32,9 @@ namespace EM.Api.Mapper
             CreateMap<Performer, PerformerBO>();
             CreateMap<PerformerDTO,  PerformerBO>();
 
-            CreateMap<Venue, VenueBO>();
+            CreateMap<Venue, VenueBO>()
+                .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
+                .ForMember(dest => dest.StateName, opt => opt.MapFrom(src => src.State.Name));
             CreateMap<VenueBO, VenueResponseDTO>();
         }
     }

@@ -14,7 +14,7 @@ namespace EM.Data.Repository
 
         public Task<IEnumerable<Venue>> GetVenueList(int organizerId);
 
-        public Task<Venue> GetVenue(int VenueId);
+        public Task<Venue> GetVenue(int venueId);
 
         public Task<Venue> UpdateVenue(VenueUpdateDTO venueUpdateDTO , int VenueId);
 
