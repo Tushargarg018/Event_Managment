@@ -35,9 +35,8 @@ namespace EM.Business.BOs
         public DateTime ModifiedOn { get; set; }
 
         [JsonPropertyName("start_datetime")]
-        public DateTime StartDatetime { get; set; }
-
+        public string StartDateTime { get; set; }
         [JsonPropertyName("end_datetime")]
-        public DateTime EndDatetime { get; set; }
+        public string EndDateTime { get; set; }    
     }
 }

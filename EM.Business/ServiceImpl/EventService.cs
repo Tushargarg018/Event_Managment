@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
+using EM.Business.Service;
 using EM.Business.Services;
 using EM.Data.Entities;
 using EM.Data.Repositories;
@@ -15,25 +16,46 @@ namespace EM.Business.ServiceImpl
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
+        private readonly ITimeService _timeservice;
 
-        public EventService(IEventRepository eventRepository, IMapper mapper)
+        public EventService(IEventRepository eventRepository, IMapper mapper, ITimeService timeservice)
         {
             _eventRepository = eventRepository;
             _mapper = mapper;
+            _timeservice = timeservice;
         }
         public EventBO AddEvent(EventBO eventBO)
         {
+            //Converting string to datetime objects
+            string startDateString = eventBO.StartDateTime;
+            string endDateString = eventBO.EndDateTime;
+            
             eventBO.Status = Core.Enums.StatusEnum.Draft;
             eventBO.CreatedOn = DateTime.UtcNow;
             eventBO.ModifiedOn = DateTime.UtcNow;
             var createEvent = new Event();
-            _mapper.Map(eventBO, createEvent);
+
+            //Setting the conerted string dates inside Event entity
+            createEvent.StartDatetime = _timeservice.ConvertISTToUTC(startDateString);
+            createEvent.EndDatetime = _timeservice.ConvertISTToUTC(endDateString);
+
+            //_mapper.Map(eventBO, createEvent);
+            createEvent.Title = eventBO.Title;
+            createEvent.Description = eventBO.Description;
+            createEvent.BasePrice = eventBO.BasePrice;
+            createEvent.OrganizerId = eventBO.OrganizerId;
+            createEvent.CreatedOn = eventBO.CreatedOn;
+            createEvent.ModifiedOn = eventBO.ModifiedOn;
+            createEvent.PerformerId = eventBO.PerformerId;
+            createEvent.VenueId = eventBO.VenueId;
             createEvent.EventDocuments = new List<EventDocument>();
             createEvent.EventOffers = [];
             createEvent.EventTicketCategories = new List<EventTicketCategory>();
             var responseEvent = _eventRepository.AddEvent(createEvent);
-            _mapper.Map(responseEvent, eventBO);
-            eventBO.Status = Core.Enums.StatusEnum.Draft;
+            //_mapper.Map(responseEvent, eventBO);
+            //Created Modified need to be converted in IST string 
+            eventBO.CreatedOn = _timeservice.ConvertTimeFromUTC(responseEvent.CreatedOn);
+            eventBO.ModifiedOn = _timeservice.ConvertTimeFromUTC(responseEvent.ModifiedOn);
             return eventBO;
         }
     }

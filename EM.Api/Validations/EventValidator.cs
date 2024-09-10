@@ -40,20 +40,54 @@ namespace EM.Api.Validations
                 .MustAsync(VenueExists).WithMessage("The provided Venue Id does not exist.");
 
             RuleFor(e => e.StartDateTime)
-                .NotEmpty().WithMessage("Start Date and Time is required")
-                .GreaterThan(DateTime.UtcNow.AddDays(1)).WithMessage("Event can't be on the same day");
+                .NotEmpty().WithMessage("Start Date and Time is required");
 
             RuleFor(e => e.EndDateTime)
                 .NotEmpty().WithMessage("End Date and Time is Required");
 
             RuleFor(e => e)
                 .Must(ValidateDateRange).WithMessage("End Date Must be greater than Start Date");
+
+            RuleFor(e => e)
+                 .Must(ValidateDate).WithMessage("Invalid Date Format");
+
+            RuleFor(e => e)
+                .Must(ValidateStartDate).WithMessage("Can't Schedule Event on Same day.");
+        }
+
+        private bool ValidateDate(EventDTO e)
+        {
+            DateTime startDateTime;
+            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
+            DateTime endDateTime;
+            bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out endDateTime);
+            if (isValidStartTime && isValidEndTime)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        private bool ValidateStartDate(EventDTO e)
+        {
+            DateTime startDateTime;
+            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
+            return startDateTime > DateTime.UtcNow.AddDays(1);
         }
 
         private bool ValidateDateRange(EventDTO e)
         {
-            return e.StartDateTime < e.EndDateTime;
+            DateTime startDateTime;
+            bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out startDateTime);
+            DateTime endDateTime;
+            bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "dd-MM-yyyyTHH:mm", null, System.Globalization.DateTimeStyles.None, out endDateTime);
+            if (isValidStartTime && isValidEndTime)
+            {
+                return startDateTime < endDateTime;
+            }
+            else return false;
         }
+
         private async Task<bool> PerformerExists(int performerId, CancellationToken token)
         {
             return await _performerRepository.PerformerExistsAsync(performerId);

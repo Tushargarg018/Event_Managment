@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EM.Api.Validations;
 using EM.Business.BOs;
+using EM.Business.Service;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
@@ -21,13 +22,15 @@ namespace EM.Api.Controllers
         private readonly IEventService _eventService;
         private readonly IAuthService _authService;
         private readonly IValidator<EventDTO> _eventValidator;
+        //private readonly ITimeService _timeService;
         
-        public EventController(IMapper mapper, IEventService eventService, IAuthService authService, IValidator<EventDTO> eventValidator)
+        public EventController(IMapper mapper, IEventService eventService, IAuthService authService, IValidator<EventDTO> eventValidator, ITimeService timeservice)
         {
             _mapper = mapper;
             _eventService = eventService;   
             _authService = authService;
             _eventValidator = eventValidator;
+            //_timeService = timeservice;
         }
 
         [Authorize(Policy ="UserPolicy")]
@@ -43,7 +46,6 @@ namespace EM.Api.Controllers
                 {
                     errors.Add(error.ErrorMessage);
                 }
-                //return Ok(errors);
                 return BadRequest(new ResponseDTO<LoginResponseDTO>(null, "failure", "Validation Errors", errors));
             }
 

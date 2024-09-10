@@ -3,60 +3,152 @@
   "WorkspaceRootPath": "D:\\EventManagement\\em_api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\validations\\eventvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\validations\\eventvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\bos\\performerbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\performerbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\performercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\performercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\iperformerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\iperformerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\performerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\performerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\organizercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\organizercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\globalexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\globalexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\citycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\citycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\eventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\eventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\timeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\timeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\itimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\itimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\bos\\eventbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\eventbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\eventdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\bos\\performerbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\performerbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\globalexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\globalexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\validations\\eventvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\validations\\eventvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\citycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\citycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\organizercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\organizercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\validations\\loginvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\validations\\loginvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\validations\\stateidvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\validations\\stateidvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\bos\\citybo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\citybo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\bos\\loginresponsebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\bos\\loginresponsebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\exceptions\\userinactiveexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\exceptions\\userinactiveexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\exceptions\\usernotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\exceptions\\usernotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\istateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\istateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\iperformerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\iperformerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\ieventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\ieventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\icityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\icityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\stateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\stateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\performerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\performerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\cityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\cityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\response\\performerresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\response\\performerresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\response\\responsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\response\\responsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\venueupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\venueupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\performerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\performerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\performercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\performercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\repositories\\ivenuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,10 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\controllers\\statecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\controllers\\statecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\validations\\stateidvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\validations\\stateidvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\repositoryimpl\\venuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,36 +175,8 @@
       "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\repositories\\iperformerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\performerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\performerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\serviceimpl\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\serviceimpl\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\venueupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\venueupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\repositoryimpl\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\repositoryimpl\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\entities\\performer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -127,24 +187,8 @@
       "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\entities\\organizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\ieventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\ieventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|d:\\eventmanagement\\em_api\\em.business\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D89899EC-AF81-4E21-ABFC-3FCB4C6D3008}|EM.Business\\EM.Business.csproj|solutionrelative:em.business\\service\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\repositoryimpl\\perfrepold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|solutionrelative:em.data\\repositoryimpl\\perfrepold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|d:\\eventmanagement\\em_api\\em.api\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{967D4C1A-F735-4650-93A9-8BB1985D13AB}|EM.Api\\EM.Api.csproj|solutionrelative:em.api\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|d:\\eventmanagement\\em_api\\em.core\\dtos\\request\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC838D7A-958F-4862-B202-1B9D8E83F091}|EM.Core\\EM.Core.csproj|solutionrelative:em.core\\dtos\\request\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C67352B0-10C9-4C3F-88D8-D1F8B013C77C}|EM.Data\\EM.Data.csproj|d:\\eventmanagement\\em_api\\em.data\\repositoryimpl\\organizerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -167,118 +211,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\EventController.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Controllers\\EventController.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\EventController.cs*",
+              "RelativeToolTip": "EM.Api\\Controllers\\EventController.cs*",
+              "ViewState": "AQIAACoAAAAAAAAAAAAIwDgAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T06:35:42.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EventBO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\EventBO.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\EventBO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\EventBO.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\EventBO.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAQwCMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T12:14:42.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "EventDTO.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\EventDTO.cs",
               "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\EventDTO.cs",
               "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\EventDTO.cs",
               "RelativeToolTip": "EM.Core\\DTOs\\Request\\EventDTO.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAA5wBIAAAAsAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T13:05:53.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "OrganizerController.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\OrganizerController.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Controllers\\OrganizerController.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\OrganizerController.cs",
-              "RelativeToolTip": "EM.Api\\Controllers\\OrganizerController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAYwD0AAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "EventService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\EventService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\EventService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\EventService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\EventService.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAowDoAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T07:22:21.17Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PerformerController.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\PerformerController.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Controllers\\PerformerController.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\PerformerController.cs",
-              "RelativeToolTip": "EM.Api\\Controllers\\PerformerController.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAASwDwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T08:35:21.729Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\AuthService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\AuthService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\AuthService.cs",
-              "RelativeToolTip": "EM.Business\\ServiceImpl\\AuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAF8AAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:17:09.643Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PerformerService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\PerformerService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\PerformerService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\PerformerService.cs",
-              "RelativeToolTip": "EM.Business\\ServiceImpl\\PerformerService.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAxwBoAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:20:57.584Z",
+              "WhenOpened": "2024-09-09T07:03:07.096Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "IPerformerService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IPerformerService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\Service\\IPerformerService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IPerformerService.cs",
-              "RelativeToolTip": "EM.Business\\Service\\IPerformerService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAUwAkAAAABAAAA",
+              "Title": "Event.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Entities\\Event.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Entities\\Event.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Entities\\Event.cs",
+              "RelativeToolTip": "EM.Data\\Entities\\Event.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAIwCkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:25:29.43Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PerformerBO.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\PerformerBO.cs",
-              "RelativeDocumentMoniker": "EM.Business\\BOs\\PerformerBO.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\PerformerBO.cs",
-              "RelativeToolTip": "EM.Business\\BOs\\PerformerBO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:03:16.745Z",
+              "WhenOpened": "2024-09-09T07:12:03.935Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EventValidator.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\EventValidator.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Validations\\EventValidator.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\EventValidator.cs",
-              "RelativeToolTip": "EM.Api\\Validations\\EventValidator.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAgwBwAAABFAAAA",
+              "Title": "TimeService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\TimeService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\TimeService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\TimeService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\TimeService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAlwBsAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:05:35.789Z",
+              "WhenOpened": "2024-09-10T03:57:42.077Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EventController.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\EventController.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Controllers\\EventController.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\EventController.cs",
-              "RelativeToolTip": "EM.Api\\Controllers\\EventController.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAAADoAAABhAAAA",
+              "DocumentIndex": 3,
+              "Title": "ITimeService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\ITimeService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Service\\ITimeService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\ITimeService.cs",
+              "RelativeToolTip": "EM.Business\\Service\\ITimeService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:35:42.524Z",
+              "WhenOpened": "2024-09-10T03:56:41.475Z",
               "EditorCaption": ""
             },
             {
@@ -289,61 +307,61 @@
               "RelativeDocumentMoniker": "EM.Api\\GlobalExceptionMiddleware.cs",
               "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\GlobalExceptionMiddleware.cs",
               "RelativeToolTip": "EM.Api\\GlobalExceptionMiddleware.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAkwDgAAAAAAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAArwBUAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T08:37:23.894Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "LoginValidator.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\LoginValidator.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Validations\\LoginValidator.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\LoginValidator.cs",
-              "RelativeToolTip": "EM.Api\\Validations\\LoginValidator.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "EventValidator.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\EventValidator.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Validations\\EventValidator.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\EventValidator.cs",
+              "RelativeToolTip": "EM.Api\\Validations\\EventValidator.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAADoAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T12:07:09.792Z",
+              "WhenOpened": "2024-09-09T06:05:35.789Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "EventBO.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\EventBO.cs",
-              "RelativeDocumentMoniker": "EM.Business\\BOs\\EventBO.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\EventBO.cs",
-              "RelativeToolTip": "EM.Business\\BOs\\EventBO.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAxwCcAAAAqAAAA",
+              "DocumentIndex": 7,
+              "Title": "PerformerBO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\PerformerBO.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\PerformerBO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\PerformerBO.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\PerformerBO.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAA9wBEAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T12:14:42.582Z",
+              "WhenOpened": "2024-09-09T06:03:16.745Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "CityController.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\CityController.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Controllers\\CityController.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\CityController.cs",
-              "RelativeToolTip": "EM.Api\\Controllers\\CityController.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAkwDYAAAAFAAAA",
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\AuthService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\AuthService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\AuthService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\AuthService.cs",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAwwHoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T12:28:04.025Z",
+              "WhenOpened": "2024-09-09T06:17:09.643Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "EventService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\EventService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\EventService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\EventService.cs",
-              "RelativeToolTip": "EM.Business\\ServiceImpl\\EventService.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAuwCMAAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T07:03:07.096Z",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "EM.Api\\appsettings.json",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\appsettings.json",
+              "RelativeToolTip": "EM.Api\\appsettings.json",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-09T05:48:08.805Z",
               "EditorCaption": ""
             },
             {
@@ -361,150 +379,202 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "PerformerDTO.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\PerformerDTO.cs",
-              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\PerformerDTO.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\PerformerDTO.cs",
-              "RelativeToolTip": "EM.Core\\DTOs\\Request\\PerformerDTO.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:01:54.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "IPerformerRepository.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IPerformerRepository.cs",
-              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IPerformerRepository.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IPerformerRepository.cs",
-              "RelativeToolTip": "EM.Data\\Repositories\\IPerformerRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T11:46:30.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "IStateRepository.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IStateRepository.cs",
-              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IStateRepository.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IStateRepository.cs",
-              "RelativeToolTip": "EM.Data\\Repositories\\IStateRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T11:46:37.807Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "VenueRepository.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\VenueRepository.cs",
-              "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\VenueRepository.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\VenueRepository.cs",
-              "RelativeToolTip": "EM.Data\\RepositoryImpl\\VenueRepository.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAcwEUAAABKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T11:24:38.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IVenueRepository.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IVenueRepository.cs",
-              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IVenueRepository.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IVenueRepository.cs",
-              "RelativeToolTip": "EM.Data\\Repositories\\IVenueRepository.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T11:23:30.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "StateController.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\StateController.cs",
-              "RelativeDocumentMoniker": "EM.Api\\Controllers\\StateController.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\StateController.cs",
-              "RelativeToolTip": "EM.Api\\Controllers\\StateController.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAowAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T12:04:28.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PerformerRepository.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\PerformerRepository.cs",
-              "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\PerformerRepository.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\PerformerRepository.cs",
-              "RelativeToolTip": "EM.Data\\RepositoryImpl\\PerformerRepository.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAowDQAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T08:36:54.001Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "FileService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\FileService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\FileService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\FileService.cs",
-              "RelativeToolTip": "EM.Business\\ServiceImpl\\FileService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAqwDYAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T09:31:29.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Program.cs",
               "RelativeDocumentMoniker": "EM.Api\\Program.cs",
               "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Program.cs",
               "RelativeToolTip": "EM.Api\\Program.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAYwDoAAABAAAAA",
+              "ViewState": "AQIAAIgAAAAAAAAAAAAiwIoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T06:08:17.341Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "VenueUpdateDTO.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
-              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
-              "RelativeToolTip": "EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAIwCQAAAABAAAA",
+              "DocumentIndex": 15,
+              "Title": "LoginValidator.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\LoginValidator.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Validations\\LoginValidator.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Validations\\LoginValidator.cs",
+              "RelativeToolTip": "EM.Api\\Validations\\LoginValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T11:25:57.131Z",
+              "WhenOpened": "2024-09-09T12:07:09.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "OrganizerController.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\OrganizerController.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Controllers\\OrganizerController.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\OrganizerController.cs",
+              "RelativeToolTip": "EM.Api\\Controllers\\OrganizerController.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAYwD0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T07:22:21.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CityController.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\CityController.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Controllers\\CityController.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\CityController.cs",
+              "RelativeToolTip": "EM.Api\\Controllers\\CityController.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAgwDAAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T12:28:04.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CityBo.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\CityBo.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\CityBo.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\CityBo.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\CityBo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:47.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LoginResponseBO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\LoginResponseBO.cs",
+              "RelativeDocumentMoniker": "EM.Business\\BOs\\LoginResponseBO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\BOs\\LoginResponseBO.cs",
+              "RelativeToolTip": "EM.Business\\BOs\\LoginResponseBO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:37.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UserInactiveException.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Exceptions\\UserInactiveException.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Exceptions\\UserInactiveException.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Exceptions\\UserInactiveException.cs",
+              "RelativeToolTip": "EM.Business\\Exceptions\\UserInactiveException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:35.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UserNotFoundException.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Exceptions\\UserNotFoundException.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Exceptions\\UserNotFoundException.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Exceptions\\UserNotFoundException.cs",
+              "RelativeToolTip": "EM.Business\\Exceptions\\UserNotFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:34.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IStateService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IStateService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Service\\IStateService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IStateService.cs",
+              "RelativeToolTip": "EM.Business\\Service\\IStateService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:30.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 25,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\appsettings.json",
-              "RelativeDocumentMoniker": "EM.Api\\appsettings.json",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\appsettings.json",
-              "RelativeToolTip": "EM.Api\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-09T05:48:08.805Z",
+              "Title": "ICityService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\ICityService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Service\\ICityService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\ICityService.cs",
+              "RelativeToolTip": "EM.Business\\Service\\ICityService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:25.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "StateService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\StateService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\StateService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\StateService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\StateService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:17.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "FileService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\FileService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\FileService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\FileService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\FileService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T09:31:29.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IPerformerService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IPerformerService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Service\\IPerformerService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IPerformerService.cs",
+              "RelativeToolTip": "EM.Business\\Service\\IPerformerService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAUwAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T06:25:29.43Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 26,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IAuthService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Service\\IAuthService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IAuthService.cs",
+              "RelativeToolTip": "EM.Business\\Service\\IAuthService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T06:18:13.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "IEventService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IEventService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\Service\\IEventService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IEventService.cs",
+              "RelativeToolTip": "EM.Business\\Service\\IEventService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T07:08:42.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "IFileService.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IFileService.cs",
               "RelativeDocumentMoniker": "EM.Business\\Service\\IFileService.cs",
@@ -517,7 +587,189 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
+              "Title": "CityService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\CityService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\CityService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\CityService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\CityService.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:09:07.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PerformerResponseDTO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Response\\PerformerResponseDTO.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Response\\PerformerResponseDTO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Response\\PerformerResponseDTO.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Response\\PerformerResponseDTO.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:08:57.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ResponseDTO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Response\\ResponseDTO.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Response\\ResponseDTO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Response\\ResponseDTO.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Response\\ResponseDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T13:08:55.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "PerformerService.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\PerformerService.cs",
+              "RelativeDocumentMoniker": "EM.Business\\ServiceImpl\\PerformerService.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\ServiceImpl\\PerformerService.cs",
+              "RelativeToolTip": "EM.Business\\ServiceImpl\\PerformerService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T06:20:57.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PerformerDTO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\PerformerDTO.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\PerformerDTO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\PerformerDTO.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Request\\PerformerDTO.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T06:01:54.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "VenueUpdateDTO.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Request\\VenueUpdateDTO.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAIwA0AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T11:25:57.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "RelativeToolTip": "EM.Core\\DTOs\\Request\\LoginDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T06:01:00.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PerformerController.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\PerformerController.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Controllers\\PerformerController.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\PerformerController.cs",
+              "RelativeToolTip": "EM.Api\\Controllers\\PerformerController.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAASwDwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T08:35:21.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "IPerformerRepository.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IPerformerRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IPerformerRepository.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IPerformerRepository.cs",
+              "RelativeToolTip": "EM.Data\\Repositories\\IPerformerRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T11:46:30.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "IStateRepository.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IStateRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IStateRepository.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IStateRepository.cs",
+              "RelativeToolTip": "EM.Data\\Repositories\\IStateRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T11:46:37.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "VenueRepository.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\VenueRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\VenueRepository.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\VenueRepository.cs",
+              "RelativeToolTip": "EM.Data\\RepositoryImpl\\VenueRepository.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAcwEUAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T11:24:38.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "IVenueRepository.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IVenueRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\Repositories\\IVenueRepository.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Repositories\\IVenueRepository.cs",
+              "RelativeToolTip": "EM.Data\\Repositories\\IVenueRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T11:23:30.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "StateController.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\StateController.cs",
+              "RelativeDocumentMoniker": "EM.Api\\Controllers\\StateController.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Api\\Controllers\\StateController.cs",
+              "RelativeToolTip": "EM.Api\\Controllers\\StateController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T12:04:28.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "PerformerRepository.cs",
+              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\PerformerRepository.cs",
+              "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\PerformerRepository.cs",
+              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\PerformerRepository.cs",
+              "RelativeToolTip": "EM.Data\\RepositoryImpl\\PerformerRepository.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAowDQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T08:36:54.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
               "Title": "Performer.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Entities\\Performer.cs",
               "RelativeDocumentMoniker": "EM.Data\\Entities\\Performer.cs",
@@ -529,7 +781,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 43,
               "Title": "EventRepository.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\EventRepository.cs",
               "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\EventRepository.cs",
@@ -542,7 +794,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 45,
               "Title": "Organizer.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Entities\\Organizer.cs",
               "RelativeDocumentMoniker": "EM.Data\\Entities\\Organizer.cs",
@@ -554,55 +806,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Event.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Entities\\Event.cs",
-              "RelativeDocumentMoniker": "EM.Data\\Entities\\Event.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\Entities\\Event.cs",
-              "RelativeToolTip": "EM.Data\\Entities\\Event.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAABUAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T07:12:03.935Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "IEventService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IEventService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\Service\\IEventService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IEventService.cs",
-              "RelativeToolTip": "EM.Business\\Service\\IEventService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T07:08:42.02Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IAuthService.cs",
-              "RelativeDocumentMoniker": "EM.Business\\Service\\IAuthService.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Business\\Service\\IAuthService.cs",
-              "RelativeToolTip": "EM.Business\\Service\\IAuthService.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:18:13.165Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "PerfRepOld.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\PerfRepOld.cs",
-              "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\PerfRepOld.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\PerfRepOld.cs",
-              "RelativeToolTip": "EM.Data\\RepositoryImpl\\PerfRepOld.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAIwCkAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:12:48.162Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 46,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Api\\Mapper\\MappingProfile.cs",
               "RelativeDocumentMoniker": "EM.Api\\Mapper\\MappingProfile.cs",
@@ -614,19 +818,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "LoginDto.cs",
-              "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\LoginDto.cs",
-              "RelativeDocumentMoniker": "EM.Core\\DTOs\\Request\\LoginDto.cs",
-              "ToolTip": "D:\\EventManagement\\em_api\\EM.Core\\DTOs\\Request\\LoginDto.cs",
-              "RelativeToolTip": "EM.Core\\DTOs\\Request\\LoginDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T06:01:00.056Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 47,
               "Title": "OrganizerRepository.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\RepositoryImpl\\OrganizerRepository.cs",
               "RelativeDocumentMoniker": "EM.Data\\RepositoryImpl\\OrganizerRepository.cs",
@@ -638,7 +830,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 48,
               "Title": "20240909054907_init.cs",
               "DocumentMoniker": "D:\\EventManagement\\em_api\\EM.Data\\Migrations\\20240909054907_init.cs",
               "RelativeDocumentMoniker": "EM.Data\\Migrations\\20240909054907_init.cs",

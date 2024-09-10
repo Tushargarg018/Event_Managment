@@ -2,6 +2,7 @@ using EM.Api;
 using EM.Api.Mapper;
 using EM.Api.Validations;
 using EM.Business.Repository;
+using EM.Business.Service;
 using EM.Business.ServiceImpl;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
@@ -41,6 +42,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DbCon")));
 
 //Adding Dependencies
+
+//Time Service
+builder.Services.AddScoped<ITimeService, TimeService>();
 
 //Auth and Organizer
 builder.Services.AddScoped<IAuthService, AuthService>();
