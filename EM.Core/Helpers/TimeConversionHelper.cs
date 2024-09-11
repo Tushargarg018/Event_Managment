@@ -10,7 +10,7 @@ namespace EM.Core.Helpers
     {
         public static DateTime ConvertISTToUTC(string date)
         {
-            DateTime istDateTime = DateTime.ParseExact(date, "yyyy-MM-ddTHH:mm", null);
+            DateTime istDateTime = DateTime.ParseExact(date, "yyyy-MM-ddTHH:mm:ss", null);
             TimeZoneInfo istTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
             DateTime utcDateTime = TimeZoneInfo.ConvertTimeToUtc(istDateTime, istTimeZone);
             return utcDateTime;
@@ -21,7 +21,7 @@ namespace EM.Core.Helpers
             TimeZoneInfo istTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
             DateTime istDateTime = TimeZoneInfo.ConvertTimeFromUtc(date, istTimeZone);
             //string formattedDateTimeString = istDateTime.ToString("dd-MM-yyyyTHH:mm", CultureInfo.InvariantCulture);
-            TruncateSeconds(istDateTime);
+            //TruncateSeconds(istDateTime);
             return istDateTime;
         }
 
