@@ -2,11 +2,8 @@
 using EM.Api.Mapper;
 using EM.Business.Services;
 using EM.Api;
-using EM.Api.Mapper;
 using EM.Api.Validations;
-using EM.Business.Repository;
 using EM.Business.ServiceImpl;
-using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Data;
 using EM.Data.Entities;
@@ -23,7 +20,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json;
-using EM.Data.Repository;
 
 
 var builder = WebApplication.CreateBuilder(args);
