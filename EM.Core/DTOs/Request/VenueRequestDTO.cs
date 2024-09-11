@@ -8,10 +8,14 @@ using System.Threading.Tasks;
 
 namespace EM.Core.DTOs.Request
 {
-    public class VenueUpdateDTO
+    public class VenueRequestDTO
     {
+
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("type")]
+        public VenueTypeEnum Type { get; set; }
 
         [JsonPropertyName("max_capacity")]
         public int MaxCapacity { get; set; }
@@ -30,16 +34,11 @@ namespace EM.Core.DTOs.Request
 
         [JsonPropertyName("state")]
         public int State { get; set; }
-<<<<<<< HEAD
+
+        [JsonPropertyName("country")]
+        public int Country { get; set; }
 
         [JsonPropertyName("description")]
         public string Description { get; set; }
     }
 }
-=======
-      
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
-    }
-}
->>>>>>> a35f1aafa7855c433e8d8255875ec6b99b2bab67

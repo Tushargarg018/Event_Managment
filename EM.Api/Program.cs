@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+using EM.Api.Mapper;
+using EM.Business.Services;
+>>>>>>> a35f1aafa7855c433e8d8255875ec6b99b2bab67
 using EM.Api;
 using EM.Api.Mapper;
 using EM.Api.Validations;
@@ -19,16 +24,31 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+<<<<<<< HEAD
 using System.Text.Json;
+=======
+using EM.Data.Repository;
+>>>>>>> a35f1aafa7855c433e8d8255875ec6b99b2bab67
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
 // Add services to the container.
 
+//State 
 builder.Services.AddScoped<IStateRepository, StateRepository>();
-builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IStateService, StateService>();
+<<<<<<< HEAD
 builder.Services.AddScoped<ICityService, CityService>();
+=======
+//City
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICityService, CityService>();
+//Venue
+builder.Services.AddScoped<IVenueService, VenueService>();
+builder.Services.AddScoped<IVenueRepository, VenueRepository>();
+
+
+>>>>>>> a35f1aafa7855c433e8d8255875ec6b99b2bab67
 
 // Load appsettings.json and environment-specific configurations
 Configuration
@@ -43,7 +63,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //Adding Dependencies
 
 
+<<<<<<< HEAD
 //Auth and Organizer
+=======
+
+
+>>>>>>> a35f1aafa7855c433e8d8255875ec6b99b2bab67
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrganizerRepository, OrganizerRepository>();
 

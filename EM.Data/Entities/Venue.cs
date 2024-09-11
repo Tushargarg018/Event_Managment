@@ -51,13 +51,13 @@ namespace EM.Data.Entities
         /// city id of the venue
         /// </summary>
         [Column("city")]
-		public int City { get; set; }
+		public int CityId { get; set; }
 
         /// <summary>
         /// State id of the venue
         /// </summary>
         [Column("state")]
-		public int State { get; set; }
+		public int StateId { get; set; }
 
         /// <summary>
         /// Country id of the venue
@@ -89,7 +89,10 @@ namespace EM.Data.Entities
         [Column("modified_on")]
 		public DateTime ModifiedOn { get; set; }
 
-        public required Organizer Organizer { get; set; }
-        public virtual ICollection<Event> Events { get; set; }
+        public  Organizer Organizer { get; set; }
+
+		public City City { get; set; }
+		public State State { get; set; }
+		public virtual ICollection<Event> Events { get; set; }
     }
 }

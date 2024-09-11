@@ -123,3 +123,4 @@ resharper.xml
 tmp/
 temp/
 /EM.Api/Uploads/
+/.vs/
