@@ -14,19 +14,11 @@ namespace EM.Data.Repository
 
         public Task<IEnumerable<Venue>> GetVenueList(int organizerId);
 
-<<<<<<< HEAD
         public Task<Venue> GetVenue(int VenueId);
 
         public Task<Venue> UpdateVenue(VenueUpdateDTO venueUpdateDTO, int VenueId);
 
         public Task<bool> VenueExistsAsync(int venueId);
 
-=======
-        public Task<Venue> GetVenue(int venueId);
-
-        public Task<Venue> UpdateVenue(VenueUpdateDTO venueUpdateDTO , int VenueId);
-
-        
->>>>>>> a35f1aafa7855c433e8d8255875ec6b99b2bab67
     }
 }
