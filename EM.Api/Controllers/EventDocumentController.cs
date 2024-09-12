@@ -51,7 +51,8 @@ namespace EM.Api.Controllers
             string folderPath = eventDocument.Type == 0
                 ? "Uploads/EventDocuments/Logo"
                 : "Uploads/EventDocuments/Banner";
-            var createdImageName = await fileService.SaveImage(eventDocument.ImageFile, allowedFileExtensions, EventId, "folderPath");
+
+            var createdImageName = await fileService.SaveImage(eventDocument.ImageFile, allowedFileExtensions, EventId, folderPath);
 
             try
             {
@@ -69,7 +70,8 @@ namespace EM.Api.Controllers
                 EventDocumentResponseDTO eventResponse = new EventDocumentResponseDTO();
 
                 mapper.Map(eventbo, eventResponse);
-
+                eventResponse.FilePath = $"{Request.Scheme}://{Request.Host}/{eventResponse.FilePath}"; 
+                
                 if (eventResponse == null)
                 {
 

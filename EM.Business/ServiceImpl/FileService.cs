@@ -115,11 +115,13 @@ namespace EM.Business.ServiceImpl
             //11.// Generate the URL for accessing the file
             string[] parts = fileNamewithPath.Split('\\');
             int startIndex = Array.IndexOf(parts, directoryName);
-            var baseUrl = configuration["Appsettings:BaseUrl"];
+            
             string imagePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
-            string url = $"{baseUrl}{imagePath.Replace('\\', '/')}";
+            string url = $"{imagePath.Replace('\\', '/')}";
 
             return url;
         }
     }
 }
+
+//var baseUrl = configuration["Appsettings:BaseUrl"];

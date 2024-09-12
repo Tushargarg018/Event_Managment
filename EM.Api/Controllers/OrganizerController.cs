@@ -39,7 +39,9 @@ namespace EM.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginDto loginDto)
         {
+            
             var validationResult = _loginValidator.Validate(loginDto);
+            
             if (!validationResult.IsValid)
             {
                 var errorList= validationResult.Errors;

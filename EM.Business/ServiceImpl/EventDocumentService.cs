@@ -4,6 +4,8 @@ using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Data.Entities;
 using EM.Data.Repositories;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,11 +19,13 @@ namespace EM.Business.ServiceImpl
     {
         private readonly IEventDocumentRepository eventDocumentrepository;
         private readonly IMapper mapper;
+        private readonly IWebHostEnvironment environment;
 
-        public EventDocumentService(IEventDocumentRepository repository , IMapper mapper)
+        public EventDocumentService(IEventDocumentRepository repository , IMapper mapper  , IWebHostEnvironment environment)
         {
             this.eventDocumentrepository = repository;
             this.mapper = mapper;
+            this.environment = environment;
         }
 
 
@@ -67,6 +71,15 @@ namespace EM.Business.ServiceImpl
             if (existingDocument == null)
             {
                 throw new Exception("Document doesnot exist to update");
+            }
+
+            if (!string.IsNullOrEmpty(existingDocument.FilePath))
+            {
+                var oldImagePath = Path.Combine(environment.ContentRootPath, existingDocument.FilePath.Replace("/", "\\"));
+                if (File.Exists(oldImagePath))
+                {
+                    File.Delete(oldImagePath);
+                }
             }
 
             existingDocument.Type = eventRequestDocument.Type;
