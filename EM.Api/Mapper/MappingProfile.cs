@@ -34,6 +34,9 @@ namespace EM.Api.Mapper
 
             CreateMap<Venue, VenueBO>();
             CreateMap<VenueBO, VenueResponseDTO>();
+
+            CreateMap<EventDocument, EventDocumentBO>();
+            CreateMap<EventDocumentBO, EventDocumentResponseDTO>();
         }
     }
 }
