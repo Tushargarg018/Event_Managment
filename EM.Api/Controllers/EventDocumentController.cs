@@ -31,16 +31,18 @@ namespace EM.Api.Controllers
             this.Documentvalidator = Documentvalidator;
             this.fileService = fileService;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventDocument"></param>
+        /// <param name="EventId"></param>
+        /// <returns></returns>
         [Authorize(Policy ="UserPolicy")]
         [HttpPost("event/{EventId}/document")]
         public async Task<IActionResult> AddorUpdateEventDocument(EventDocumentRequestDTO eventDocument , int EventId)
         {
 
-            if(eventDocument.ImageFile.Length > 1 * 1024 * 1024)
-            {
-                return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "image size greater than 1mb"));
-            }
+            
 
             var validationResult = await Documentvalidator.ValidateAsync(eventDocument);
             if (!validationResult.IsValid)
