@@ -43,6 +43,7 @@ namespace EM.Data.Entities
         [Column("group_size")]
 		public int GroupSize { get; set; }
 
+
         /// <summary>
         /// status of the offer
         /// </summary>

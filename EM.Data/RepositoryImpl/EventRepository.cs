@@ -1,5 +1,6 @@
 ﻿using EM.Data.Entities;
 using EM.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +31,22 @@ namespace EM.Data.RepositoryImpl
             context.SaveChangesAsync();
             return eventToAdd;
         }
+
+        public Event GetEventById(int eventId)
+        {
+            var eventResult = context.Events.FirstOrDefault(e=>e.Id == eventId);
+            return eventResult;
+        }
+
+        public async Task<bool> EventExistsAsync(int eventId)
+        {
+            return await context.Events.AnyAsync(e=>e.Id == eventId);
+        }
+
+        public async Task<bool> EventNotPublished(int eventId)
+        {
+            return await context.Events.AnyAsync(e => e.Id == eventId && e.Status == Core.Enums.StatusEnum.Draft);
+        }
+
     }
 }

@@ -45,6 +45,11 @@ namespace EM.Api.Mapper
 
             CreateMap<EventDocument, EventDocumentBO>();
             CreateMap<EventDocumentBO, EventDocumentResponseDTO>();
+
+            CreateMap<OfferDTO, EventOffer>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type));
+            CreateMap<EventOffer, OfferBO>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
         }
     }
 }

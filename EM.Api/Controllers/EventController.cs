@@ -52,8 +52,6 @@ namespace EM.Api.Controllers
             eventBo.OrganizerId = organizerId;
             _mapper.Map(eventDto, eventBo);
             var responseEventBo = _eventService.AddEvent(eventBo);
-            //responseEventBo.CreatedOn = new DateTime(responseEventBo.CreatedOn.Year, responseEventBo.CreatedOn.Month, responseEventBo.CreatedOn.Day, responseEventBo.CreatedOn.Hour, responseEventBo.CreatedOn.Minute, 0);
-            //responseEventBo.ModifiedOn = new DateTime(responseEventBo.ModifiedOn.Year, responseEventBo.ModifiedOn.Month, responseEventBo.ModifiedOn.Day, responseEventBo.ModifiedOn.Hour, responseEventBo.ModifiedOn.Minute, 0);
             responseEventBo.CreatedOn = TimeConversionHelper.TruncateSeconds(responseEventBo.CreatedOn);
             responseEventBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(responseEventBo.ModifiedOn);
             var response = new ResponseDTO<EventBO>(responseEventBo, "success", "Event Added Succesfully", null);
