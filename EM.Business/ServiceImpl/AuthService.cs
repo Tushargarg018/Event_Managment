@@ -119,5 +119,15 @@ namespace EM.Business.ServiceImpl
             return response;
         }
 
+        public int GetOrganizerIdFromToken(string authHeader)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var token = authHeader.Substring("Bearer ".Length).Trim();
+            var jwtToken = handler.ReadJwtToken(token);
+            var claims = jwtToken.Claims;
+            var organizerClaim = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+            int organizerId = int.Parse(organizerClaim);
+            return organizerId;
+        }
     }
 }

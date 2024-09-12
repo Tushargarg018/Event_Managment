@@ -16,8 +16,9 @@ namespace EM.Data.Repository
 
         public Task<Venue> GetVenue(int VenueId);
 
-        public Task<Venue> UpdateVenue(VenueUpdateDTO venueUpdateDTO , int VenueId);
+        public Task<Venue> UpdateVenue(VenueUpdateDTO venueUpdateDTO, int VenueId);
 
-        
+        public Task<bool> VenueExistsAsync(int venueId);
+
     }
 }

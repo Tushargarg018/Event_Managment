@@ -38,5 +38,17 @@ namespace EM.Data.RepositoryImpl
             context.SaveChangesAsync();
             return performer;
         }
+
+        public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId)
+        {
+            var performer = context.Performers.Where(p=>p.OrganizerId == organizerId).ToList();
+            return performer;  
+        }
+
+        public async Task<bool> PerformerExistsAsync(int performerId)
+        {
+            return await context.Performers.AnyAsync(p => p.Id == performerId);
+        }
+
     }
 }

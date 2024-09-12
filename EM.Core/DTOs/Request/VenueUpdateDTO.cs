@@ -30,8 +30,9 @@ namespace EM.Core.DTOs.Request
 
         [JsonPropertyName("state")]
         public int State { get; set; }
-      
+
         [JsonPropertyName("description")]
         public string Description { get; set; }
     }
 }
+

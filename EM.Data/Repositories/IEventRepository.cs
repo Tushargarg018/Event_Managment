@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Business.BOs
+namespace EM.Data.Repositories
 {
-    public class LoginResponseBO
+    public interface IEventRepository
     {
-        public string Token { get; set; }
-        public OrganizerBo? Organizer { get; set; }
+        public Event AddEvent(Event eventToAdd);
     }
 }

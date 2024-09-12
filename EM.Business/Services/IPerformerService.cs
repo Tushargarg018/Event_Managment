@@ -11,5 +11,6 @@ namespace EM.Business.Services
     public interface IPerformerService
     {
         public PerformerBO AddPerformer(PerformerBO performerBO);
+        public List<PerformerBO> GetPerformers(int organizerId);
     }
 }

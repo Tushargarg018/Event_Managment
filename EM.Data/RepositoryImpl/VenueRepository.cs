@@ -16,6 +16,7 @@ namespace EM.Data.RepositoryImpl
         private readonly AppDbContext appDbContext;
         public VenueRepository(AppDbContext appDbContext)
         {
+
             this.appDbContext = appDbContext;  
         }
 
@@ -24,24 +25,32 @@ namespace EM.Data.RepositoryImpl
 
         public async Task<Venue> AddVenue(Venue venue)
         {
-
             await appDbContext.AddAsync(venue);
             await appDbContext.SaveChangesAsync();
-            
-            return venue;   
+			var newVenue = await appDbContext.Venues
+		                        .Include(v => v.City)
+		                        .Include(v => v.State)
+		                        .FirstOrDefaultAsync(v => v.Id == venue.Id);
+			return newVenue;   
         }
 
         public async Task<IEnumerable<Venue>> GetVenueList(int organizerId)
         {
-            return await appDbContext.Venues.Where(o=>o.OrganizerId==organizerId).ToListAsync();
-        }
+			var venues = await appDbContext.Venues
+	                        .Where(v => v.OrganizerId == organizerId)
+	                        .Include(v => v.City) 
+	                        .Include(v => v.State) 
+	                        .ToListAsync();
+            return venues;
 
-        public async Task<Venue> GetVenue(int VenueId)
+		}
+
+        public async Task<Venue> GetVenue(int venueId)
         {
-            var venue =  await appDbContext.Venues.Where(v => v.Id == VenueId).FirstOrDefaultAsync();
-            if (venue == null) { 
-                return null;
-            }
+            var venue = await appDbContext.Venues.Where(v => v.Id == venueId)
+				 .Include(v => v.City)
+				 .Include(v => v.State)
+				.FirstOrDefaultAsync();
             return venue;
         }
 
@@ -57,8 +66,8 @@ namespace EM.Data.RepositoryImpl
             venue.AddressLine1 = VenueUpdatetDTO.AddressLine1;
             venue.AddressLine2 = VenueUpdatetDTO.AddressLine2;
             venue.ZipCode = VenueUpdatetDTO.ZipCode;
-            venue.City = VenueUpdatetDTO.City;
-            venue.State = VenueUpdatetDTO.State;
+            venue.CityId = VenueUpdatetDTO.City;
+            venue.StateId = VenueUpdatetDTO.State;
             venue.Description = VenueUpdatetDTO.Description;
             venue.ModifiedOn = DateTime.UtcNow;
 
@@ -67,6 +76,13 @@ namespace EM.Data.RepositoryImpl
 
         }
 
+        public async Task<bool> VenueExistsAsync(int venueId)
+        {
+            return await appDbContext.Venues.AnyAsync(v=>v.Id == venueId);
+        }
     }
 
 }
+
+ 
+

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
+using EM.Core.Helpers;
 using EM.Business.ServiceImpl;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
@@ -19,17 +20,20 @@ namespace EM.Api.Controllers
     {
 
         //private readonly ILogger<OrganizerController> _logger;
-        //private readonly IAuthService authservice;
+        private readonly IAuthService _authservice;
         private readonly IMapper _mapper;
         //private readonly IValidator<LoginDto> _loginValidator;
         private readonly IFileService _fileService;
         private readonly IPerformerService _performerService;
+        private readonly IConfiguration _config;
 
-        public PerformerController(IMapper mapper, IFileService fileService, IPerformerService performerService)
+        public PerformerController(IMapper mapper, IFileService fileService, IPerformerService performerService, IAuthService authservice, IConfiguration configuration)
         {
             _mapper = mapper;
             _fileService = fileService;
             _performerService = performerService;
+            _authservice = authservice;
+            _config = configuration;
         }
 
 
@@ -37,27 +41,23 @@ namespace EM.Api.Controllers
         [HttpPost("performer")]
         public async Task<IActionResult> AddPerformer(PerformerDTO performerDto)
         {
-            var handler = new JwtSecurityTokenHandler();
             var authHeader = Request.Headers.Authorization;
-            var token = authHeader.ToString().Substring("Bearer ".Length).Trim();
-            var jwtToken = handler.ReadJwtToken(token);
-            var claims = jwtToken.Claims;
-            var organizerClaim = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
-            int organizerId = int.Parse(organizerClaim);
+            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
 
             if (performerDto.ImageFile?.Length > 1 * 1024 * 1024)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 1 MB");
             }
             string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
-            string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, allowedFileExtentions, organizerId.ToString());
+            string baseUrl = _config.GetValue<string>("AppSettings:BaseUrl");
+            string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, allowedFileExtentions, organizerId.ToString(), baseUrl);
 
             PerformerBO performerBo = new PerformerBO();
             _mapper.Map(performerDto, performerBo);
             performerBo.Profile = createdImageName;
             performerBo.OrganizerId = organizerId;
             var performer = _performerService.AddPerformer(performerBo);
-            var response = new ResponseDTO<PerformerBO>(performer, "Success", "Performer Added Successfully", null);
+            var response = new ResponseDTO<PerformerBO>(performer, "success", "Performer Added Successfully", null);
             return Ok(response);
         }
 
@@ -71,11 +71,21 @@ namespace EM.Api.Controllers
 
             if (!System.IO.File.Exists(fileLocation))
             {
-                return NotFound(new ResponseDTO<PerformerBO>(null, "Failure", "File Not Found", null));
+                return NotFound(new ResponseDTO<PerformerBO>(null, "failure", "File Not Found", null));
             }
             var image = _fileService.GetImageAsByteArray(fileLocation);
             return File(image, "application/octet-stream", filePath);
         }
 
+        [Authorize(Policy ="UserPolicy")]
+        [HttpGet("performer")]
+        public async Task<IActionResult> GetPerformers()
+        {
+            var authHeader = Request.Headers.Authorization;
+            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+            var performerList = _performerService.GetPerformers(organizerId);
+            var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
+            return Ok(response);
+        }
     }
 }

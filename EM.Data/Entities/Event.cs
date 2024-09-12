@@ -13,13 +13,13 @@ namespace EM.Data.Entities
         /// title of the event
         /// </summary>
         [Column("title")]
-		public required string Title { get; set; }
+		public string Title { get; set; }
 
         /// <summary>
         /// Description of the event
         /// </summary>
         [Column("description")]
-		public required string Description { get; set; }
+		public  string Description { get; set; }
         /// <summary>
         /// base price of the event
         /// </summary>
@@ -76,8 +76,6 @@ namespace EM.Data.Entities
         /// 
         [Column("modified_on")]
 		public DateTime ModifiedOn { get; set; }
-        
-
 		public Organizer Organizer { get; set; }
 		public Performer Performer { get; set; }
 		public Venue Venue { get; set; }

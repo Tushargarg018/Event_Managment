@@ -24,7 +24,7 @@ namespace EM.Api
             {
                 await HandleExceptionAsync(context, ex);
             }
-        }
+        }   
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
@@ -47,7 +47,7 @@ namespace EM.Api
             }
             string[] data = [];
             string[] errors = [message];
-            var result = JsonConvert.SerializeObject(new { data = data, status="Failure", message="Request Failed with errors.", errors = errors});
+            var result = JsonConvert.SerializeObject(new { data = data, status="failure", message="Request Failed with errors.", errors = errors});
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
             return context.Response.WriteAsync(result);

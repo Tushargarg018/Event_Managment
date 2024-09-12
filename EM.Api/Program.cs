@@ -1,19 +1,26 @@
+
 using EM.Api.Mapper;
 using EM.Business.Services;
 using EM.Api;
 using EM.Api.Validations;
-using EM.Data;
-using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.OpenApi.Models;
 using EM.Business.ServiceImpl;
+using EM.Core.DTOs.Request;
+using EM.Data;
+using EM.Data.Entities;
 using EM.Data.Repositories;
-using EM.Data.RepositoryImpl;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using EM.Data.Repository;
+using EM.Data.RepositoryImpl;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using System.Text.Json;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -22,16 +29,16 @@ var Configuration = builder.Configuration;
 //State 
 builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IStateService, StateService>();
+builder.Services.AddScoped<ICityService, CityService>();
+
 //City
 builder.Services.AddScoped<ICityRepository, CityRepository>();
-builder.Services.AddScoped<ICityService, CityService>();
 //Venue
 builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IVenueRepository, VenueRepository>();
 //Event Documents
 builder.Services.AddScoped<IEventDocumentRepository , EventDoucumentRepository>();
 builder.Services.AddScoped<IEventDocumentService , EventDocumentService>();
-
 
 // Load appsettings.json and environment-specific configurations
 Configuration
@@ -42,18 +49,24 @@ Configuration
 
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("DbCon")));
+
 //Adding Dependencies
 
-
-
-
+//Auth and Organizer
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrganizerRepository, OrganizerRepository>();
 
-//File Services
+//File Services and Performer
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IPerformerService, PerformerService>();
 builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
+
+//Event
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IEventService, EventService>();
+
+//Venue
+builder.Services.AddScoped<IVenueRepository, VenueRepository>();
 
 //Register AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -63,14 +76,14 @@ builder.Services.AddControllers();
 //Fluent validation
 //builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());
 builder.Services.AddValidatorsFromAssembly(typeof(LoginValidator).Assembly);
-builder.Services.AddScoped<StateIdValidator>();
+builder.Services.AddValidatorsFromAssembly(typeof(EventValidator).Assembly);
 
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader(); ;
+            policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader(); 
         });
 });
 
@@ -129,9 +142,11 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-builder.Services.AddAuthorizationBuilder()
-	.AddPolicy("UserPolicy", policy =>
-	policy.RequireClaim("Id"));
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy("UserPolicy", policy =>
+		policy.RequireClaim("Id"));
+});
 
 
 var app = builder.Build();

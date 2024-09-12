@@ -41,8 +41,7 @@ namespace EM.Data.Entities
         /// modified date of the organizer
         /// </summary>
         [Column("modified_on")]
-		public DateTime ModifiedOn { get; set; }
-
+        public DateTime ModifiedOn { get; set; }
 		public UserStatus Status { get; set; }
 		public virtual ICollection<Performer> Performers { get; set; }
         public virtual ICollection<Venue> Venues { get; set; }

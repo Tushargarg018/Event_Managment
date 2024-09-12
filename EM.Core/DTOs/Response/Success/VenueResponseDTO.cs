@@ -32,13 +32,19 @@ namespace EM.Core.DTOs.Response.Success
         [JsonPropertyName("zip_code")]
         public int ZipCode { get; set; }
 
-        [JsonPropertyName("city")]
-        public int City { get; set; }
+        [JsonPropertyName("city_id")]
+        public int CityId { get; set; }
 
-        [JsonPropertyName("state")]
-        public int State { get; set; }
+		[JsonPropertyName("city_name")]
+		public string? CityName { get; set; }
 
-        [JsonPropertyName("country")]
+		[JsonPropertyName("state_id")]
+        public int StateId { get; set; }
+
+		[JsonPropertyName("state_name")]
+		public string? StateName { get; set; }
+
+		[JsonPropertyName("country")]
         public int Country { get; set; }
 
         [JsonPropertyName("organizer_id")]
