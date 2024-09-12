@@ -36,7 +36,9 @@ builder.Services.AddScoped<ICityRepository, CityRepository>();
 //Venue
 builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IVenueRepository, VenueRepository>();
-
+//Event Documents
+builder.Services.AddScoped<IEventDocumentRepository , EventDoucumentRepository>();
+builder.Services.AddScoped<IEventDocumentService , EventDocumentService>();
 
 // Load appsettings.json and environment-specific configurations
 Configuration

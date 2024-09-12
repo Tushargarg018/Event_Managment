@@ -42,6 +42,9 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
                 .ForMember(dest => dest.StateName, opt => opt.MapFrom(src => src.State.Name));
             CreateMap<VenueBO, VenueResponseDTO>();
+
+            CreateMap<EventDocument, EventDocumentBO>();
+            CreateMap<EventDocumentBO, EventDocumentResponseDTO>();
         }
     }
 }

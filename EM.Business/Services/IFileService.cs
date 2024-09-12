@@ -12,5 +12,8 @@ namespace EM.Business.Services
             public byte[] GetImageAsByteArray(string RequestPath);
             Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId, string baseUrl);
             void DeleteImage(string imageFileName);
+
+            Task<string> SaveImage(IFormFile imageFile, string[] allowedFileExtensions, object Id , string directoryName);
+
         }
 }
