@@ -8,6 +8,7 @@ using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Success;
 using EM.Data.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Bson;
@@ -31,7 +32,7 @@ namespace EM.Api.Controllers
             this.fileService = fileService;
         }
 
-
+        [Authorize(Policy ="UserPolicy")]
         [HttpPost("event/{EventId}/document")]
         public async Task<IActionResult> AddorUpdateEventDocument(EventDocumentRequestDTO eventDocument , int EventId)
         {
