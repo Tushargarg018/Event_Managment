@@ -35,15 +35,11 @@ namespace EM.Api.Controllers
         public async Task<IActionResult> AddEvent(EventDTO eventDto)
         {
             var validationResult = await _eventValidator.ValidateAsync(eventDto);
+
             if (!validationResult.IsValid)
             {
-                var errorList = validationResult.Errors;
-                List<string> errors = new List<string>();
-                foreach (var error in errorList)
-                {
-                    errors.Add(error.ErrorMessage);
-                }
-                return BadRequest(new ResponseDTO<LoginResponseDTO>(null, "failure", "Validation Errors", errors));
+                return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation Errors")
+                    .WithErrors(validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
 
             var authHeader = Request.Headers.Authorization;
@@ -52,8 +48,6 @@ namespace EM.Api.Controllers
             eventBo.OrganizerId = organizerId;
             _mapper.Map(eventDto, eventBo);
             var responseEventBo = _eventService.AddEvent(eventBo);
-            //responseEventBo.CreatedOn = new DateTime(responseEventBo.CreatedOn.Year, responseEventBo.CreatedOn.Month, responseEventBo.CreatedOn.Day, responseEventBo.CreatedOn.Hour, responseEventBo.CreatedOn.Minute, 0);
-            //responseEventBo.ModifiedOn = new DateTime(responseEventBo.ModifiedOn.Year, responseEventBo.ModifiedOn.Month, responseEventBo.ModifiedOn.Day, responseEventBo.ModifiedOn.Hour, responseEventBo.ModifiedOn.Minute, 0);
             responseEventBo.CreatedOn = TimeConversionHelper.TruncateSeconds(responseEventBo.CreatedOn);
             responseEventBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(responseEventBo.ModifiedOn);
             var response = new ResponseDTO<EventBO>(responseEventBo, "success", "Event Added Succesfully", null);
