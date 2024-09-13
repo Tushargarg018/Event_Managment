@@ -17,29 +17,19 @@ namespace EM.Data.RepositoryImpl
         {
             _context = dbContext;
         }
-        public EventOffer AddEventOffer(EventOffer offer, int eventId)
+        public async Task<EventOffer> AddEventOffer(EventOffer offer, int eventId)
         {
-            var lastId = _context.EventOffers
-                             .OrderByDescending(p => p.Id)
-                             .Select(p => p.Id)
-                             .FirstOrDefault();
-            var offerId = lastId + 1;
-            offer.Id = offerId;
-            offer.CreatedOn = DateTime.UtcNow;
-            offer.ModifiedOn = DateTime.UtcNow;
-            //var _event = _context.Events.FirstOrDefault(e=>e.Id == eventId);
-            _context.EventOffers.Add(offer);
-            _context.SaveChangesAsync();
+            await _context.EventOffers.AddAsync(offer);
+            await _context.SaveChangesAsync();
             return offer;
         }
-        public EventOffer UpdateEventOffer(EventOffer offer, int eventId, int offerId)
+        public async Task<EventOffer> UpdateEventOffer(EventOffer offer, int eventId, int offerId)
         {
             var existingOffer = _context.EventOffers.FirstOrDefaultAsync(o => o.Id == offerId).Result;
-            offer.Id = offerId;
             existingOffer.TotalOffers = offer.TotalOffers;
             existingOffer.GroupSize = offer.GroupSize;
             existingOffer.Discount = offer.Discount;
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return existingOffer;
         }
 

@@ -20,7 +20,8 @@ namespace EM.Api.Validations
 
             RuleFor(o => o.Discount)
                 .GreaterThan(0)
-                .LessThan(100);
+                .LessThan(100)
+                .WithMessage("Invalid Offer Discount. Range Must be from 0.00 to 99.99");
 
             RuleFor(o => o.EventId)
                 .MustAsync(EventExistsAsync).WithMessage("Event Does not exist")

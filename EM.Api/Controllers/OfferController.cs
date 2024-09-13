@@ -30,39 +30,16 @@ namespace EM.Api.Controllers
         }
         //[Authorize(Policy = "UserPolicy")]
         [HttpPost("{id:int}/offer")]
-        public async Task<IActionResult> AddUpdateOffers(int id,[FromBody]OfferDTO offerDto)  //id: event id
+        public async Task<IActionResult> AddUpdateOffers(int id,[FromBody]OfferDTO offerDto)
         {
             offerDto.EventId = id;
+            offerDto.Discount = Math.Round(offerDto.Discount, 2);
             var validationResult = await _offerValidator.ValidateAsync(offerDto);
             if (!validationResult.IsValid)
             {
-                var errorList = validationResult.Errors;
-                List<string> errors = new List<string>();
-                foreach (var error in errorList)
-                {
-                    errors.Add(error.ErrorMessage);
-                }
-                return BadRequest(new ResponseDTO<LoginResponseDTO>(null, "failure", "Validation Errors", errors));
+                return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
-            EventOffer eventOffer = new EventOffer();
-            _mapper.Map(offerDto, eventOffer);
-            eventOffer.EventId = id;
-            eventOffer.TotalOffers = offerDto.Quantity;
-            eventOffer.GroupSize = offerDto.GroupSize;
-            if (offerDto.OfferId == 0)
-            {
-                eventOffer = _offerService.AddEventOffer(eventOffer, id);
-            }
-            else
-            {
-                eventOffer = _offerService.UpdateEventOffer(eventOffer, id, offerDto.OfferId);
-            }
-            OfferBO offerBo = new OfferBO();
-            _mapper.Map(eventOffer, offerBo);
-            offerBo.CreatedOn = TimeConversionHelper.ConvertTimeFromUTC(offerBo.CreatedOn);
-            offerBo.ModifiedOn = TimeConversionHelper.ConvertTimeFromUTC(offerBo.ModifiedOn);
-            offerBo.CreatedOn = TimeConversionHelper.TruncateSeconds(offerBo.CreatedOn);
-            offerBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(offerBo.ModifiedOn);
+            OfferBO offerBo = _offerService.AddUpdateEventOffer(offerDto, id, offerDto.OfferId);
             var message = "";
             if (offerDto.OfferId == 0)
             {
@@ -70,8 +47,7 @@ namespace EM.Api.Controllers
             }
             else
                 message = "Offer Updated Successfully";
-            return Ok(new ResponseDTO<OfferBO>(offerBo, "sucess", message, null));
+            return Ok(new ResponseDTO<OfferBO>(offerBo, "success", message, null));
         }
-
     }
 }

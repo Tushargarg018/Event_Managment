@@ -1,4 +1,6 @@
-﻿using EM.Data.Entities;
+﻿using EM.Business.BOs;
+using EM.Core.DTOs.Request;
+using EM.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,8 @@ namespace EM.Business.Services
 {
     public interface IOfferService
     {
-        public EventOffer AddEventOffer(EventOffer offer, int eventId);
-        public EventOffer UpdateEventOffer(EventOffer offer, int eventId, int offerId);
+        public OfferBO AddEventOffer(OfferDTO offerDto, int eventId);
+        public OfferBO UpdateEventOffer(OfferDTO offerDto, int eventId, int offerId);
+        public OfferBO AddUpdateEventOffer(OfferDTO offerDto, int eventId, int offerId);
     }
 }
