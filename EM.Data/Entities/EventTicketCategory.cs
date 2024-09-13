@@ -28,13 +28,13 @@ namespace EM.Data.Entities
 		/// Price of the ticket for the category
 		/// </summary>
 		[Column("price")]
-		public int Price { get; set; }
+		public required int Price { get; set; }
 
 		/// <summary>
 		/// number of tickets available for the category
 		/// </summary>
 		[Column("capacity")]
-		public int Capacity {  get; set; }
+		public required int Capacity {  get; set; }
 
 		/// <summary>
 		/// creation date of the ticket category

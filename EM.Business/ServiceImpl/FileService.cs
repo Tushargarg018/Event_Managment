@@ -124,4 +124,3 @@ namespace EM.Business.ServiceImpl
     }
 }
 
-//var baseUrl = configuration["Appsettings:BaseUrl"];

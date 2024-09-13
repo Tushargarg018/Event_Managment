@@ -41,9 +41,6 @@ namespace EM.Api.Controllers
         [HttpPost("event/{EventId}/document")]
         public async Task<IActionResult> AddorUpdateEventDocument(EventDocumentRequestDTO eventDocument , int EventId)
         {
-
-            
-
             var validationResult = await Documentvalidator.ValidateAsync(eventDocument);
             if (!validationResult.IsValid)
             { 

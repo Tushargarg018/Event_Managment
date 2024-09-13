@@ -79,9 +79,9 @@ namespace EM.Data.Entities
 		public Organizer Organizer { get; set; }
 		public Performer Performer { get; set; }
 		public Venue Venue { get; set; }
-		public virtual ICollection<EventOffer> EventOffers { get; set; }
-        public virtual ICollection<EventDocument> EventDocuments { get; set; }
-        public virtual ICollection<EventTicketCategory> EventTicketCategories { get; set; }
+		public virtual ICollection<EventOffer>? EventOffers { get; set; }
+        public virtual ICollection<EventDocument>? EventDocuments { get; set; }
+        public virtual ICollection<EventTicketCategory>? EventTicketCategories { get; set; }
 
     }
 }
