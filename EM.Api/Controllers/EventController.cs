@@ -36,6 +36,7 @@ namespace EM.Api.Controllers
         public async Task<IActionResult> AddEvent(EventDTO eventDto)
         {
             var validationResult = await _eventValidator.ValidateAsync(eventDto);
+
             if (!validationResult.IsValid)
             {
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation Errors", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
