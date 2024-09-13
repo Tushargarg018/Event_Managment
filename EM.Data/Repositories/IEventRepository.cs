@@ -9,6 +9,6 @@ namespace EM.Data.Repositories
 {
     public interface IEventRepository
     {
-        public Event AddEvent(Event eventToAdd);
+        public Task<Event> AddEvent(Event eventToAdd);
     }
 }

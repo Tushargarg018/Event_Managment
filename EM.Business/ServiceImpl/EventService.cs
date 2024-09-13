@@ -24,7 +24,7 @@ namespace EM.Business.ServiceImpl
             _eventRepository = eventRepository;
             _mapper = mapper;
         }
-        public EventBO AddEvent(EventDTO eventDto, int organizerId)
+        public async Task<EventBO> AddEvent(EventDTO eventDto, int organizerId)
         {
             //Converting string to datetime objects
             string startDateString = eventDto.StartDateTime;
@@ -43,7 +43,7 @@ namespace EM.Business.ServiceImpl
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };
-            var _event = _eventRepository.AddEvent(createEvent);
+            var _event = await _eventRepository.AddEvent(createEvent);
             var eventBo = new EventBO();
             _mapper.Map(_event, eventBo);
             eventBo.CreatedOn = TimeConversionHelper.ConvertTimeFromUTC(eventBo.CreatedOn);

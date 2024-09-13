@@ -48,7 +48,7 @@ namespace EM.Api.Controllers
 
             var authHeader = Request.Headers.Authorization;
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-            var responseEventBo = _eventService.AddEvent(eventDto, organizerId);
+            var responseEventBo = _eventService.AddEvent(eventDto, organizerId).Result;
             responseEventBo.CreatedOn = TimeConversionHelper.TruncateSeconds(responseEventBo.CreatedOn);
             responseEventBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(responseEventBo.ModifiedOn);
             var response = new ResponseDTO<EventBO>(responseEventBo, "success", "Event Added Succesfully", null);
