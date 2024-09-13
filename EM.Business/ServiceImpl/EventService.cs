@@ -5,6 +5,7 @@ using EM.Core.DTOs.Request;
 using EM.Core.Helpers;
 using EM.Data.Entities;
 using EM.Data.Repositories;
+using EM.Data.RepositoryImpl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,12 +44,8 @@ namespace EM.Business.ServiceImpl
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };
-            var _event = await _eventRepository.AddEvent(createEvent);
-            var eventBo = new EventBO();
-            _mapper.Map(_event, eventBo);
-            eventBo.CreatedOn = TimeConversionHelper.ConvertTimeFromUTC(eventBo.CreatedOn);
-            eventBo.ModifiedOn = TimeConversionHelper.ConvertTimeFromUTC(eventBo.ModifiedOn);
-            return eventBo;
+            var createdEvent = await _eventRepository.AddEvent(createEvent);
+            return _mapper.Map<EventBO>(createdEvent);
         }
     }
 }
