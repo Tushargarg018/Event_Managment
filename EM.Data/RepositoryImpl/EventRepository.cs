@@ -17,18 +17,10 @@ namespace EM.Data.RepositoryImpl
         {
             context = dbContext;
         }
-        public Event AddEvent(Event eventToAdd)
+        public async Task<Event> AddEvent(Event eventToAdd)
         {
-            var lastId = context.Events
-                              .OrderByDescending(e => e.Id)
-                              .Select(e => e.Id)
-                              .FirstOrDefault();
-            var eventId = lastId + 1;
-            eventToAdd.Id = eventId;
-            eventToAdd.CreatedOn = DateTime.UtcNow;
-            eventToAdd.ModifiedOn = DateTime.UtcNow;
-            context.Events.Add(eventToAdd);
-            context.SaveChangesAsync();
+            await context.AddAsync(eventToAdd);
+            await context.SaveChangesAsync();
             return eventToAdd;
         }
 

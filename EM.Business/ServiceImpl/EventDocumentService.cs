@@ -54,8 +54,6 @@ namespace EM.Business.ServiceImpl
             mapper.Map(newEventDocument , eventDocumentBO);
             eventDocumentBO.Type = newEventDocument.Type;
             return eventDocumentBO;
-
-
         }
 
         public async Task<EventDocumentBO> UpdateEventDocuments(EventDocumentRequestDTO eventRequestDocument, int eventId, string file_path)

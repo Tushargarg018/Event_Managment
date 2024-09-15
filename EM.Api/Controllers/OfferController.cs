@@ -29,7 +29,7 @@ namespace EM.Api.Controllers
             _offerValidator = offerValidator;
         }
         [Authorize(Policy = "UserPolicy")]
-        [HttpPost("{id:int}/offer")]
+        [HttpPost("event/{id:int}/offer")]
         public async Task<IActionResult> AddUpdateOffers(int id,[FromBody]OfferDTO offerDto)
         {
             offerDto.EventId = id;

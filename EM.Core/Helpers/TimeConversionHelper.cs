@@ -20,14 +20,22 @@ namespace EM.Core.Helpers
         {
             TimeZoneInfo istTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
             DateTime istDateTime = TimeZoneInfo.ConvertTimeFromUtc(date, istTimeZone);
-            //string formattedDateTimeString = istDateTime.ToString("dd-MM-yyyyTHH:mm", CultureInfo.InvariantCulture);
-            //TruncateSeconds(istDateTime);
             return istDateTime;
         }
 
+        public static string ConvertISTtoUTC(DateTime date)
+        {
+            TimeZoneInfo istTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+            DateTime istDateTime = TimeZoneInfo.ConvertTimeFromUtc(date, istTimeZone);
+            return istDateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+        }
         public static DateTime TruncateSeconds(DateTime date)
         {
             return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
+        }
+        public static string ConvertISOFormat(DateTime date)
+        {
+           return date.ToString("yyyy-MM-ddTHH:mm:ss");
         }
     }
 }

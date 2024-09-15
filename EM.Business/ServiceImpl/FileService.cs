@@ -7,18 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using EM.Business.Services;
 using Microsoft.Extensions.Configuration;
-
+using System.IO;
+using Microsoft.Extensions.Hosting;
+using EM.Core.Enums;
+using static System.Net.Mime.MediaTypeNames;
 namespace EM.Business.ServiceImpl
 { 
     public class FileService : IFileService
     {
         private readonly IConfiguration configuration;
         private readonly IWebHostEnvironment environment;
+        private readonly string[] _allowedExtensions;
+        private readonly string _logoPath;
+        private readonly string _bannerPath;
 
         public FileService(IConfiguration configuration, IWebHostEnvironment environment)
         {
-            this.configuration = configuration;
             this.environment = environment;
+            _allowedExtensions = configuration.GetSection("FileSettings:AllowedExtensions").Get<string[]>();
+            _logoPath = configuration["FileSettings:EventDocumentPaths:Logo"];
+            _bannerPath = configuration["FileSettings:EventDocumentPaths:Banner"];
         }
 
 
@@ -69,59 +77,69 @@ namespace EM.Business.ServiceImpl
             await imageFile.CopyToAsync(stream);
             return url;
         }
-
-
-        public async Task<string> SaveImage(IFormFile imageFile, string[] allowedFileExtensions, object Id , string directoryName)
+        /// <summary>
+        /// Upload document for the event
+        /// </summary>
+        /// <param name="eventDocument"></param>
+        /// <param name="id"></param>
+        /// <param name="documentType"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public async Task<string> UploadEventDocument(IFormFile eventDocument,int id, int documentType)
         {
-            //1. checking if the uploaded file is null then return exception
-            if (imageFile == null)
-            {
-                throw new ArgumentNullException(nameof(imageFile));
-            }
+            if (eventDocument == null) throw new ArgumentNullException(nameof(eventDocument));
+            string identifier = id.ToString();
+            string contentPath = environment.ContentRootPath;
+            string folderPath = documentType == 0 ? _logoPath : _bannerPath;
+            string fullPath = Path.Combine(contentPath, folderPath);
+            EnsureDirectoryExists(fullPath);
+            var extension = Path.GetExtension(eventDocument.FileName);
+            ValidateFileExtension(extension, _allowedExtensions);
+            string fileName = $"{identifier}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}{extension}";
+            string filePathWithFullName = Path.Combine(fullPath, fileName);
 
-            //2.Convert the id to a string so that we can add it to path for identification
-            string Identifier = Id.ToString();
+            using var stream = new FileStream(filePathWithFullName, FileMode.Create);
+            await eventDocument.CopyToAsync(stream);
 
-            //3. Get base directory for storing files
-            var contentpath = environment.ContentRootPath;
+            return GenerateUrl(folderPath, filePathWithFullName);
 
-            //4. Combines the content root path with the directoryName subdirectory to create the full path where the image will be saved.
-            var path = Path.Combine(contentpath , directoryName);
-
-            //5. check if directory exist for path or not if no then create one
+        }
+        /// <summary>
+        /// Check and create the directory
+        /// </summary>
+        /// <param name="path"></param>
+        private static void EnsureDirectoryExists(string path)
+        {
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-
-            //6. first extract extension and then check if the extension given is allowed in allowedfileExtension or not like .jp or .jpeg
-            var ext = Path.GetExtension(imageFile.FileName);
-            if (!allowedFileExtensions.Contains(ext))
+        }
+        /// <summary>
+        /// Validate the allowed extension
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <param name="allowedExtensions"></param>
+        /// <exception cref="ArgumentException"></exception>
+        private static void ValidateFileExtension(string extension, string[] allowedExtensions)
+        {
+            if (!allowedExtensions.Contains(extension))
             {
-                throw new ArgumentException($"Only {string.Join(",", allowedFileExtensions)} are allowed.");
+                throw new ArgumentException($"Only {string.Join(", ", allowedExtensions)} are allowed.");
             }
-
-            //7.create a unique file name for the image having identifier , datetime and extension
-            var fileName = $"{Identifier}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()}{ext}";
-
-            //8. crate fileName with path also
-            var fileNamewithPath = Path.Combine (path, fileName);
-
-            //9. Create the file steam where FileSteam Constructor is called with file path and create new file it if it doesnot exist or overwrite it
-            using var steam =  new FileStream(fileNamewithPath , FileMode.Create);
-            //10.copy img to path
-            await imageFile.CopyToAsync (steam);
-
-            //11.// Generate the URL for accessing the file
-            string[] parts = fileNamewithPath.Split('\\');
+        }
+        /// <summary>
+        /// return the required path
+        /// </summary>
+        /// <param name="directoryName"></param>
+        /// <param name="fullPath"></param>
+        /// <returns></returns>
+        private static string GenerateUrl(string directoryName, string fullPath)
+        {
+            string[] parts = fullPath.Split('\\');
             int startIndex = Array.IndexOf(parts, directoryName);
-            
-            string imagePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
-            string url = $"{imagePath.Replace('\\', '/')}";
-
-            return url;
+            string relativePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
+            return relativePath.Replace('\\', '/');
         }
     }
 }
-
-//var baseUrl = configuration["Appsettings:BaseUrl"];

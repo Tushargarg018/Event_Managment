@@ -10,7 +10,6 @@ namespace EM.Business.Services
 {
     public interface IEventService
     {
-        public EventBO AddEvent(EventBO eventBO);
-        //public EventResponseBO GetEventById(int id);
+        public Task<EventBO> AddEvent(EventDTO eventDto, int organizerId);
     }
 }
