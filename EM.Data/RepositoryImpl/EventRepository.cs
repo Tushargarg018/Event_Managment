@@ -40,5 +40,9 @@ namespace EM.Data.RepositoryImpl
             return await context.Events.AnyAsync(e => e.Id == eventId && e.Status == Core.Enums.StatusEnum.Draft);
         }
 
+        public async Task<Event> GetEventByIdAsync(int eventId) {
+            return await context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+        }
+
     }
 }

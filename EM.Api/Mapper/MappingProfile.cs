@@ -60,6 +60,8 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.TotalOffers, opt => opt.MapFrom(src => src.Quantity));
             CreateMap<EventOffer, OfferBO>()
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
+            CreateMap<EventTicketCategory, EventPriceCategoryBO>();
+            CreateMap<EventPriceCategoryBO, EventPriceCategoryResponseDTO>();
         }
     }
 }

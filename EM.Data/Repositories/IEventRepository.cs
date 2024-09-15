@@ -13,5 +13,7 @@ namespace EM.Data.Repositories
         public Event GetEventById(int eventId);
         public Task<bool> EventExistsAsync(int eventId);
         public Task<bool> EventNotPublished(int eventId);
+
+        public Task<Event> GetEventByIdAsync(int eventId);
     }
 }

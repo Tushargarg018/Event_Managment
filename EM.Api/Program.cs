@@ -72,6 +72,10 @@ builder.Services.AddScoped<IVenueRepository, VenueRepository>();
 builder.Services.AddScoped<IOfferRepository, OfferRepository>();
 builder.Services.AddScoped<IOfferService, OfferService>();
 
+//EventPriceCategory
+builder.Services.AddScoped<IEventPriceCategoryRepository, EventPriceCategoryRepository>();
+builder.Services.AddScoped<IEventPriceCategoryService, EventPriceCategoryService>();
+
 //Register AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 

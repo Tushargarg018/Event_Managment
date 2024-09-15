@@ -16,13 +16,8 @@ namespace EM.Data.RepositoryImpl
         private readonly AppDbContext appDbContext;
         public VenueRepository(AppDbContext appDbContext)
         {
-
             this.appDbContext = appDbContext;  
         }
-
-
-
-
         public async Task<Venue> AddVenue(Venue venue)
         {
             await appDbContext.AddAsync(venue);
@@ -84,6 +79,12 @@ namespace EM.Data.RepositoryImpl
         public async Task<bool> VenueExistsAsync(int venueId)
         {
             return await appDbContext.Venues.AnyAsync(v=>v.Id == venueId);
+        }
+
+        public async Task<int> GetVenueCapacityByIdAsync(int venueId)
+        {
+            var venue = await appDbContext.Venues.FindAsync(venueId);
+            return venue?.MaxCapacity ?? 0;
         }
     }
 
