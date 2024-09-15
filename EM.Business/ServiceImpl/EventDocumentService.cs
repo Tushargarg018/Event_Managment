@@ -52,7 +52,7 @@ namespace EM.Business.ServiceImpl
             EventDocumentBO eventDocumentBO = new EventDocumentBO();
 
             mapper.Map(newEventDocument , eventDocumentBO);
-            eventDocumentBO.Type = newEventDocument.Type.ToString();
+            eventDocumentBO.Type = newEventDocument.Type;
             return eventDocumentBO;
         }
 
@@ -90,7 +90,7 @@ namespace EM.Business.ServiceImpl
             EventDocumentBO eventDocumentBO = new EventDocumentBO();
 
             mapper.Map(newEventDocument, eventDocumentBO);
-            eventDocumentBO.Type = newEventDocument.Type.ToString();
+            eventDocumentBO.Type = newEventDocument.Type;
             return eventDocumentBO;
         }
     }

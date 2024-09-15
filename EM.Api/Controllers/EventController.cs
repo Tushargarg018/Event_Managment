@@ -26,12 +26,12 @@ namespace EM.Api.Controllers
         public EventController(IMapper mapper, IEventService eventService, IAuthService authService, IValidator<EventDTO> eventValidator)
         {
             _mapper = mapper;
-            _eventService = eventService;   
+            _eventService = eventService;
             _authService = authService;
             _eventValidator = eventValidator;
         }
 
-        [Authorize(Policy ="UserPolicy")]
+        [Authorize(Policy = "UserPolicy")]
         [HttpPost("event")]
         public async Task<IActionResult> AddEvent(EventDTO eventDto)
         {
@@ -40,7 +40,7 @@ namespace EM.Api.Controllers
             if (!validationResult.IsValid)
             {
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation Errors", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
-            }            
+            }
             try
             {
                 var authHeader = Request.Headers.Authorization;
@@ -50,14 +50,14 @@ namespace EM.Api.Controllers
                 var eventResponseDTO = new EventResponseDTO();
                 _mapper.Map(eventResponse, eventResponseDTO);
 
-                if(eventResponse != null)
+                if (eventResponse != null)
                 {
                     return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Added Successfully"));
                 }
                 else
                 {
                     return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "Event not added."));
-                }               
+                }
 
             }
             catch (Exception ex)

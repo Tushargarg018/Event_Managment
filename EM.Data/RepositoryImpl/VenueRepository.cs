@@ -76,6 +76,11 @@ namespace EM.Data.RepositoryImpl
 
         }
 
+        public async Task<Venue> GetVenueById(int venueId)
+        {
+            return await appDbContext.Venues.FirstOrDefaultAsync(v => v.Id == venueId);
+        }
+
         public async Task<bool> VenueExistsAsync(int venueId)
         {
             return await appDbContext.Venues.AnyAsync(v=>v.Id == venueId);

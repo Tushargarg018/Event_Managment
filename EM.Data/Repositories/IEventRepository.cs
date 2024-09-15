@@ -10,5 +10,8 @@ namespace EM.Data.Repositories
     public interface IEventRepository
     {
         public Task<Event> AddEvent(Event eventToAdd);
+        public Event GetEventById(int eventId);
+        public Task<bool> EventExistsAsync(int eventId);
+        public Task<bool> EventNotPublished(int eventId);
     }
 }
