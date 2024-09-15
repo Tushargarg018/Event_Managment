@@ -134,7 +134,7 @@ namespace EM.Api.Controllers
                 }
                 // Return a success response with the venue data
                 
-
+                        
                 return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue retrieved successfully"));
 
             }

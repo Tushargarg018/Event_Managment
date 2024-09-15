@@ -5,6 +5,7 @@ using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Success;
 using EM.Core.DTOS.Response.Success;
+using EM.Core.Helpers;
 using EM.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,15 @@ namespace EM.Api.Mapper
 
             CreateMap<EventDTO, EventBO>();
             CreateMap<EventBO, Event>();
-            CreateMap<Event, EventBO>();
+            CreateMap<Event, EventBO>()
+                .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.CreatedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)));
+            CreateMap<EventBO, EventResponseDTO>()
+                .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.CreatedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.ModifiedOn)))
+                .ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ConvertISTtoUTC(src.StartDateTime)))
+                .ForMember(dest => dest.EndDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ConvertISTtoUTC(src.EndDateTime)));
+                
             CreateMap<Performer, PerformerBO>();
             CreateMap<PerformerBO, PerformerResponseDTO>();
             CreateMap<Venue, VenueBO>()
@@ -46,6 +55,11 @@ namespace EM.Api.Mapper
             CreateMap<EventDocument, EventDocumentBO>();
             CreateMap<EventDocumentBO, EventDocumentResponseDTO>();
 
+            CreateMap<OfferDTO, EventOffer>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+                .ForMember(dest => dest.TotalOffers, opt => opt.MapFrom(src => src.Quantity));
+            CreateMap<EventOffer, OfferBO>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
             CreateMap<EventTicketCategory, EventPriceCategoryBO>();
             CreateMap<EventPriceCategoryBO, EventPriceCategoryResponseDTO>();
         }

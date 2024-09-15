@@ -28,7 +28,7 @@ namespace EM.Core.DTOs.Response.Success
         public DateTime CreatedOn { get; set; }
 
         [JsonPropertyName("modified_on")]
-        public DateTime UpdatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 
 }

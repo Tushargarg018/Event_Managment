@@ -11,7 +11,7 @@ namespace EM.Business.Services
 {
     public interface IEventPriceCategoryService
     {
-        public Task<EventPriceCategoryBO> AddorUpdateEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO , int EventId);
+        public Task<EventPriceCategoryBO> AddorUpdateEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO);
 
     }
 }

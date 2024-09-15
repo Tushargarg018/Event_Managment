@@ -16,5 +16,9 @@ namespace EM.Data.Repositories
         public Task<EventTicketCategory> GetEventPriceCategoryById(int id);
 
         public Task<Event> EventExistance(int EventId);
+
+        public Task<int> GetTotalAllocatedSeatCapacityAsync(int eventId);
+
+        public Task<int> GetCategoryCapacityByIdAsync(int? ticketCategoryId);
     }
 }

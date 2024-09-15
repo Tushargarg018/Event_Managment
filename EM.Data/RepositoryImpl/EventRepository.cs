@@ -1,5 +1,6 @@
 ﻿using EM.Data.Entities;
 using EM.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +17,32 @@ namespace EM.Data.RepositoryImpl
         {
             context = dbContext;
         }
-        public Event AddEvent(Event eventToAdd)
+        public async Task<Event> AddEvent(Event eventToAdd)
         {
-            var lastId = context.Events
-                              .OrderByDescending(e => e.Id)
-                              .Select(e => e.Id)
-                              .FirstOrDefault();
-            var eventId = lastId + 1;
-            eventToAdd.Id = eventId;
-            eventToAdd.CreatedOn = DateTime.UtcNow;
-            eventToAdd.ModifiedOn = DateTime.UtcNow;
-            context.Events.Add(eventToAdd);
-            context.SaveChangesAsync();
+            await context.AddAsync(eventToAdd);
+            await context.SaveChangesAsync();
             return eventToAdd;
         }
+
+        public Event GetEventById(int eventId)
+        {
+            var eventResult = context.Events.FirstOrDefault(e=>e.Id == eventId);
+            return eventResult;
+        }
+
+        public async Task<bool> EventExistsAsync(int eventId)
+        {
+            return await context.Events.AnyAsync(e=>e.Id == eventId);
+        }
+
+        public async Task<bool> EventNotPublished(int eventId)
+        {
+            return await context.Events.AnyAsync(e => e.Id == eventId && e.Status == Core.Enums.StatusEnum.Draft);
+        }
+
+        public async Task<Event> GetEventByIdAsync(int eventId) {
+            return await context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+        }
+
     }
 }

@@ -11,64 +11,64 @@ namespace EM.Api.Validations
 {
     public class EventPriceCategoryValidator : AbstractValidator<EventPriceCategoryRequestDTO>
     {
-        private readonly IEventPriceCategoryRepository _eventRepository;
-        private readonly IVenueRepository venueRepository;
+        private readonly IEventPriceCategoryRepository _eventPriceCategoryRepository;
+        private readonly IVenueRepository _venueRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly AppDbContext _appDbContext;
-        public EventPriceCategoryValidator(IEventPriceCategoryRepository _eventRepository , IVenueRepository venueRepository , AppDbContext _appDbContext)
+
+        public EventPriceCategoryValidator(IEventPriceCategoryRepository eventPriceCategoryRepository, IVenueRepository venueRepository, IEventRepository eventRepository)
         {
-            this._eventRepository  = _eventRepository;
-            this.venueRepository = venueRepository;
-            this._appDbContext =  _appDbContext;
+            _eventRepository  = eventRepository;
+            _eventPriceCategoryRepository = eventPriceCategoryRepository;
+            _venueRepository = venueRepository;
 
             RuleFor(n => n.Name)
+                .NotNull().WithMessage("Please provide a valid name.")
                 .Length(1, 50).WithMessage("Name length limit exceeded");
 
-            RuleFor(x => x.Capacity)
-            .GreaterThan(0)
-            .WithMessage("Capacity must be greater than 0.");
+            
 
             RuleFor(x => x.Price)
+                .NotNull()
             .GreaterThan(0)
             .WithMessage("Price must be greater than 0.");
 
-            RuleFor(o => o)
-                .CustomAsync(async (eventPriceCategory, context, cancellationToken) =>
-                {
-                    await ValidateCapacity(eventPriceCategory, context, cancellationToken);
-                });
+            RuleFor(o => o.EventId)
+                .MustAsync(EventExistsAsync).WithMessage("Event Does not exist")
+                .MustAsync(EventNotPublished).WithMessage("Event is Already Published");
+
+            RuleFor(o => o.Capacity)
+            .GreaterThan(0).WithMessage("Capacity must be greater than 0")
+            .MustAsync(async (o, capacity, cancellation) => await IsValidCapacity(o))
+            .WithMessage("Seat category capacity exceeds available capacity for the event");
+        }
+        private async Task<bool> EventExistsAsync(int eventId, CancellationToken token)
+        {
+            return await _eventRepository.EventExistsAsync(eventId);
+        }
+        private async Task<bool> EventNotPublished(int eventId, CancellationToken token)
+        {
+            return await _eventRepository.EventNotPublished(eventId);
         }
 
-        private async Task ValidateCapacity(EventPriceCategoryRequestDTO eventPriceCategory  , ValidationContext<EventPriceCategoryRequestDTO> context , CancellationToken cancellationToken)
+        private async Task<bool> IsValidCapacity(EventPriceCategoryRequestDTO eventPriceCategoryDTO)
         {
-            Event events = await _eventRepository.EventExistance(eventPriceCategory.EventId);
-            if (events == null)
+            var eventDetails = await _eventRepository.GetEventByIdAsync(eventPriceCategoryDTO.EventId);
+            if (eventDetails == null)
             {
-                context.AddFailure("EventId", "The event doesnot exist. ");
-                return;
+                return false;
+            }
+            var venueCapacity = await _venueRepository.GetVenueCapacityByIdAsync(eventDetails.VenueId);
+
+            var totalAllocatedCapacity = await _eventPriceCategoryRepository.GetTotalAllocatedSeatCapacityAsync(eventPriceCategoryDTO.EventId);
+
+            if (eventPriceCategoryDTO.Id != null)
+            {
+                var existingCategoryCapacity = await _eventPriceCategoryRepository.GetCategoryCapacityByIdAsync(eventPriceCategoryDTO.Id);
+                totalAllocatedCapacity -= existingCategoryCapacity;
             }
 
-            var list  = await _appDbContext.EventTicketCategories.Where(x => x.EventId == eventPriceCategory.EventId).ToListAsync();
-            int existingTotalCapacity = list.Sum(x => x.Capacity);
-            
-            
-
-            var venueid = events.VenueId ;
-            var venue = await venueRepository.GetVenue(venueid);
-            int updatingCapacity = 0;
-            if (eventPriceCategory.Id != null)
-            {
-                //in case of updation
-                var existingCategory = _appDbContext.EventTicketCategories.FirstOrDefault(x => x.Id == eventPriceCategory.Id);
-                updatingCapacity = existingCategory.Capacity;
-                existingTotalCapacity = existingTotalCapacity - updatingCapacity;
-            }
-            int remainingCapacity = venue.MaxCapacity - existingTotalCapacity;
-            if (remainingCapacity < eventPriceCategory.Capacity)
-            {
-                remainingCapacity -= updatingCapacity;
-                context.AddFailure($"The total capacity of venue exceed. Remaing seats for adding Category is {remainingCapacity}");
-            }
-            
+            return totalAllocatedCapacity + eventPriceCategoryDTO.Capacity <= venueCapacity;
         }
     }
 }

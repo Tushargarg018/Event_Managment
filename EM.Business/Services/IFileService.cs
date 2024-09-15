@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EM.Core.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,7 @@ namespace EM.Business.Services
         {
             public byte[] GetImageAsByteArray(string RequestPath);
             Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId, string baseUrl);
-            void DeleteImage(string imageFileName);
-
-            Task<string> SaveImage(IFormFile imageFile, string[] allowedFileExtensions, object Id , string directoryName);
-
-        }
+            void DeleteImage(string imageFileName);            
+            Task<string> UploadEventDocument(IFormFile imageFile, int eventId, int type);
+    }
 }

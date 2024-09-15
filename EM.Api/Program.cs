@@ -68,6 +68,10 @@ builder.Services.AddScoped<IEventService, EventService>();
 //Venue
 builder.Services.AddScoped<IVenueRepository, VenueRepository>();
 
+//Event Offers
+builder.Services.AddScoped<IOfferRepository, OfferRepository>();
+builder.Services.AddScoped<IOfferService, OfferService>();
+
 //EventPriceCategory
 builder.Services.AddScoped<IEventPriceCategoryRepository, EventPriceCategoryRepository>();
 builder.Services.AddScoped<IEventPriceCategoryService, EventPriceCategoryService>();

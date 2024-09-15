@@ -1,5 +1,6 @@
 ﻿using EM.Data.Entities;
 using EM.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,18 @@ namespace EM.Data.RepositoryImpl
                 return null;
             }
             return Ticketid;
+        }
+
+        public async Task<int> GetTotalAllocatedSeatCapacityAsync(int eventId)
+        {
+            return await appDbContext.EventTicketCategories
+                                     .Where(sc => sc.EventId == eventId)
+                                     .SumAsync(sc=>sc.Capacity);
+        }
+
+        public async Task<int> GetCategoryCapacityByIdAsync(int? id) {
+            var ticketCategory = await appDbContext.EventTicketCategories.FindAsync(id);
+            return ticketCategory?.Capacity ?? 0;
         }
 
         public async Task<EventTicketCategory> UpdateEventPriceCategory(EventTicketCategory eventTicketCategory)

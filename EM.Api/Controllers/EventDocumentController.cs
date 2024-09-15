@@ -32,7 +32,7 @@ namespace EM.Api.Controllers
             this.fileService = fileService;
         }
         /// <summary>
-        /// 
+        /// Add/ Update the event documents
         /// </summary>
         /// <param name="eventDocument"></param>
         /// <param name="EventId"></param>
@@ -41,55 +41,34 @@ namespace EM.Api.Controllers
         [HttpPost("event/{EventId}/document")]
         public async Task<IActionResult> AddorUpdateEventDocument(EventDocumentRequestDTO eventDocument , int EventId)
         {
+
             var validationResult = await Documentvalidator.ValidateAsync(eventDocument);
             if (!validationResult.IsValid)
             { 
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
-
-            string[] allowedFileExtensions = [".jpg", ".jpeg", ".png"];
-            string folderPath = eventDocument.Type == 0
-                ? "Uploads/EventDocuments/Logo"
-                : "Uploads/EventDocuments/Banner";
-
-            var createdImageName = await fileService.SaveImage(eventDocument.ImageFile, allowedFileExtensions, EventId, folderPath);
+            var eventDocumentPath = await fileService.UploadEventDocument(eventDocument.ImageFile,EventId, (int)eventDocument.Type);
 
             try
             {
 
-                EventDocumentBO eventbo = null;
-                if (eventDocument.Id == null)
+                EventDocumentBO eventbo = eventDocument.Id == null
+                ? await eventDocumentService.AddEventDocuments(eventDocument, EventId, eventDocumentPath)
+                : await eventDocumentService.UpdateEventDocuments(eventDocument, EventId, eventDocumentPath);
+
+                if (eventbo == null)
                 {
-                    eventbo = await eventDocumentService.AddEventDocuments(eventDocument, EventId , createdImageName);
-                }
-                else
-                {
-                    eventbo = await eventDocumentService.UpdateEventDocuments(eventDocument, EventId , createdImageName);
+                    return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No event/document id exist to add documents"));
                 }
 
-                EventDocumentResponseDTO eventResponse = new EventDocumentResponseDTO();
+                var eventResponse = mapper.Map<EventDocumentResponseDTO>(eventbo);
+                eventResponse.FilePath = $"{Request.Scheme}://{Request.Host}/{eventResponse.FilePath}";
 
-                mapper.Map(eventbo, eventResponse);
-                eventResponse.FilePath = $"{Request.Scheme}://{Request.Host}/{eventResponse.FilePath}"; 
-                
-                if (eventResponse == null)
-                {
-
-                    return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No event/document id  exist to add documents "));
-                }
-                
-                if (eventDocument.Id == null)
-                {
-                    return Ok(new ResponseDTO<EventDocumentResponseDTO>(eventResponse, "success", "event document added successfully"));
-                }
-                else
-                {
-                    return Ok(new ResponseDTO<EventDocumentResponseDTO>(eventResponse, "success", "event document updated successfully"));
-                }
+                var message = eventDocument.Id == null ? "Event document added successfully" : "Event document updated successfully";
+                return Ok(new ResponseDTO<EventDocumentResponseDTO>(eventResponse, "success", message));
             }
             catch (Exception ex)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<Object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
             }
 

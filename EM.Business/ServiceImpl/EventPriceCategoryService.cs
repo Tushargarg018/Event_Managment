@@ -23,33 +23,36 @@ namespace EM.Business.ServiceImpl
             this.mapper = mapper;
         }
 
-        public async Task<EventPriceCategoryBO> AddorUpdateEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO, int EventId)
+        /// <summary>
+        /// To process the ticket category addition and updating
+        /// </summary>
+        /// <param name="eventPriceCategoryRequestDTO"></param>
+        /// <returns></returns>
+        public async Task<EventPriceCategoryBO> AddorUpdateEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO)
         {
-            /*var EventCheck = await repository.EventExistance(EventId);
-            if (EventCheck == null)
-            {
-                return null;
-            }*/
 
             if(eventPriceCategoryRequestDTO.Id == null)
             {
-                return await AddEventPriceCategory(eventPriceCategoryRequestDTO ,  EventId);
+                return await AddEventPriceCategory(eventPriceCategoryRequestDTO);
             }
             else
             {
-                return await UpdateEvenPriceCategory(eventPriceCategoryRequestDTO ,  EventId);
+                return await UpdateEvenPriceCategory(eventPriceCategoryRequestDTO);
             }
 
         }
+        /// <summary>
+        /// Process the ticket category add request
+        /// </summary>
+        /// <param name="eventPriceCategoryRequestDTO"></param>
+        /// <returns></returns>
 
-
-
-        private async Task<EventPriceCategoryBO> AddEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO  , int eventId)
+        private async Task<EventPriceCategoryBO> AddEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO)
         {
             EventTicketCategory ticketCategory = new EventTicketCategory
             {
                 Name = eventPriceCategoryRequestDTO.Name,
-                EventId = eventId,
+                EventId = eventPriceCategoryRequestDTO.EventId,
                 Price = eventPriceCategoryRequestDTO.Price,
                 Capacity = eventPriceCategoryRequestDTO.Capacity,
                 CreatedOn = DateTime.UtcNow,
@@ -61,12 +64,18 @@ namespace EM.Business.ServiceImpl
             mapper.Map(eventTicket, eventPriceCategoryBO );
             return eventPriceCategoryBO;
         }
-        private async Task<EventPriceCategoryBO> UpdateEvenPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO, int eventId)
+        /// <summary>
+        /// To process the ticket category update request
+        /// </summary>
+        /// <param name="eventPriceCategoryRequestDTO"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        private async Task<EventPriceCategoryBO> UpdateEvenPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO)
         {
             EventTicketCategory eventTicket = await repository.GetEventPriceCategoryById((int)eventPriceCategoryRequestDTO.Id);
             if (eventTicket == null)
             {
-                throw new Exception("Event Ticket Category doesnot exist");
+                throw new Exception("Event Ticket Category does not exist");
             }
             eventTicket.Name = eventPriceCategoryRequestDTO.Name;
             eventTicket.Price = eventPriceCategoryRequestDTO.Price;

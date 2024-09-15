@@ -29,10 +29,15 @@ namespace EM.Api.Controllers
             this.validator = validator;
         }
 
-
+        /// <summary>
+        /// To add the ticket category for the existing event
+        /// </summary>
+        /// <param name="eventPriceCategoryRequestDTO"></param>
+        /// <param name="EventId"></param>
+        /// <returns></returns>
         [Authorize(Policy = "UserPolicy")]
         [HttpPost("event/{EventId}/event_price_category")]
-        public  async Task<IActionResult> AddorUpdateEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO , int EventId)
+        public async Task<IActionResult> AddorUpdateEventPriceCategory(EventPriceCategoryRequestDTO eventPriceCategoryRequestDTO , int EventId)
         {
             eventPriceCategoryRequestDTO.EventId = EventId;
             var validation = await validator.ValidateAsync(eventPriceCategoryRequestDTO);
@@ -40,11 +45,18 @@ namespace EM.Api.Controllers
             {
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>() , "failure" , "Validation failed", validation.Errors.Select(e => e.ErrorMessage).ToList()));
             }
+            try
+            {
+                EventPriceCategoryBO eventPriceCategoryBO = await eventPriceCategoryService.AddorUpdateEventPriceCategory(eventPriceCategoryRequestDTO);
+                EventPriceCategoryResponseDTO eventPriceCategoryResponseDTO = new EventPriceCategoryResponseDTO();
+                mapper.Map(eventPriceCategoryBO, eventPriceCategoryResponseDTO);
+                return Ok(new ResponseDTO<EventPriceCategoryResponseDTO>(eventPriceCategoryResponseDTO, "success", "Price Category set successfully"));
 
-            EventPriceCategoryBO eventPriceCategoryBO = await eventPriceCategoryService.AddorUpdateEventPriceCategory(eventPriceCategoryRequestDTO, EventId);
-            EventPriceCategoryResponseDTO eventPriceCategoryResponseDTO = new EventPriceCategoryResponseDTO();
-            mapper.Map(eventPriceCategoryBO, eventPriceCategoryResponseDTO);
-            return Ok( new ResponseDTO<EventPriceCategoryResponseDTO>(eventPriceCategoryResponseDTO , "success" , "Price Category set successfully")); 
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
+            }
 
         }
 
