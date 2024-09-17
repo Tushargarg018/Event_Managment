@@ -16,13 +16,13 @@ namespace EM.Core.DTOs.Request
         [JsonPropertyName("size")]
         public int Size { get; set; }
 
-        [JsonPropertyName("start_datetime")]
+        [JsonPropertyName("startdatetime")]
         public DateTime? StartDateTime { get; set; }
 
-        [JsonPropertyName("end_datetime")]
+        [JsonPropertyName("enddatetime")]
         public DateTime? EndDateTime { get; set; }
 
-        [JsonPropertyName("organizer_id")]
+        [JsonPropertyName("organizerid")]
         public int? OrganizerId { get; set; }
 
         [JsonPropertyName("status")]
@@ -31,10 +31,10 @@ namespace EM.Core.DTOs.Request
         [JsonPropertyName("title")]
         public string? Title { get; set; }
 
-        [JsonPropertyName("sort")]
-        public string? Sort { get; set; }
-
-        [JsonPropertyName("sort_by")]
+        [JsonPropertyName("sortby")]
         public string? SortBy { get; set; }
+
+        [JsonPropertyName("sortorder")]
+        public string? SortOrder { get; set; } = "asc";
     }
 }
