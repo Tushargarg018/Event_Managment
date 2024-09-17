@@ -1,5 +1,6 @@
 ﻿using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
+using EM.Core.Helpers;
 using EM.Data.Entities;
 using EM.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -57,16 +58,23 @@ namespace EM.Data.RepositoryImpl
             var pageSize = filter.Size;
             var pageIndex = filter.Page;
             IQueryable<Event> query = context.Set<Event>()
-                                            .Include(e => e.Venue)
                                             .Include(e => e.Performer)
                                             .Include(e => e.EventDocuments)
                                             .Include(e=> e.EventOffers)
-                                            .Include(e=> e.EventTicketCategories);
+                                            .Include(e=> e.EventTicketCategories)
+                                            .Include(e => e.Venue)
+                                            .ThenInclude(v => v.State)
+                                            .Include(e => e.Venue)
+                                            .ThenInclude(v=>v.City);
 
             if(filter.StartDateTime.HasValue)
                 query = query.Where(e => e.StartDatetime >= filter.StartDateTime.Value.ToUniversalTime());
-            if(filter.EndDateTime.HasValue)
+            if (filter.EndDateTime.HasValue)
+            {
+                //var time = filter.EndDateTime.Value.ToUniversalTime();
+                //var time = TimeConversionHelper.ConvertISTToUTC(filter.EndDateTime.Value.ToString());
                 query = query.Where(e => e.EndDatetime <= filter.EndDateTime.Value.ToUniversalTime());
+            }
 
             if (!string.IsNullOrEmpty(filter.Title))
                 query = query.Where(e => e.Title.ToLower() == filter.Title.ToLower());
@@ -81,12 +89,45 @@ namespace EM.Data.RepositoryImpl
             if (filter.OrganizerId.HasValue)
                 query = query.Where(e => e.OrganizerId == filter.OrganizerId);
 
+            if (filter.SortBy != null && (filter.Sort !=null && (filter.Sort=="Ascending" || filter.Sort=="Descending")))
+            {
+                if (filter.SortBy == "start_date_time")
+                {
+                    if (filter.Sort == "asc")
+                    {
+                        query = query.OrderBy(e => e.StartDatetime);
+                    }
+                    else
+                        query = query.OrderByDescending(e => e.StartDatetime);
+                }
+                else if(filter.SortBy == "end_date_time")
+                {
+                    if (filter.Sort == "desc")
+                    {
+                        query = query.OrderBy(e => e.EndDatetime);
+                    }
+                    else
+                        query = query.OrderByDescending(e => e.EndDatetime);
+                }
+            }
+
             // Pagination
             var totalRecords = await query.CountAsync();
             var events = await query.Skip((pageIndex - 1) * pageSize)
                                     .Take(pageSize)
                                     .ToListAsync();
+            foreach(var _event in events)
+            {
+                _event.CreatedOn = TimeConversionHelper.ConvertTimeFromUTC(_event.CreatedOn);
+                _event.ModifiedOn = TimeConversionHelper.ConvertTimeFromUTC(_event.ModifiedOn);
+                _event.CreatedOn = TimeConversionHelper.TruncateSeconds(_event.CreatedOn);
+                _event.ModifiedOn = TimeConversionHelper.TruncateSeconds(_event.ModifiedOn);
 
+                _event.StartDatetime = TimeConversionHelper.ConvertTimeFromUTC(_event.StartDatetime);
+                _event.StartDatetime = TimeConversionHelper.TruncateSeconds(_event.StartDatetime);
+                _event.EndDatetime = TimeConversionHelper.ConvertTimeFromUTC(_event.EndDatetime);
+                _event.EndDatetime = TimeConversionHelper.TruncateSeconds(_event.EndDatetime);
+            }
             return (events, totalRecords);
         }
     }

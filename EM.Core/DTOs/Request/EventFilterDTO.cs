@@ -30,5 +30,11 @@ namespace EM.Core.DTOs.Request
 
         [JsonPropertyName("title")]
         public string? Title { get; set; }
+
+        [JsonPropertyName("sort")]
+        public string? Sort { get; set; }
+
+        [JsonPropertyName("sort_by")]
+        public string? SortBy { get; set; }
     }
 }
