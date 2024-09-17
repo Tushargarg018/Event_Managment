@@ -1,4 +1,5 @@
 ﻿using EM.Core.Enums;
+using EM.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,14 @@ namespace EM.Business.BOs
         public DateTime ModifiedOn { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }    
+
+        public VenueBO? Venue { get; set; }
+        public PerformerBO? Performer { get; set; }
+
+        public List <EventDocumentBO> EventDocument { get; set; }
+
+        public List<EventPriceCategoryBO> EventPriceCategory { get; set; }
+
+        public List<OfferBO> Offer { get; set; }
     }
 }

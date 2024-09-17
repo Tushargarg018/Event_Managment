@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EM.Core.Helpers;
 using EM.Business.ServiceImpl;
+using EM.Data.Entities;
 namespace EM.Api.Controllers
 {
     [Route("api/em")]
@@ -65,6 +66,45 @@ namespace EM.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
             }
 
+        }
+
+       
+        [HttpGet("event")]
+        public async Task<IActionResult> GetEvents([FromQuery] EventFilterDTO filter)
+        {
+            try
+            {
+                var events = await _eventService.GetEventsAsync(filter);
+                var pagination = new PaginationMetadata(filter.Page, events.TotalRecords, filter.Size);
+
+                var venueResponseDTO = new VenueResponseDTO();
+                var eventResponseDTO = events.Events.Select(e => new EventListResponseDTO
+                {
+                    Id = e.Id,
+                    Title = e.Title,
+                    Description = e.Description,
+                    BasePrice = e.BasePrice,
+                    Status = e.Status.ToString(),
+                    OrganizerId = e.OrganizerId,
+                    PerformerId = e.PerformerId,
+                    VenueId = e.VenueId,
+                    CreatedOn = e.CreatedOn,
+                    ModifiedOn = e.ModifiedOn,
+                    StartDateTime = e.StartDateTime.ToString("o"), // Use ISO 8601 format for date
+                    EndDateTime = e.EndDateTime.ToString("o"),
+                    Performer = _mapper.Map<PerformerResponseDTO>(e.Performer),
+                    Venue = _mapper.Map<VenueResponseDTO>(e.Venue),
+                    EventDocument = e.EventDocument.Select(ed => _mapper.Map<EventDocumentResponseDTO>(ed)).ToList(),
+                    EventPriceCategories = e.EventPriceCategory.Select(epc => _mapper.Map<EventPriceCategoryResponseDTO>(epc)).ToList(),
+                    Offers = e.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList()
+                }).ToList();
+                var response = new PagedResponseDTO<List<EventListResponseDTO>>(eventResponseDTO, "success", "Event Successfully fetched.", pagination);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
+            }
         }
     }
 }

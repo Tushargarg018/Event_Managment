@@ -1,4 +1,6 @@
-﻿using EM.Data.Entities;
+﻿using EM.Core.DTOs.Request;
+using EM.Core.DTOs.Response;
+using EM.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +17,7 @@ namespace EM.Data.Repositories
         public Task<bool> EventNotPublished(int eventId);
 
         public Task<Event> GetEventByIdAsync(int eventId);
+
+        public Task<(List<Event> Events, int TotalCount)> GetEventsAsync(EventFilterDTO filter);
     }
 }

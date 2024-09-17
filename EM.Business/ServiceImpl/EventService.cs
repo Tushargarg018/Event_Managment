@@ -2,6 +2,8 @@
 using EM.Business.BOs;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
+using EM.Core.DTOs.Response;
+using EM.Core.DTOs.Response.Success;
 using EM.Core.Helpers;
 using EM.Data.Entities;
 using EM.Data.Repositories;
@@ -46,6 +48,14 @@ namespace EM.Business.ServiceImpl
             };
             var createdEvent = await _eventRepository.AddEvent(createEvent);
             return _mapper.Map<EventBO>(createdEvent);
+        }
+       
+        public async Task<PagedEventBO> GetEventsAsync(EventFilterDTO filter)
+        {
+            var (events, totalRecords) = await _eventRepository.GetEventsAsync(filter);
+            var eventBo = _mapper.Map<List<EventBO>>(events);
+
+            return new PagedEventBO(eventBo,totalRecords);
         }
     }
 }
