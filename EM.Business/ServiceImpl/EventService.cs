@@ -49,7 +49,14 @@ namespace EM.Business.ServiceImpl
             var createdEvent = await _eventRepository.AddEvent(createEvent);
             return _mapper.Map<EventBO>(createdEvent);
         }
-       
+
+        public async Task<EventBO> GetEventById(int eventId)
+        {
+            var _event = await _eventRepository.GetEventByIdAsync(eventId);
+            var eventBo = _mapper.Map<EventBO>(_event);
+            return eventBo;
+        }
+
         public async Task<PagedEventBO> GetEventsAsync(EventFilterDTO filter)
         {
             var (events, totalRecords) = await _eventRepository.GetEventsAsync(filter);

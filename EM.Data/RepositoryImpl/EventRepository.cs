@@ -27,12 +27,6 @@ namespace EM.Data.RepositoryImpl
             return eventToAdd;
         }
 
-        public Event GetEventById(int eventId)
-        {
-            var eventResult = context.Events.FirstOrDefault(e=>e.Id == eventId);
-            return eventResult;
-        }
-
         public async Task<bool> EventExistsAsync(int eventId)
         {
             return await context.Events.AnyAsync(e=>e.Id == eventId);
@@ -43,8 +37,22 @@ namespace EM.Data.RepositoryImpl
             return await context.Events.AnyAsync(e => e.Id == eventId && e.Status == Core.Enums.StatusEnum.Draft);
         }
 
+        public Event GetEventById(int eventId)
+        {
+            return context.Events.FirstOrDefault(e => e.Id == eventId);
+        }
+
         public async Task<Event> GetEventByIdAsync(int eventId) {
-            return await context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+            IQueryable<Event> query = context.Set<Event>()
+                                            .Include(e => e.Performer)
+                                            .Include(e => e.EventDocuments)
+                                            .Include(e => e.EventOffers)
+                                            .Include(e => e.EventTicketCategories)
+                                            .Include(e => e.Venue)
+                                            .ThenInclude(v => v.State)
+                                            .Include(e => e.Venue)
+                                            .ThenInclude(v => v.City);
+            return await query.FirstOrDefaultAsync(e=>e.Id == eventId);
         }
         /// <summary>
         /// 

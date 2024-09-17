@@ -106,5 +106,37 @@ namespace EM.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
             }
         }
+
+        [HttpGet("event/{id}")]
+        public async Task<IActionResult> GetEventById(int id)
+        {
+            var _event = await _eventService.GetEventById(id);
+            if (_event == null)
+            {
+                return NotFound(new ResponseDTO<object>(Array.Empty<object>(), "failure", null, new List<string> { "Event Doesn't Exist" }));
+            }
+            var eventListResponse = new EventListResponseDTO
+            {
+                Id = _event.Id,
+                Title = _event.Title,
+                Description = _event.Description,
+                BasePrice = _event.BasePrice,
+                Status = _event.Status.ToString(),
+                OrganizerId = _event.OrganizerId,
+                PerformerId = _event.PerformerId,
+                VenueId = _event.VenueId,
+                CreatedOn = _event.CreatedOn,
+                ModifiedOn = _event.ModifiedOn,
+                StartDateTime = _event.StartDateTime.ToString("o"), // Use ISO 8601 format for date
+                EndDateTime = _event.EndDateTime.ToString("o"),
+                Performer = _mapper.Map<PerformerResponseDTO>(_event.Performer),
+                Venue = _mapper.Map<VenueResponseDTO>(_event.Venue),
+                EventDocument = _event.EventDocument.Select(ed => _mapper.Map<EventDocumentResponseDTO>(ed)).ToList(),
+                EventPriceCategories = _event.EventPriceCategory.Select(epc => _mapper.Map<EventPriceCategoryResponseDTO>(epc)).ToList(),
+                Offers = _event.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList()
+            };
+            var response = new ResponseDTO<EventListResponseDTO>(eventListResponse, "success", "Event Returned Successfully", null);
+            return Ok(response);
+        }
     }
 }

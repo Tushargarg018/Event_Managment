@@ -23,7 +23,6 @@ namespace EM.Business.BOs
         public DateTime ModifiedOn { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }    
-
         public VenueBO? Venue { get; set; }
         public PerformerBO? Performer { get; set; }
 
