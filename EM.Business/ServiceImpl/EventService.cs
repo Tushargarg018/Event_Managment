@@ -64,5 +64,46 @@ namespace EM.Business.ServiceImpl
 
             return new PagedEventBO(eventBo,totalRecords);
         }
+
+        public async Task<EventBO> PublishEvent(int eventId)
+        {
+
+            var exist = await _eventRepository.EventExistsAsync(eventId);
+
+            if (!exist)
+            {
+                throw new Exception("Event doesnot exist");
+            }
+
+            var publish = await  _eventRepository.EventNotPublished(eventId);
+            if (!publish) 
+            {
+                throw new Exception("Event already published");
+            }
+
+            Event e = _eventRepository.GetEventById(eventId);
+
+            DateTime dateTime = DateTime.UtcNow;
+            if (e.StartDatetime <= dateTime)
+            {
+                throw new Exception("Cannot publish event post start time of event");
+            }
+
+            if(e.BasePrice == null)
+            {
+                throw new Exception("base price not declared");
+            }
+
+            if(e.VenueId == null)
+            {
+                throw new Exception("Venue must exist to organise an event");
+            }
+
+            e.Status = Core.Enums.StatusEnum.Published;
+            Event @event = await _eventRepository.PublishEvent(e);
+            var eventBo = _mapper.Map<EventBO>(@event);
+            return eventBo;
+
+        }
     }
 }

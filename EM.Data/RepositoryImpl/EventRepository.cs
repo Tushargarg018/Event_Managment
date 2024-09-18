@@ -125,5 +125,12 @@ namespace EM.Data.RepositoryImpl
                                     .ToListAsync();
             return (events, totalRecords);
         }
+
+        public async Task<Event> PublishEvent(Event e)
+        {
+            context.Update(e);
+            await context.SaveChangesAsync();
+            return e;
+        }
     }
 }
