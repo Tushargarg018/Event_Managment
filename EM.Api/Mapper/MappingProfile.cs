@@ -31,7 +31,7 @@ namespace EM.Api.Mapper
             CreateMap<LoginDto, LoginResponseBO>();
             CreateMap<LoginResponseBO, LoginResponseDTO>();
 
-            CreateMap<Performer, PerformerBO>();
+            
             CreateMap<PerformerDTO,  PerformerBO>();
 
             CreateMap<EventDTO, EventBO>();
@@ -49,7 +49,9 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ConvertISTtoUTC(src.StartDateTime)))
                 .ForMember(dest => dest.EndDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ConvertISTtoUTC(src.EndDateTime)));
                 
-            CreateMap<Performer, PerformerBO>();
+            CreateMap<Performer, PerformerBO>()
+                .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.CreatedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.ModifiedOn)));
             CreateMap<PerformerBO, PerformerResponseDTO>();
             CreateMap<Venue, VenueBO>()
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
