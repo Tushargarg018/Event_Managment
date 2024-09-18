@@ -13,6 +13,8 @@ namespace EM.Business.Services
     {
         public Task<EventBO> AddEvent(EventDTO eventDto, int organizerId);
         Task<PagedEventBO> GetEventsAsync(EventFilterDTO filter);
-        Task<EventBO> GetEventById(int eventId);
+        Task<EventBO> GetEventById(int eventId); 
+
+        public Task<EventBO> PublishEvent(int eventId);
     }
 }
