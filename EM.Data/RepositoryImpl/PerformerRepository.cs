@@ -51,5 +51,11 @@ namespace EM.Data.RepositoryImpl
             await context.SaveChangesAsync();
             return performer;
         }
+
+        public async Task<string> GetPerformerProfilePath(int performerId)
+        {
+            var performer = await context.Performers.FirstOrDefaultAsync(p => p.Id == performerId);
+            return performer.Profile;
+        }
     }
 }

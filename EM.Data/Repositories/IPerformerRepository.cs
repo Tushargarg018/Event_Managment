@@ -14,5 +14,6 @@ namespace EM.Data.Repositories
         public Task<bool> PerformerExistsAsync(int performerId);
         public Task<Performer> UpdatePerformer(string bio, string profile_pic, int performer_id);
         public Task<Performer> GetPerformerById(int id);
+        public Task<string> GetPerformerProfilePath(int id);
     }
 }

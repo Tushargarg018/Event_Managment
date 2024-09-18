@@ -43,15 +43,13 @@ namespace EM.Api.Controllers
         {
             var authHeader = Request.Headers.Authorization;
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-
             if (performerDto.ImageFile?.Length > 1 * 1024 * 1024)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 1 MB");
             }
-            string baseUrl = _config.GetValue<string>("AppSettings:BaseUrl");
             string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, organizerId.ToString());
             var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
-            performerBo.Profile = baseUrl + createdImageName;
+            performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
             var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
             return Ok(response);
         }
@@ -88,11 +86,10 @@ namespace EM.Api.Controllers
         public async Task<IActionResult> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
         {
             string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
-            string baseUrl = _config.GetValue<string>("AppSettings:BaseUrl");
-            string createdImageName = await _fileService.UpdateImageAsync(performerDto.ImageFile, allowedFileExtentions, performerDto.ProfilePath);
+            string createdImageName = await _fileService.UpdateImageAsync(performerDto.ImageFile, id);
             PerformerBO performerBo = new PerformerBO();
             performerBo = await _performerService.UpdatePerformer(performerDto, id);
-            performerBo.Profile = baseUrl +  performerBo.Profile;
+            performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
             return Ok(performerBo);
         }
     }

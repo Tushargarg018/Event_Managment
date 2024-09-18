@@ -60,8 +60,6 @@ namespace EM.Business.ServiceImpl
             {
                 var performerBo = new PerformerBO();
                 _mapper.Map(performer, performerBo);
-                performerBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerBo.CreatedOn);
-                performerBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(performerBo.ModifiedOn);
                 performerBoList.Add(performerBo);
             }
             return performerBoList;
@@ -72,8 +70,6 @@ namespace EM.Business.ServiceImpl
             var updatedPerformer = await _repository.UpdatePerformer(performerDto.Bio, performerDto.ProfilePath, id);
             var performerBo = new PerformerBO();
             _mapper.Map(updatedPerformer, performerBo);
-            performerBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerBo.CreatedOn);
-            performerBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(performerBo.ModifiedOn);
             return performerBo;
         }
     }

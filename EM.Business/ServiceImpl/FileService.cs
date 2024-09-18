@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.Extensions.Hosting;
 using EM.Core.Enums;
 using static System.Net.Mime.MediaTypeNames;
+using EM.Data.Repositories;
 namespace EM.Business.ServiceImpl
 { 
     public class FileService : IFileService
@@ -21,14 +22,16 @@ namespace EM.Business.ServiceImpl
         private readonly string _logoPath;
         private readonly string _bannerPath;
         private readonly string _profilePath;
+        private readonly IPerformerRepository _performerRepository;
 
-        public FileService(IConfiguration configuration, IWebHostEnvironment environment)
+        public FileService(IConfiguration configuration, IWebHostEnvironment environment, IPerformerRepository performerRepository)
         {
             this.environment = environment;
             _allowedExtensions = configuration.GetSection("FileSettings:AllowedExtensions").Get<string[]>();
             _logoPath = configuration["FileSettings:EventDocumentPaths:Logo"];
             _bannerPath = configuration["FileSettings:EventDocumentPaths:Banner"];
             _profilePath = configuration["FileSettings:EventDocumentPaths:Profile"];
+            _performerRepository = performerRepository;
         }
 
 
@@ -44,7 +47,12 @@ namespace EM.Business.ServiceImpl
             ConvertImageToByteArray(RequestPath);
         public void DeleteImage(string imageFileName)
         {
-            throw new NotImplementedException();
+            var contentPath = environment.ContentRootPath;  
+            string[] parts = imageFileName.Split('/');
+            parts = parts;
+            string relativePath = string.Join("\\", parts, 0, parts.Length);
+            var path = Path.Combine(contentPath, relativePath);
+            System.IO.File.Delete(path);
         }
 
         public async Task<string> SaveImageAsync(IFormFile imageFile, string organizerId)
@@ -60,13 +68,6 @@ namespace EM.Business.ServiceImpl
             ValidateFileExtension(extension, _allowedExtensions);
             var fileName = $"ProfilePic_{organizerId}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()}{extension}";
             var fileNameWithPath = Path.Combine(path, fileName);
-            //string[] parts = fileNameWithPath.Split('\\');
-
-            //int startIndex = Array.IndexOf(parts, "Uploads/profile");
-            //string imagePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
-            //string responsePath = baseUrl + imagePath;
-            //string url = responsePath.Replace('\\', '/');
-            //imagePath = imagePath.Replace('\\', '/');
             using var stream = new FileStream(fileNameWithPath, FileMode.Create);
             await imageFile.CopyToAsync(stream);
             return GenerateUrl(_profilePath, fileNameWithPath);
@@ -136,19 +137,23 @@ namespace EM.Business.ServiceImpl
             return relativePath.Replace('\\', '/');
         }
 
-        public async Task<string> UpdateImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string profile_path)
+        public async Task<string> UpdateImageAsync(IFormFile imageFile, int performer_id)
         {
             if (imageFile == null)
             {
                 throw new ArgumentNullException(nameof(imageFile));
             }
+            //Getting Image Path from Repo
+            string profile_path = await _performerRepository.GetPerformerProfilePath(performer_id);
+            DeleteImage(profile_path);
+            //Make new File 
             var contentPath = environment.ContentRootPath;
             var path = Path.Combine(contentPath, profile_path);
             var ext = Path.GetExtension(imageFile.FileName);
-            if (!allowedFileExtensions.Contains(ext))
-            {
-                throw new ArgumentException($"Only {string.Join(",", allowedFileExtensions)} are allowed.");
-            }
+            //if (!allowedFileExtensions.Contains(ext))
+            //{
+            //    throw new ArgumentException($"Only {string.Join(",", allowedFileExtensions)} are allowed.");
+            //}
             using var stream = new FileStream(path, FileMode.Create);
             await imageFile.CopyToAsync(stream);
             return profile_path;
