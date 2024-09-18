@@ -48,13 +48,8 @@ namespace EM.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 1 MB");
             }
-            string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
             string baseUrl = _config.GetValue<string>("AppSettings:BaseUrl");
             string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, organizerId.ToString());
-            //PerformerBO performerBo = new PerformerBO();
-            //_mapper.Map(performerDto, performerBo);
-            //performerBo.Profile = createdImageName;
-            //performerBo.OrganizerId = organizerId;
             var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
             performerBo.Profile = baseUrl + createdImageName;
             var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);

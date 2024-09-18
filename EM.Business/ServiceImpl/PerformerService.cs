@@ -25,9 +25,16 @@ namespace EM.Business.ServiceImpl
             _repository = repository;
             _mapper = mapper;
         }
+        /// <summary>
+        /// To add new performer
+        /// </summary>
+        /// <param name="performerDto"></param>
+        /// <param name="organizer_id"></param>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
         public async Task<PerformerBO> AddPerformer(PerformerDTO performerDto, int organizer_id, string imageName)
         {
-            var newPerformer = new Performer{
+            Performer performer = new Performer{
                 Name = performerDto.Name,
                 Bio = performerDto.Bio,
                 Profile = imageName,
@@ -35,13 +42,16 @@ namespace EM.Business.ServiceImpl
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };
-            var performer = await _repository.AddPerformer(newPerformer);
+            var newperformer = await _repository.AddPerformer(performer);
             var performerResponseBo = new PerformerBO();
-            _mapper.Map(performer, performerResponseBo);
-            performerResponseBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerResponseBo.CreatedOn);
-            performerResponseBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(performerResponseBo.ModifiedOn);
+            _mapper.Map(newperformer, performerResponseBo);
             return performerResponseBo;
         }
+        /// <summary>
+        /// To get all performers for a organizer
+        /// </summary>
+        /// <param name="organizerId"></param>
+        /// <returns></returns>
         public List<PerformerBO> GetPerformers(int organizerId)
         {
             var performerList = _repository.GetPerformersUsingOrganizer(organizerId);
@@ -59,11 +69,7 @@ namespace EM.Business.ServiceImpl
 
         public async Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
         {
-            //var performer = _repository.GetPerformerById(id).Result;
-            //performer.Profile = performerDto.ProfilePath;
-            //performer.Bio = performerDto.Bio;
-            //performer.ModifiedOn = DateTime.UtcNow;
-            var updatedPerformer = _repository.UpdatePerformer(performerDto.Bio, performerDto.ProfilePath, id).Result;
+            var updatedPerformer = await _repository.UpdatePerformer(performerDto.Bio, performerDto.ProfilePath, id);
             var performerBo = new PerformerBO();
             _mapper.Map(updatedPerformer, performerBo);
             performerBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerBo.CreatedOn);
