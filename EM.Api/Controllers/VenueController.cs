@@ -126,8 +126,8 @@ namespace EM.Api.Controllers
                 // Retrieve the venue by ID using the service layer
                 var venueResponse = await venueService.GetVenue(venueId);
                 var venueResponseDTO = new VenueResponseDTO();
-                mapper.Map(venueResponse, venueResponseDTO); 
-
+                //mapper.Map(venueResponse, venueResponseDTO);
+                venueResponseDTO = mapper.Map<VenueResponseDTO>(venueResponse);
                 if (venueResponse == null)
                 {
                     return Ok(new ResponseDTO<Object>(Array.Empty<object>(), "success", "no venue exist"));
@@ -192,7 +192,7 @@ namespace EM.Api.Controllers
                 // Return a success response with the venue data
                 
 
-                return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue updates successfully"));
+                return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue updated successfully"));
             }
             catch (Exception ex)
             {

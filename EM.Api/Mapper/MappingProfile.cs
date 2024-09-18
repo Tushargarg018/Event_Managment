@@ -40,8 +40,8 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.CreatedOn)))
                 .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)))
                 .ForMember(dest => dest.EventDocument, opt => opt.MapFrom(src => src.EventDocuments))
-               .ForMember(dest => dest.EventPriceCategory, opt => opt.MapFrom(src => src.EventTicketCategories))
-               .ForMember(dest => dest.Offer, opt => opt.MapFrom(src => src.EventOffers));
+                .ForMember(dest => dest.EventPriceCategory, opt => opt.MapFrom(src => src.EventTicketCategories))
+                .ForMember(dest => dest.Offer, opt => opt.MapFrom(src => src.EventOffers));
             
             CreateMap<EventBO, EventResponseDTO>()
                 .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.CreatedOn)))
@@ -50,11 +50,23 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.EndDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ConvertISTtoUTC(src.EndDateTime)));
                 
             CreateMap<Performer, PerformerBO>();
-            CreateMap<PerformerBO, PerformerResponseDTO>();
+            CreateMap<PerformerBO, PerformerResponseDTO>()
+                .ForMember(dest => dest.CreatedOn, opt=>opt.MapFrom(src=>TimeConversionHelper.ConvertTimeFromUTC(src.CreatedOn)))
+                .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.CreatedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.ModifiedOn)));
             CreateMap<Venue, VenueBO>()
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
-                .ForMember(dest => dest.StateName, opt => opt.MapFrom(src => src.State.Name));
-            CreateMap<VenueBO, VenueResponseDTO>();
+                .ForMember(dest => dest.StateName, opt => opt.MapFrom(src => src.State.Name))
+                .ForMember(dest => dest.Created_on, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.CreatedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)))
+                .ForMember(dest => dest.Created_on, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.CreatedOn)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.ModifiedOn)));
+            CreateMap<VenueBO, VenueResponseDTO>()
+                .ForMember(dest => dest.Created_on, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.Created_on)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)))
+                .ForMember(dest => dest.Created_on, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.Created_on)))
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.ModifiedOn)));
 
             CreateMap<EventDocument, EventDocumentBO>();
             CreateMap<EventDocumentBO, EventDocumentResponseDTO>();
