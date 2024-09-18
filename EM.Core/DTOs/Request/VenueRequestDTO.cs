@@ -24,7 +24,7 @@ namespace EM.Core.DTOs.Request
         public string AddressLine1 { get; set; }
 
         [JsonPropertyName("address_line_2")]
-        public string AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
 
         [JsonPropertyName("zip_code")]
         public int ZipCode { get; set; }

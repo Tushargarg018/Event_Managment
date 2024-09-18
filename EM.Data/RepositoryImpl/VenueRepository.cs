@@ -67,7 +67,12 @@ namespace EM.Data.RepositoryImpl
             venue.ModifiedOn = DateTime.UtcNow;
 
             await appDbContext.SaveChangesAsync();
-            return venue;
+
+            var updatedVenue = await appDbContext.Venues
+                                .Include(v => v.City)  
+                                .Include(v => v.State) 
+                                .FirstOrDefaultAsync(v => v.Id == VenueId);
+            return updatedVenue;
 
         }
 
