@@ -5,6 +5,7 @@ using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Success;
+using EM.Core.Helpers;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -128,6 +129,8 @@ namespace EM.Api.Controllers
                 var venueResponseDTO = new VenueResponseDTO();
                 //mapper.Map(venueResponse, venueResponseDTO);
                 venueResponseDTO = mapper.Map<VenueResponseDTO>(venueResponse);
+                venueResponseDTO.Created_on = TimeConversionHelper.ConvertFromUTCAndTruncate(venueResponseDTO.Created_on);
+                venueResponseDTO.ModifiedOn = TimeConversionHelper.ConvertFromUTCAndTruncate(venueResponseDTO.ModifiedOn);
                 if (venueResponse == null)
                 {
                     return Ok(new ResponseDTO<Object>(Array.Empty<object>(), "success", "no venue exist"));

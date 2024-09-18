@@ -1,4 +1,5 @@
 ﻿using EM.Business.BOs;
+using EM.Core.DTOs.Request;
 using EM.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace EM.Business.Services
 {
     public interface IPerformerService
     {
-        public PerformerBO AddPerformer(PerformerBO performerBO);
+        public Task<PerformerBO> AddPerformer(PerformerDTO performerDto, int organizerId, string imageName);
         public List<PerformerBO> GetPerformers(int organizerId);
+        public Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id, string imagePath);
+        public Task<PerformerBO> GetPerformerById(int performerId);
     }
 }

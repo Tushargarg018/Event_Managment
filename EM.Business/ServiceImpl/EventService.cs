@@ -20,7 +20,7 @@ namespace EM.Business.ServiceImpl
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
-     
+
 
         public EventService(IEventRepository eventRepository, IMapper mapper)
         {
@@ -62,7 +62,65 @@ namespace EM.Business.ServiceImpl
             var (events, totalRecords) = await _eventRepository.GetEventsAsync(filter);
             var eventBo = _mapper.Map<List<EventBO>>(events);
 
-            return new PagedEventBO(eventBo,totalRecords);
+            return new PagedEventBO(eventBo, totalRecords);
         }
+        /// <summary>
+        /// Publish the event
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<EventBO> PublishEvent(int eventId)
+        {
+            await ValidateEventExists(eventId);
+            await ValidateEventNotPublished(eventId);
+
+            Event e = _eventRepository.GetEventById(eventId);
+            DateTime dateTime = DateTime.UtcNow;
+            if (e.StartDatetime <= dateTime)
+            {
+                throw new Exception("Can not publish an event after it has started.");
+            }
+            e.Status = Core.Enums.StatusEnum.Published;
+            Event @event = await _eventRepository.PublishEvent(e);
+            var eventBo = _mapper.Map<EventBO>(@event);
+            return eventBo;
+
+        }
+        /// <summary>
+        /// Check if event is exists
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private async Task ValidateEventExists(int eventId)
+        {
+            var eventExists = await _eventRepository.EventExistsAsync(eventId);
+            if (!eventExists)
+            {
+                throw new InvalidOperationException("Event does not exist.");
+            }
+        }
+
+        /// <summary>
+        /// Check if event is not published
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private async Task ValidateEventNotPublished(int eventId)
+        {
+            var eventNotPublished = await _eventRepository.EventNotPublished(eventId);
+            if (!eventNotPublished)
+            {
+                throw new InvalidOperationException("Event is already published.");
+            }
+        }
+        /// <summary>
+        /// Validate the event details
+        /// </summary>
+        /// <param name="eventEntity"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+       
     }
 }

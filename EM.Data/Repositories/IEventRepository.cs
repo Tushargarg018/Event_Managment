@@ -18,5 +18,7 @@ namespace EM.Data.Repositories
         public Task<Event> GetEventByIdAsync(int eventId);
 
         public Task<(List<Event> Events, int TotalCount)> GetEventsAsync(EventFilterDTO filter);
+
+        public Task<Event> PublishEvent(Event e);
     }
 }

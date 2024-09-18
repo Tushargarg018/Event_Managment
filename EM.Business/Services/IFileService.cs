@@ -11,8 +11,9 @@ namespace EM.Business.Services
         public interface IFileService
         {
             public byte[] GetImageAsByteArray(string RequestPath);
-            Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId, string baseUrl);
+            Task<string> SaveImageAsync(IFormFile imageFile, string organizerId);
             void DeleteImage(string imageFileName);            
             Task<string> UploadEventDocument(IFormFile imageFile, int eventId, int type);
+            Task<string> UpdateImageAsync(IFormFile imageFile, int performer_id);
     }
 }
