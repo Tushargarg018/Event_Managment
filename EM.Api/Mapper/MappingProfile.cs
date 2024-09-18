@@ -38,7 +38,11 @@ namespace EM.Api.Mapper
             CreateMap<EventBO, Event>();
             CreateMap<Event, EventBO>()
                 .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.CreatedOn)))
-                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)));
+                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertTimeFromUTC(src.ModifiedOn)))
+                .ForMember(dest => dest.EventDocument, opt => opt.MapFrom(src => src.EventDocuments))
+               .ForMember(dest => dest.EventPriceCategory, opt => opt.MapFrom(src => src.EventTicketCategories))
+               .ForMember(dest => dest.Offer, opt => opt.MapFrom(src => src.EventOffers));
+            
             CreateMap<EventBO, EventResponseDTO>()
                 .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.CreatedOn)))
                 .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.TruncateSeconds(src.ModifiedOn)))
@@ -62,6 +66,7 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
             CreateMap<EventTicketCategory, EventPriceCategoryBO>();
             CreateMap<EventPriceCategoryBO, EventPriceCategoryResponseDTO>();
+            CreateMap<OfferBO, OfferResponseDTO>();
         }
     }
 }

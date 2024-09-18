@@ -1,4 +1,7 @@
-﻿using EM.Data.Entities;
+﻿using EM.Core.DTOs.Request;
+using EM.Core.DTOs.Response;
+using EM.Core.Helpers;
+using EM.Data.Entities;
 using EM.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,12 +27,6 @@ namespace EM.Data.RepositoryImpl
             return eventToAdd;
         }
 
-        public Event GetEventById(int eventId)
-        {
-            var eventResult = context.Events.FirstOrDefault(e=>e.Id == eventId);
-            return eventResult;
-        }
-
         public async Task<bool> EventExistsAsync(int eventId)
         {
             return await context.Events.AnyAsync(e=>e.Id == eventId);
@@ -40,9 +37,93 @@ namespace EM.Data.RepositoryImpl
             return await context.Events.AnyAsync(e => e.Id == eventId && e.Status == Core.Enums.StatusEnum.Draft);
         }
 
-        public async Task<Event> GetEventByIdAsync(int eventId) {
-            return await context.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+        public Event GetEventById(int eventId)
+        {
+            return context.Events.FirstOrDefault(e => e.Id == eventId);
         }
 
+        public async Task<Event> GetEventByIdAsync(int eventId) {
+            //IQueryable<Event> query = context.Set<Event>()
+            //                                .Include(e => e.Performer)
+            //                                .Include(e => e.EventDocuments)
+            //                                .Include(e => e.EventOffers)
+            //                                .Include(e => e.EventTicketCategories)
+            //                                .Include(e => e.Venue)
+            //                                    .ThenInclude(v => v.State)
+            //                                .Include(e => e.Venue)
+            //                                    .ThenInclude(v => v.City);
+            //return await query.FirstOrDefaultAsync(e=>e.Id == eventId);
+            return await context.Set<Event>()
+                                .Include(e => e.Performer)
+                                .Include(e => e.EventDocuments)
+                                .Include(e => e.EventOffers)
+                                .Include(e => e.EventTicketCategories)
+                                .Include(e => e.Venue)
+                                    .ThenInclude(v => v.State)  
+                                .Include(e => e.Venue)
+                                    .ThenInclude(v => v.City)  
+                                .FirstOrDefaultAsync(e => e.Id == eventId);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<(List<Event> Events, int TotalCount)> GetEventsAsync(EventFilterDTO filter)
+        {
+            var pageSize = filter.Size;
+            var pageIndex = filter.Page;
+            IQueryable<Event> query = context.Set<Event>()
+                                            .Include(e => e.Performer)
+                                            .Include(e => e.EventDocuments)
+                                            .Include(e => e.EventOffers)
+                                            .Include(e => e.EventTicketCategories)
+                                            .Include(e => e.Venue)
+                                                .ThenInclude(v => v.City)
+                                            .Include(e => e.Venue)
+                                                .ThenInclude(v => v.State);                                            
+            if(filter.StartDateTime.HasValue)
+                query = query.Where(e => e.StartDatetime >= filter.StartDateTime.Value);
+            if (filter.EndDateTime.HasValue)
+            {
+                query = query.Where(e => e.EndDatetime <= filter.EndDateTime.Value.ToUniversalTime());
+            }
+
+            if (!string.IsNullOrEmpty(filter.Title))
+                query = query.Where(e => e.Title.ToLower() == filter.Title.ToLower());
+
+            if (filter.Status >= 0)  
+                query = query.Where(e => (int)e.Status == filter.Status);
+
+            if (filter.OrganizerId.HasValue)
+                query = query.Where(e => e.OrganizerId == filter.OrganizerId);
+
+            if (!string.IsNullOrEmpty(filter.SortBy))
+            {
+                bool isAscending = string.Equals(filter.SortOrder, "asc", StringComparison.OrdinalIgnoreCase);
+                switch (filter.SortBy.ToLower())
+                {
+                    case "start_datetime":
+                        query = isAscending ? query.OrderBy(e => e.StartDatetime) : query.OrderByDescending(e => e.StartDatetime);
+                        break;
+                    case "end_datetime":
+                        query = isAscending ? query.OrderBy(e => e.EndDatetime) : query.OrderByDescending(e => e.EndDatetime);
+                        break;
+                    case "title":
+                        query = isAscending ? query.OrderBy(e => e.Title) : query.OrderByDescending(e => e.Title);
+                        break;
+                    default:
+                        query = query.OrderBy(e => e.StartDatetime);
+                        break;
+                }
+            }
+            var totalRecords = await query.CountAsync();
+            var events = await query.Skip((pageIndex - 1) * pageSize)
+                                    .Take(pageSize)
+                                    .ToListAsync();
+            return (events, totalRecords);
+        }
     }
 }

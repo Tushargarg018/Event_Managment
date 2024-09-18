@@ -37,5 +37,10 @@ namespace EM.Core.Helpers
         {
            return date.ToString("yyyy-MM-ddTHH:mm:ss");
         }
+        public static string ToCustomDateTimeString(DateTime dateTime)
+        {
+            // Convert to local time and format without milliseconds or time zone
+            return dateTime.ToLocalTime().ToString("yyyy-MM-ddTHH:mm:ss");
+        }
     }
 }

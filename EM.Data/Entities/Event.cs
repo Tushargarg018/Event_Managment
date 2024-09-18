@@ -6,6 +6,7 @@ namespace EM.Data.Entities
 {
     public class Event
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int Id { get; set; }
 
