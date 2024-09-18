@@ -17,25 +17,10 @@ namespace EM.Data.RepositoryImpl
         {
             context = dbContext;
         }
-        public Performer AddPerformer(string name, string bio, string profile_pic, int organizer_id)
-        {
-            var lastId = context.Performers
-                              .OrderByDescending(p => p.Id)
-                              .Select(p => p.Id)
-                              .FirstOrDefault();
-            var performer_id = lastId + 1;
-            var performer = new Performer
-            {
-                Id = performer_id,
-                Name = name,
-                Bio = bio,
-                Profile = profile_pic,
-                OrganizerId = organizer_id,
-                CreatedOn = DateTime.UtcNow,
-                ModifiedOn = DateTime.UtcNow
-            };
-            context.Performers.Add(performer);
-            context.SaveChangesAsync();
+        public async Task<Performer> AddPerformer(Performer performer)
+        { 
+            await context.Performers.AddAsync(performer);
+            await context.SaveChangesAsync();
             return performer;
         }
 
@@ -50,5 +35,21 @@ namespace EM.Data.RepositoryImpl
             return await context.Performers.AnyAsync(p => p.Id == performerId);
         }
 
+        public async Task<Performer> GetPerformerById(int id)
+        {
+            return await context.Performers.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<Performer> UpdatePerformer(string bio, string profile_pic, int performer_id)
+        {
+            var performer = context.Performers.FirstOrDefaultAsync(p => p.Id == performer_id).Result;
+            if (performer == null)
+                return null;
+            //performer.ModifiedOn = DateTime.UtcNow;
+            performer.Bio = bio;
+            performer.Profile = profile_pic;
+            await context.SaveChangesAsync();
+            return performer;
+        }
     }
 }

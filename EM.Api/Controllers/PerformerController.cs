@@ -50,14 +50,14 @@ namespace EM.Api.Controllers
             }
             string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
             string baseUrl = _config.GetValue<string>("AppSettings:BaseUrl");
-            string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, allowedFileExtentions, organizerId.ToString(), baseUrl);
-
-            PerformerBO performerBo = new PerformerBO();
-            _mapper.Map(performerDto, performerBo);
-            performerBo.Profile = createdImageName;
-            performerBo.OrganizerId = organizerId;
-            var performer = _performerService.AddPerformer(performerBo);
-            var response = new ResponseDTO<PerformerBO>(performer, "success", "Performer Added Successfully", null);
+            string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, organizerId.ToString());
+            //PerformerBO performerBo = new PerformerBO();
+            //_mapper.Map(performerDto, performerBo);
+            //performerBo.Profile = createdImageName;
+            //performerBo.OrganizerId = organizerId;
+            var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
+            performerBo.Profile = baseUrl + createdImageName;
+            var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
             return Ok(response);
         }
 
@@ -86,6 +86,19 @@ namespace EM.Api.Controllers
             var performerList = _performerService.GetPerformers(organizerId);
             var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
             return Ok(response);
+        }
+
+        [Authorize(Policy ="UserPolicy")]
+        [HttpPost("performer/{id}")]
+        public async Task<IActionResult> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
+        {
+            string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
+            string baseUrl = _config.GetValue<string>("AppSettings:BaseUrl");
+            string createdImageName = await _fileService.UpdateImageAsync(performerDto.ImageFile, allowedFileExtentions, performerDto.ProfilePath);
+            PerformerBO performerBo = new PerformerBO();
+            performerBo = await _performerService.UpdatePerformer(performerDto, id);
+            performerBo.Profile = baseUrl +  performerBo.Profile;
+            return Ok(performerBo);
         }
     }
 }

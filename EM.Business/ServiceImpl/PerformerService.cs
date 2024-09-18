@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
 using EM.Business.Services;
+using EM.Core.DTOs.Request;
 using EM.Core.Helpers;
 using EM.Data;
 using EM.Data.Entities;
@@ -24,13 +25,21 @@ namespace EM.Business.ServiceImpl
             _repository = repository;
             _mapper = mapper;
         }
-        public PerformerBO AddPerformer(PerformerBO performerBO)
+        public async Task<PerformerBO> AddPerformer(PerformerDTO performerDto, int organizer_id, string imageName)
         {
-            var performer = _repository.AddPerformer(performerBO.Name, performerBO.Bio, performerBO.Profile, performerBO.OrganizerId);
+            var newPerformer = new Performer{
+                Name = performerDto.Name,
+                Bio = performerDto.Bio,
+                Profile = imageName,
+                OrganizerId = organizer_id,
+                CreatedOn = DateTime.UtcNow,
+                ModifiedOn = DateTime.UtcNow
+            };
+            var performer = await _repository.AddPerformer(newPerformer);
             var performerResponseBo = new PerformerBO();
             _mapper.Map(performer, performerResponseBo);
-            performerResponseBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerBO.CreatedOn);
-            performerResponseBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(performerBO.ModifiedOn);
+            performerResponseBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerResponseBo.CreatedOn);
+            performerResponseBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(performerResponseBo.ModifiedOn);
             return performerResponseBo;
         }
         public List<PerformerBO> GetPerformers(int organizerId)
@@ -46,6 +55,20 @@ namespace EM.Business.ServiceImpl
                 performerBoList.Add(performerBo);
             }
             return performerBoList;
+        }
+
+        public async Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
+        {
+            //var performer = _repository.GetPerformerById(id).Result;
+            //performer.Profile = performerDto.ProfilePath;
+            //performer.Bio = performerDto.Bio;
+            //performer.ModifiedOn = DateTime.UtcNow;
+            var updatedPerformer = _repository.UpdatePerformer(performerDto.Bio, performerDto.ProfilePath, id).Result;
+            var performerBo = new PerformerBO();
+            _mapper.Map(updatedPerformer, performerBo);
+            performerBo.CreatedOn = TimeConversionHelper.TruncateSeconds(performerBo.CreatedOn);
+            performerBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(performerBo.ModifiedOn);
+            return performerBo;
         }
     }
 }

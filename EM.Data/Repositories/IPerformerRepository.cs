@@ -9,9 +9,10 @@ namespace EM.Data.Repositories
 {
     public interface IPerformerRepository
     {
-        public Performer AddPerformer(string name, string bio, string profile_pic, int organizer_id);
+        public Task<Performer> AddPerformer(Performer performer);
         public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId);
         public Task<bool> PerformerExistsAsync(int performerId);
-
+        public Task<Performer> UpdatePerformer(string bio, string profile_pic, int performer_id);
+        public Task<Performer> GetPerformerById(int id);
     }
 }

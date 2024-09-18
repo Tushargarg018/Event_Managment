@@ -20,6 +20,7 @@ namespace EM.Business.ServiceImpl
         private readonly string[] _allowedExtensions;
         private readonly string _logoPath;
         private readonly string _bannerPath;
+        private readonly string _profilePath;
 
         public FileService(IConfiguration configuration, IWebHostEnvironment environment)
         {
@@ -27,6 +28,7 @@ namespace EM.Business.ServiceImpl
             _allowedExtensions = configuration.GetSection("FileSettings:AllowedExtensions").Get<string[]>();
             _logoPath = configuration["FileSettings:EventDocumentPaths:Logo"];
             _bannerPath = configuration["FileSettings:EventDocumentPaths:Banner"];
+            _profilePath = configuration["FileSettings:EventDocumentPaths:Profile"];
         }
 
 
@@ -45,7 +47,7 @@ namespace EM.Business.ServiceImpl
             throw new NotImplementedException();
         }
 
-        public async Task<string> SaveImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string organizerId, string baseUrl)
+        public async Task<string> SaveImageAsync(IFormFile imageFile, string organizerId)
         {
             if (imageFile == null)
             {
@@ -53,29 +55,21 @@ namespace EM.Business.ServiceImpl
             }
             var contentPath = environment.ContentRootPath;
             var path = Path.Combine(contentPath, "Uploads/profile");
-
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            var ext = Path.GetExtension(imageFile.FileName);
-            if (!allowedFileExtensions.Contains(ext))
-            {
-                throw new ArgumentException($"Only {string.Join(",", allowedFileExtensions)} are allowed.");
-            }
-
-            var fileName = $"ProfilePic_{organizerId}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()}{ext}";
+            EnsureDirectoryExists(path);
+            var extension = Path.GetExtension(imageFile.FileName);
+            ValidateFileExtension(extension, _allowedExtensions);
+            var fileName = $"ProfilePic_{organizerId}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()}{extension}";
             var fileNameWithPath = Path.Combine(path, fileName);
-            string[] parts = fileNameWithPath.Split('\\');
+            //string[] parts = fileNameWithPath.Split('\\');
 
-            int startIndex = Array.IndexOf(parts, "Uploads/profile");
-            string imagePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
-            string responsePath = baseUrl + imagePath;
-            string url = responsePath.Replace('\\', '/');
+            //int startIndex = Array.IndexOf(parts, "Uploads/profile");
+            //string imagePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
+            //string responsePath = baseUrl + imagePath;
+            //string url = responsePath.Replace('\\', '/');
+            //imagePath = imagePath.Replace('\\', '/');
             using var stream = new FileStream(fileNameWithPath, FileMode.Create);
             await imageFile.CopyToAsync(stream);
-            return url;
+            return GenerateUrl(_profilePath, fileNameWithPath);
         }
         /// <summary>
         /// Upload document for the event
@@ -140,6 +134,24 @@ namespace EM.Business.ServiceImpl
             int startIndex = Array.IndexOf(parts, directoryName);
             string relativePath = string.Join("\\", parts, startIndex, parts.Length - startIndex);
             return relativePath.Replace('\\', '/');
+        }
+
+        public async Task<string> UpdateImageAsync(IFormFile imageFile, string[] allowedFileExtensions, string profile_path)
+        {
+            if (imageFile == null)
+            {
+                throw new ArgumentNullException(nameof(imageFile));
+            }
+            var contentPath = environment.ContentRootPath;
+            var path = Path.Combine(contentPath, profile_path);
+            var ext = Path.GetExtension(imageFile.FileName);
+            if (!allowedFileExtensions.Contains(ext))
+            {
+                throw new ArgumentException($"Only {string.Join(",", allowedFileExtensions)} are allowed.");
+            }
+            using var stream = new FileStream(path, FileMode.Create);
+            await imageFile.CopyToAsync(stream);
+            return profile_path;
         }
     }
 }
