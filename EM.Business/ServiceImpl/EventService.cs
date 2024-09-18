@@ -20,7 +20,7 @@ namespace EM.Business.ServiceImpl
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
-     
+
 
         public EventService(IEventRepository eventRepository, IMapper mapper)
         {
@@ -62,48 +62,65 @@ namespace EM.Business.ServiceImpl
             var (events, totalRecords) = await _eventRepository.GetEventsAsync(filter);
             var eventBo = _mapper.Map<List<EventBO>>(events);
 
-            return new PagedEventBO(eventBo,totalRecords);
+            return new PagedEventBO(eventBo, totalRecords);
         }
-
+        /// <summary>
+        /// Publish the event
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<EventBO> PublishEvent(int eventId)
         {
-
-            var exist = await _eventRepository.EventExistsAsync(eventId);
-
-            if (!exist)
-            {
-                throw new Exception("Event doesnot exist");
-            }
-
-            var publish = await  _eventRepository.EventNotPublished(eventId);
-            if (!publish) 
-            {
-                throw new Exception("Event already published");
-            }
+            await ValidateEventExists(eventId);
+            await ValidateEventNotPublished(eventId);
 
             Event e = _eventRepository.GetEventById(eventId);
-
             DateTime dateTime = DateTime.UtcNow;
             if (e.StartDatetime <= dateTime)
             {
-                throw new Exception("Cannot publish event post start time of event");
+                throw new Exception("Can not publish an event after it has started.");
             }
-
-            if(e.BasePrice == null)
-            {
-                throw new Exception("base price not declared");
-            }
-
-            if(e.VenueId == null)
-            {
-                throw new Exception("Venue must exist to organise an event");
-            }
-
             e.Status = Core.Enums.StatusEnum.Published;
             Event @event = await _eventRepository.PublishEvent(e);
             var eventBo = _mapper.Map<EventBO>(@event);
             return eventBo;
 
         }
+        /// <summary>
+        /// Check if event is exists
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private async Task ValidateEventExists(int eventId)
+        {
+            var eventExists = await _eventRepository.EventExistsAsync(eventId);
+            if (!eventExists)
+            {
+                throw new InvalidOperationException("Event does not exist.");
+            }
+        }
+
+        /// <summary>
+        /// Check if event is not published
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private async Task ValidateEventNotPublished(int eventId)
+        {
+            var eventNotPublished = await _eventRepository.EventNotPublished(eventId);
+            if (!eventNotPublished)
+            {
+                throw new InvalidOperationException("Event is already published.");
+            }
+        }
+        /// <summary>
+        /// Validate the event details
+        /// </summary>
+        /// <param name="eventEntity"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+       
     }
 }

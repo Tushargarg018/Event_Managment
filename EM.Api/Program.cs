@@ -79,11 +79,7 @@ builder.Services.AddScoped<IEventPriceCategoryService, EventPriceCategoryService
 //Register AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-builder.Services.AddControllers()
-	.AddJsonOptions(options =>
-	{
-		options.JsonSerializerOptions.PropertyNamingPolicy = null;
-	});
+builder.Services.AddControllers();
 
 //Fluent validation
 //builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidator>());

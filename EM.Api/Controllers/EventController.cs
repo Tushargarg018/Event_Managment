@@ -154,11 +154,19 @@ namespace EM.Api.Controllers
         [HttpPut("event/{event_id}/publish")]
         public async Task<IActionResult> PublishEvent(int event_id)
         {
-            EventBO eventBO = await _eventService.PublishEvent(event_id);
-            EventResponseDTO eventResponseDTO = new EventResponseDTO();
+            try
+            {
+                EventBO eventBO = await _eventService.PublishEvent(event_id);
+                EventResponseDTO eventResponseDTO = new EventResponseDTO();
 
-            _mapper.Map(eventBO, eventResponseDTO);
-            return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Published."));
+                _mapper.Map(eventBO, eventResponseDTO);
+                return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Published."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
+            }
+
         }
     }
 }
