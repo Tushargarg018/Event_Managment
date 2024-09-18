@@ -65,11 +65,19 @@ namespace EM.Business.ServiceImpl
             return performerBoList;
         }
 
-        public async Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
+        public async Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id, string imagePath)
         {
-            var updatedPerformer = await _repository.UpdatePerformer(performerDto.Bio, performerDto.ProfilePath, id);
+            var updatedPerformer = await _repository.UpdatePerformer(performerDto.Bio, performerDto.Name, imagePath, id);
             var performerBo = new PerformerBO();
             _mapper.Map(updatedPerformer, performerBo);
+            return performerBo;
+        }
+
+        public async Task<PerformerBO> GetPerformerById(int performerId)
+        {
+            var performer = await _repository.GetPerformerById(performerId);
+            var performerBo = new PerformerBO();
+            _mapper.Map(performer, performerBo);
             return performerBo;
         }
     }

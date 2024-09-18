@@ -40,13 +40,13 @@ namespace EM.Data.RepositoryImpl
             return await context.Performers.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<Performer> UpdatePerformer(string bio, string profile_pic, int performer_id)
+        public async Task<Performer> UpdatePerformer(string bio, string name, string profile_pic, int performer_id)
         {
             var performer = context.Performers.FirstOrDefaultAsync(p => p.Id == performer_id).Result;
             if (performer == null)
                 return null;
-            //performer.ModifiedOn = DateTime.UtcNow;
             performer.Bio = bio;
+            performer.Name = name;
             performer.Profile = profile_pic;
             await context.SaveChangesAsync();
             return performer;

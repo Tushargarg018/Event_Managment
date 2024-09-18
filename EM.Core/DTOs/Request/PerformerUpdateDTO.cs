@@ -10,10 +10,13 @@ namespace EM.Core.DTOs.Request
 {
     public class PerformerUpdateDTO
     {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("bio")]
         public string Bio { get; set; }
+
         public IFormFile? ImageFile { get; set; }
 
-        [JsonPropertyName("profile_path")]
-        public string? ProfilePath { get; set; }
     }
 }

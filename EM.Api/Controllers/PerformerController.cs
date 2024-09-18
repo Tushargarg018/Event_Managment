@@ -80,15 +80,36 @@ namespace EM.Api.Controllers
             var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
             return Ok(response);
         }
-
+        /// <summary>
+        /// update the exisitng performer
+        /// </summary>
+        /// <param name="performerDto"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Policy ="UserPolicy")]
-        [HttpPost("performer/{id}")]
+        [HttpPut("performer/{id}")]
         public async Task<IActionResult> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
         {
-            string[] allowedFileExtentions = [".jpg", ".jpeg", ".png"];
-            string createdImageName = await _fileService.UpdateImageAsync(performerDto.ImageFile, id);
+            var authHeader = Request.Headers.Authorization;
+            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+            var existingPerformer = await _performerService.GetPerformerById(id);
+            if (existingPerformer == null)
+            {
+                return NotFound(new { message = "Performer not found." });
+            }
+
+            if (performerDto.ImageFile != null && performerDto.ImageFile.Length > 1 * 1024 * 1024)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 1 MB");
+            }
+            var updatedImageName = existingPerformer.Profile;
+            if (performerDto.ImageFile != null)
+            {
+                updatedImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, organizerId.ToString());
+            }
+
             PerformerBO performerBo = new PerformerBO();
-            performerBo = await _performerService.UpdatePerformer(performerDto, id);
+            performerBo = await _performerService.UpdatePerformer(performerDto, id, updatedImageName);
             performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
             return Ok(performerBo);
         }

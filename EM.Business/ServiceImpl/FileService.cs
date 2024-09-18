@@ -62,7 +62,8 @@ namespace EM.Business.ServiceImpl
                 throw new ArgumentNullException(nameof(imageFile));
             }
             var contentPath = environment.ContentRootPath;
-            var path = Path.Combine(contentPath, "Uploads/profile");
+
+            var path = Path.Combine(contentPath, _profilePath);
             EnsureDirectoryExists(path);
             var extension = Path.GetExtension(imageFile.FileName);
             ValidateFileExtension(extension, _allowedExtensions);
