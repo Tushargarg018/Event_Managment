@@ -41,13 +41,19 @@ namespace EM.Api.Controllers
         [HttpPost("performer")]
         public async Task<IActionResult> AddPerformer(PerformerDTO performerDto)
         {
-            var authHeader = Request.Headers.Authorization;
-            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-            string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, organizerId, 3);
-            //performerDto.Base64String = createdImageName;
-            var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
-            var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
-            return Ok(response);
+            try
+            {
+                var authHeader = Request.Headers.Authorization;
+                var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+                string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, organizerId, 3);
+                var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
+                var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
+                return Ok(response);
+            }catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
+            }
+            
         }
 
         private readonly string _imagesDirectory = Path.Combine(Directory.GetCurrentDirectory(),"");
@@ -102,7 +108,6 @@ namespace EM.Api.Controllers
 
             PerformerBO performerBo = new PerformerBO();
             performerBo = await _performerService.UpdatePerformer(performerDto, id, updatedImageName);
-            //performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
             return Ok(performerBo);
         }
     }
