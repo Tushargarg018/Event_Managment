@@ -57,7 +57,7 @@ namespace EM.Api.Controllers
                 else
                 {
 
-                    return NotFound(new ResponseDTO<object>(Array.Empty<object>, "success" , "Country not available"));
+                    return NotFound(new ResponseDTO<object>(Array.Empty<object>(), "success" , "Country not available"));
                 }
             }
             catch (Exception ex)
