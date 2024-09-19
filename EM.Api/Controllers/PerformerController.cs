@@ -43,13 +43,9 @@ namespace EM.Api.Controllers
         {
             var authHeader = Request.Headers.Authorization;
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-            if (performerDto.ImageFile?.Length > 1 * 1024 * 1024)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 1 MB");
-            }
-            string createdImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, organizerId.ToString());
+            string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, organizerId, 3);
+            //performerDto.Base64String = createdImageName;
             var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
-            performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
             var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
             return Ok(response);
         }
@@ -98,19 +94,15 @@ namespace EM.Api.Controllers
                 return NotFound(new { message = "Performer not found." });
             }
 
-            if (performerDto.ImageFile != null && performerDto.ImageFile.Length > 1 * 1024 * 1024)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest, "File size should not exceed 1 MB");
-            }
             var updatedImageName = existingPerformer.Profile;
-            if (performerDto.ImageFile != null)
+            if (performerDto.Base64String != null)
             {
-                updatedImageName = await _fileService.SaveImageAsync(performerDto.ImageFile, organizerId.ToString());
+                updatedImageName = await _fileService.UpdateImageAsync(performerDto.Base64String, organizerId, id);
             }
 
             PerformerBO performerBo = new PerformerBO();
             performerBo = await _performerService.UpdatePerformer(performerDto, id, updatedImageName);
-            performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
+            //performerBo.Profile = $"{Request.Scheme}://{Request.Host}/{performerBo.Profile}";
             return Ok(performerBo);
         }
     }
