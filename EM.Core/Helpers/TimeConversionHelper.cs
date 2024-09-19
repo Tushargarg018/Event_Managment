@@ -33,6 +33,13 @@ namespace EM.Core.Helpers
         {
             return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, 0);
         }
+
+        public static DateTime ConvertFromUTCAndTruncate(DateTime date)
+        {
+            DateTime converted = ConvertTimeFromUTC(date);
+            DateTime truncated = TruncateSeconds(converted);
+            return truncated;
+        }
         public static string ConvertISOFormat(DateTime date)
         {
            return date.ToString("yyyy-MM-ddTHH:mm:ss");

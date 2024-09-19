@@ -5,6 +5,7 @@ using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
 using EM.Core.DTOs.Response.Success;
+using EM.Core.Helpers;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -126,8 +127,10 @@ namespace EM.Api.Controllers
                 // Retrieve the venue by ID using the service layer
                 var venueResponse = await venueService.GetVenue(venueId);
                 var venueResponseDTO = new VenueResponseDTO();
-                mapper.Map(venueResponse, venueResponseDTO); 
-
+                //mapper.Map(venueResponse, venueResponseDTO);
+                venueResponseDTO = mapper.Map<VenueResponseDTO>(venueResponse);
+                venueResponseDTO.Created_on = TimeConversionHelper.ConvertFromUTCAndTruncate(venueResponseDTO.Created_on);
+                venueResponseDTO.ModifiedOn = TimeConversionHelper.ConvertFromUTCAndTruncate(venueResponseDTO.ModifiedOn);
                 if (venueResponse == null)
                 {
                     return Ok(new ResponseDTO<Object>(Array.Empty<object>(), "success", "no venue exist"));
@@ -192,7 +195,7 @@ namespace EM.Api.Controllers
                 // Return a success response with the venue data
                 
 
-                return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue updates successfully"));
+                return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue updated successfully"));
             }
             catch (Exception ex)
             {

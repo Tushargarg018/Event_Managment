@@ -85,7 +85,7 @@ namespace EM.Data.RepositoryImpl
                                             .Include(e => e.Venue)
                                                 .ThenInclude(v => v.State);                                            
             if(filter.StartDateTime.HasValue)
-                query = query.Where(e => e.StartDatetime >= filter.StartDateTime.Value);
+                query = query.Where(e => e.StartDatetime >= filter.StartDateTime.Value.ToUniversalTime());
             if (filter.EndDateTime.HasValue)
             {
                 query = query.Where(e => e.EndDatetime <= filter.EndDateTime.Value.ToUniversalTime());
