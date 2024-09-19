@@ -50,7 +50,8 @@ namespace EM.Api.Controllers
 
                 var eventResponseDTO = new EventResponseDTO();
                 _mapper.Map(eventResponse, eventResponseDTO);
-
+                eventResponseDTO.StartDateTime = eventDto.StartDateTime;
+                eventResponseDTO.EndDateTime = eventDto.EndDateTime;
                 if (eventResponse != null)
                 {
                     return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Added Successfully"));

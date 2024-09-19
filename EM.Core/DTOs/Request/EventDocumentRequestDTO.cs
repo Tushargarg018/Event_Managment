@@ -27,13 +27,11 @@ namespace EM.Core.DTOs.Request
         public required string Title { get; set; }
 
         /// <summary>
-        /// path of the document
+        /// Base64 Encoded String
         /// </summary>
         
-        
-        [JsonPropertyName("file_path")]
-        public required IFormFile ImageFile { get; set; }
-        //public  string FilePath { get; set; }
+        [JsonPropertyName("file_string")]
+        public required string Base64String { get; set; }
         
     }
 }
