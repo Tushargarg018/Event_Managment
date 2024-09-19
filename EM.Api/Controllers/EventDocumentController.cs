@@ -47,7 +47,9 @@ namespace EM.Api.Controllers
             { 
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
-            var eventDocumentPath = await fileService.UploadEventDocument(eventDocument.ImageFile,EventId, (int)eventDocument.Type);
+            //var eventDocumentPath = await fileService.UploadEventDocument(eventDocument.ImageFile,EventId, (int)eventDocument.Type);
+            var eventDocumentPath = await fileService.SaveImageFromBase64(eventDocument.Base64String, EventId, (int)eventDocument.Type);
+            //string base64String, int organizer_id, int documentType, string fileName
 
             try
             {
@@ -62,7 +64,7 @@ namespace EM.Api.Controllers
                 }
 
                 var eventResponse = mapper.Map<EventDocumentResponseDTO>(eventbo);
-                eventResponse.FilePath = $"{Request.Scheme}://{Request.Host}/{eventResponse.FilePath}";
+                //eventResponse.FilePath = $"{Request.Scheme}://{Request.Host}/{eventResponse.FilePath}";
 
                 var message = eventDocument.Id == null ? "Event document added successfully" : "Event document updated successfully";
                 return Ok(new ResponseDTO<EventDocumentResponseDTO>(eventResponse, "success", message));

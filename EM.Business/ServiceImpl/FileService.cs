@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using EM.Business.Services;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using System.Drawing;
 using Microsoft.Extensions.Hosting;
 using EM.Core.Enums;
 using static System.Net.Mime.MediaTypeNames;
 using EM.Data.Repositories;
+using EM.Data.Entities;
 namespace EM.Business.ServiceImpl
 { 
     public class FileService : IFileService
@@ -91,7 +93,7 @@ namespace EM.Business.ServiceImpl
             EnsureDirectoryExists(fullPath);
             var extension = Path.GetExtension(eventDocument.FileName);
             ValidateFileExtension(extension, _allowedExtensions);
-            string fileName = $"{identifier}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}{extension}";
+            string fileName = $"{identifier}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.{extension}";
             string filePathWithFullName = Path.Combine(fullPath, fileName);
 
             using var stream = new FileStream(filePathWithFullName, FileMode.Create);
@@ -158,6 +160,27 @@ namespace EM.Business.ServiceImpl
             using var stream = new FileStream(path, FileMode.Create);
             await imageFile.CopyToAsync(stream);
             return profile_path;
+        }
+
+        public async Task<string> SaveImageFromBase64(string base64String, int organizer_id, int documentType)
+        {
+            if(string.IsNullOrEmpty(base64String))
+            {
+                throw new ArgumentNullException(nameof(base64String));
+            }
+            var encodedString = base64String.Split(',')[1];
+            byte[] imageBytes = Convert.FromBase64String(encodedString);
+
+            string contentPath = environment.ContentRootPath;
+            string folderPath = documentType == 0 ? _logoPath : _bannerPath;
+            string fullPath = Path.Combine(contentPath, folderPath);
+            EnsureDirectoryExists(fullPath);
+
+            var fileDbName = $"{organizer_id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
+            string filePathWithFullName = Path.Combine(fullPath, fileDbName);
+
+            await System.IO.File.WriteAllBytesAsync(filePathWithFullName, imageBytes);
+            return GenerateUrl(folderPath, filePathWithFullName);
         }
     }
 }
