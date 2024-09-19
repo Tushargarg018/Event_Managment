@@ -83,6 +83,10 @@ namespace EM.Api.Validations
             bool isValidEndTime = DateTime.TryParseExact(e.EndDateTime, "yyyy-MM-ddTHH:mm:ss", null, System.Globalization.DateTimeStyles.None, out endDateTime);
             if (isValidStartTime && isValidEndTime)
             {
+                if(startDateTime.Date == endDateTime.Date)
+                {
+                    return startDateTime.TimeOfDay < endDateTime.TimeOfDay;
+                }
                 return startDateTime < endDateTime;
             }
             else return false;
