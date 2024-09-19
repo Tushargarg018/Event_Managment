@@ -51,7 +51,6 @@ namespace EM.Data.Entities
         [Column("organizer_id")]
 		public int OrganizerId { get; set; }
         public Organizer Organizer { get; set; }
-
         public virtual ICollection<Event> Events { get; set; }
     }
 }

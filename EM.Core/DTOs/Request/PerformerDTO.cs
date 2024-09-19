@@ -12,7 +12,8 @@ namespace EM.Core.DTOs.Request
     {
         public string Name { get; set; }
         public string Bio {  get; set; }
-        public IFormFile? ImageFile { get; set; }
 
+        [JsonPropertyName("file_string")]
+        public string? Base64String { get; set; }
     }
 }

@@ -14,6 +14,7 @@ using EM.Core.Enums;
 using static System.Net.Mime.MediaTypeNames;
 using EM.Data.Repositories;
 using EM.Data.Entities;
+using EM.Business.BOs;
 namespace EM.Business.ServiceImpl
 { 
     public class FileService : IFileService
@@ -140,26 +141,12 @@ namespace EM.Business.ServiceImpl
             return relativePath.Replace('\\', '/');
         }
 
-        public async Task<string> UpdateImageAsync(IFormFile imageFile, int performer_id)
+        public async Task<string> UpdateImageAsync(string base64String, int organizer_id, int performer_id)
         {
-            if (imageFile == null)
-            {
-                throw new ArgumentNullException(nameof(imageFile));
-            }
-            //Getting Image Path from Repo
             string profile_path = await _performerRepository.GetPerformerProfilePath(performer_id);
             DeleteImage(profile_path);
-            //Make new File 
-            var contentPath = environment.ContentRootPath;
-            var path = Path.Combine(contentPath, profile_path);
-            var ext = Path.GetExtension(imageFile.FileName);
-            //if (!allowedFileExtensions.Contains(ext))
-            //{
-            //    throw new ArgumentException($"Only {string.Join(",", allowedFileExtensions)} are allowed.");
-            //}
-            using var stream = new FileStream(path, FileMode.Create);
-            await imageFile.CopyToAsync(stream);
-            return profile_path;
+            var createdImageName = SaveImageFromBase64(base64String, organizer_id, 3);
+            return createdImageName.Result;
         }
 
         public async Task<string> SaveImageFromBase64(string base64String, int organizer_id, int documentType)
@@ -172,11 +159,22 @@ namespace EM.Business.ServiceImpl
             byte[] imageBytes = Convert.FromBase64String(encodedString);
 
             string contentPath = environment.ContentRootPath;
-            string folderPath = documentType == 0 ? _logoPath : _bannerPath;
+            string folderPath;
+            string fileDbName;
+            if(documentType==0 || documentType == 1)
+            {
+                folderPath = documentType == 0 ? _logoPath : _bannerPath;
+                fileDbName = $"{organizer_id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
+            }
+            else
+            {
+                folderPath = _profilePath;
+                fileDbName = $"ProfilePic_{organizer_id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
+            }
+                
             string fullPath = Path.Combine(contentPath, folderPath);
             EnsureDirectoryExists(fullPath);
-
-            var fileDbName = $"{organizer_id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
+            
             string filePathWithFullName = Path.Combine(fullPath, fileDbName);
 
             await System.IO.File.WriteAllBytesAsync(filePathWithFullName, imageBytes);
