@@ -65,7 +65,7 @@ namespace EM.Business.ServiceImpl
                     new Claim("Id", OrgId)
                 };
                 var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims,
-                    expires: DateTime.UtcNow.AddMinutes(30),
+                    expires: DateTime.UtcNow.AddDays(3),
                     signingCredentials: credentials
                     );
                 var tokenVal = new JwtSecurityTokenHandler().WriteToken(token);
