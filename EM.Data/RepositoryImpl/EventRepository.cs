@@ -85,7 +85,7 @@ namespace EM.Data.RepositoryImpl
                                             .Include(e => e.Venue)
                                                 .ThenInclude(v => v.State);                                            
             if(filter.StartDateTime.HasValue)
-                query = query.Where(e => e.StartDatetime >= filter.StartDateTime.Value);
+                query = query.Where(e => e.StartDatetime >= filter.StartDateTime.Value.ToUniversalTime());
             if (filter.EndDateTime.HasValue)
             {
                 query = query.Where(e => e.EndDatetime <= filter.EndDateTime.Value.ToUniversalTime());
@@ -94,8 +94,8 @@ namespace EM.Data.RepositoryImpl
             if (!string.IsNullOrEmpty(filter.Title))
                 query = query.Where(e => e.Title.ToLower() == filter.Title.ToLower());
 
-            if (filter.Status >= 0)  
-                query = query.Where(e => (int)e.Status == filter.Status);
+            //if (filter.Status!=null && filter.Status >= 0)  
+            //    query = query.Where(e => (int)e.Status == filter.Status);
 
             if (filter.OrganizerId.HasValue)
                 query = query.Where(e => e.OrganizerId == filter.OrganizerId);

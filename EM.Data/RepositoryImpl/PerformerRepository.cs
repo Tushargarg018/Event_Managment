@@ -18,11 +18,24 @@ namespace EM.Data.RepositoryImpl
             context = dbContext;
         }
         public async Task<Performer> AddPerformer(Performer performer)
-        { 
-            await context.Performers.AddAsync(performer);
-            await context.SaveChangesAsync();
-            return performer;
-        }
+        {
+            using (var transaction = await context.Database.BeginTransactionAsync()) {
+                try
+                {
+                    await context.Performers.AddAsync(performer);
+                    await context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return performer;
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
+            
+        } 
+
 
         public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId)
         {

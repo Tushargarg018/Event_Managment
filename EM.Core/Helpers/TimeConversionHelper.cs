@@ -47,7 +47,7 @@ namespace EM.Core.Helpers
         public static string ToCustomDateTimeString(DateTime dateTime)
         {
             // Convert to local time and format without milliseconds or time zone
-            return dateTime.ToLocalTime().ToString("yyyy-MM-ddTHH:mm:ss");
+            return dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
         }
     }
 }
