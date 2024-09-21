@@ -42,5 +42,10 @@ namespace EM.Data.RepositoryImpl
         {
             return await _context.EventOffers.AnyAsync(o => o.Id == offerId && (int)o.Type == offerType);
         }
+
+        public async Task<bool> EventOfferExistsAsync(int eventId, int offerId, int offerType)
+        {
+            return await _context.EventOffers.AnyAsync(o => o.Id == offerId && (int)o.Type == offerType && o.EventId==eventId);
+        }
     }
 }

@@ -11,8 +11,8 @@ namespace EM.Business.Services
 {
     public interface IOfferService
     {
-        public OfferBO AddEventOffer(OfferDTO offerDto, int eventId);
-        public OfferBO UpdateEventOffer(OfferDTO offerDto, int eventId, int offerId);
-        public OfferBO AddUpdateEventOffer(OfferDTO offerDto, int eventId, int offerId);
+        public Task<OfferBO> AddEventOffer(OfferDTO offerDto, int eventId);
+        public Task<OfferBO> UpdateEventOffer(OfferDTO offerDto, int eventId, int offerId);
+        public Task<OfferBO> AddUpdateEventOffer(OfferDTO offerDto, int eventId, int offerId);
     }
 }

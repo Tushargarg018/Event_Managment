@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
+using EM.Business.Exceptions;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Data.Entities;
 using EM.Data.Repositories;
+using EM.Data.RepositoryImpl;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -18,25 +20,29 @@ namespace EM.Business.ServiceImpl
     public class EventDocumentService : IEventDocumentService
     {
         private readonly IEventDocumentRepository eventDocumentrepository;
+        private readonly IEventRepository _eventRepository;
         private readonly IMapper mapper;
         private readonly IWebHostEnvironment environment;
 
-        public EventDocumentService(IEventDocumentRepository repository , IMapper mapper  , IWebHostEnvironment environment)
+        public EventDocumentService(IEventDocumentRepository repository , IMapper mapper  , IWebHostEnvironment environment, IEventRepository eventRepository)
         {
             this.eventDocumentrepository = repository;
+            _eventRepository = eventRepository;
             this.mapper = mapper;
             this.environment = environment;
         }
 
-
+        /// <summary>
+        /// Add document in event
+        /// </summary>
+        /// <param name="eventRequestDocument"></param>
+        /// <param name="eventId"></param>
+        /// <param name="file_path"></param>
+        /// <returns></returns>
         public async Task<EventDocumentBO> AddEventDocuments(EventDocumentRequestDTO eventRequestDocument, int eventId , string file_path)
         {
 
-            var eventid = await eventDocumentrepository.EventExistance(eventId);
-            if (eventid == null)
-            {
-                return null;
-            }
+            var eventid = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
 
             EventDocument eventDocument = new EventDocument
             {

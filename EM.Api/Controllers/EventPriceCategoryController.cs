@@ -45,19 +45,10 @@ namespace EM.Api.Controllers
             {
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>() , "failure" , "Validation failed", validation.Errors.Select(e => e.ErrorMessage).ToList()));
             }
-            try
-            {
-                EventPriceCategoryBO eventPriceCategoryBO = await eventPriceCategoryService.AddorUpdateEventPriceCategory(eventPriceCategoryRequestDTO);
-                EventPriceCategoryResponseDTO eventPriceCategoryResponseDTO = new EventPriceCategoryResponseDTO();
-                mapper.Map(eventPriceCategoryBO, eventPriceCategoryResponseDTO);
-                return Ok(new ResponseDTO<EventPriceCategoryResponseDTO>(eventPriceCategoryResponseDTO, "success", "Price Category set successfully"));
-
-            }
-            catch(Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
-            }
-
+            EventPriceCategoryBO eventPriceCategoryBO = await eventPriceCategoryService.AddorUpdateEventPriceCategory(eventPriceCategoryRequestDTO);
+             EventPriceCategoryResponseDTO eventPriceCategoryResponseDTO = new EventPriceCategoryResponseDTO();
+             mapper.Map(eventPriceCategoryBO, eventPriceCategoryResponseDTO);
+             return Ok(new ResponseDTO<EventPriceCategoryResponseDTO>(eventPriceCategoryResponseDTO, "success", "Price Category set successfully"));
         }
 
     }

@@ -15,7 +15,7 @@ namespace EM.Core.DTOs.Request
         [JsonPropertyName("offer_id")]
         public int OfferId { get; set; }
         [JsonPropertyName("type")]
-        public int Type { get; set; }
+        public required OfferTypeEnum Type { get; set; }
         [JsonPropertyName("discount")]
         public decimal Discount { get; set; }
         [JsonPropertyName("quantity")]
