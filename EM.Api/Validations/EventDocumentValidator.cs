@@ -11,7 +11,7 @@ namespace EM.Api.Validations
         public EventDocumentValidator()
         {
             RuleFor(doc => doc.Title)
-                 .NotEmpty().WithMessage("Title is Required").Length(1, 20).WithMessage("title length exceeded");
+                 .NotEmpty().WithMessage("Title is Required").Length(1, 250).WithMessage("title length exceeded");
 
             RuleFor(doc => doc.Base64String)
                  .Must(checkExtension).WithMessage("Only .jpg, .png and .jpeg allowed");
