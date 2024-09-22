@@ -44,10 +44,10 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.EventDocument, opt => opt.MapFrom(src => src.EventDocuments))
                 .ForMember(dest => dest.EventPriceCategory, opt => opt.MapFrom(src => src.EventTicketCategories))
                 .ForMember(dest => dest.Offer, opt => opt.MapFrom(src => src.EventOffers));
-
-            CreateMap<EventBO, EventResponseDTO>();
-                //.ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertFromUTCAndTruncate(src.CreatedOn)))
-                //.ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertFromUTCAndTruncate(src.ModifiedOn)));
+            
+            CreateMap<EventBO, EventResponseDTO>()
+                .ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ToCustomDateTimeString(src.StartDateTime)))
+                .ForMember(dest => dest.EndDateTime, opt => opt.MapFrom(src => TimeConversionHelper.ToCustomDateTimeString(src.EndDateTime)));
                 
             CreateMap<Performer, PerformerBO>()
                 .ForMember(dest => dest.CreatedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertFromUTCAndTruncate(src.CreatedOn)))

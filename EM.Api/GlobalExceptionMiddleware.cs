@@ -29,7 +29,7 @@ namespace EM.Api
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var statusCode = HttpStatusCode.InternalServerError;
-            var message = ex.Message;
+            var message = "An unexpected error occurred. Please try again later.";
             if (ex is UnauthorizedAccessException)
             {
                 statusCode = HttpStatusCode.Forbidden;
@@ -54,7 +54,7 @@ namespace EM.Api
                 
                 statusCode = HttpStatusCode.NotFound;
                 message = ex.Message;
-            }
+            } 
             string[] data = [];
             string[] errors = [message];
             var result = JsonConvert.SerializeObject(new { data = data, status="failure", message="Request Failed with errors.", errors = errors});
