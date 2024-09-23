@@ -39,7 +39,7 @@ namespace EM.Api.Controllers
             {
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
-            OfferBO offerBo = _offerService.AddUpdateEventOffer(offerDto, id, offerDto.OfferId);
+            OfferBO offerBo = await _offerService.AddUpdateEventOffer(offerDto, id, offerDto.OfferId);
             var message = "";
             if (offerDto.OfferId == 0)
             {

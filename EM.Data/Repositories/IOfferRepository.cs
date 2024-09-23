@@ -14,5 +14,7 @@ namespace EM.Data.Repositories
         public Task<EventOffer> UpdateEventOffer(EventOffer offer, int eventId, int offerId);
         public Task<bool> EarlyBirdExists(int eventId);
         public Task<bool> OfferExistsAsync(int offerId, int offerType);
+
+        public Task<bool> EventOfferExistsAsync(int eventId,int offerId,int type);
     }
 }

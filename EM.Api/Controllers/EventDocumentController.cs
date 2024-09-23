@@ -48,27 +48,20 @@ namespace EM.Api.Controllers
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
 
-            try
+            var eventDocumentPath = await fileService.SaveImageFromBase64(eventDocument.Base64String, EventId, (int)eventDocument.Type);
+            EventDocumentBO eventbo = eventDocument.Id == null
+            ? await eventDocumentService.AddEventDocuments(eventDocument, EventId, eventDocumentPath)
+            : await eventDocumentService.UpdateEventDocuments(eventDocument, EventId, eventDocumentPath);
+
+            if (eventbo == null)
             {
-                var eventDocumentPath = await fileService.SaveImageFromBase64(eventDocument.Base64String, EventId, (int)eventDocument.Type);
-                EventDocumentBO eventbo = eventDocument.Id == null
-                ? await eventDocumentService.AddEventDocuments(eventDocument, EventId, eventDocumentPath)
-                : await eventDocumentService.UpdateEventDocuments(eventDocument, EventId, eventDocumentPath);
-
-                if (eventbo == null)
-                {
-                    return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No event/document id exist to add documents"));
-                }
-
-                var eventResponse = mapper.Map<EventDocumentResponseDTO>(eventbo);
-
-                var message = eventDocument.Id == null ? "Event document added successfully" : "Event document updated successfully";
-                return Ok(new ResponseDTO<EventDocumentResponseDTO>(eventResponse, "success", message));
+                return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No event/document id exist to add documents"));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<Object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
-            }
+
+            var eventResponse = mapper.Map<EventDocumentResponseDTO>(eventbo);
+
+            var message = eventDocument.Id == null ? "Event document added successfully" : "Event document updated successfully";
+            return Ok(new ResponseDTO<EventDocumentResponseDTO>(eventResponse, "success", message));
 
         }
 

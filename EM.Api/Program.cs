@@ -40,9 +40,11 @@ builder.Services.AddScoped<IVenueRepository, VenueRepository>();
 builder.Services.AddScoped<IEventDocumentRepository , EventDoucumentRepository>();
 builder.Services.AddScoped<IEventDocumentService , EventDocumentService>();
 
+builder.Services.AddScoped<EventMapper>();
+
 // Load appsettings.json and environment-specific configurations
 Configuration
-	.SetBasePath(Directory.GetCurrentDirectory())
+    .SetBasePath(Directory.GetCurrentDirectory())
 	.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
 	.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
 	.AddEnvironmentVariables();
