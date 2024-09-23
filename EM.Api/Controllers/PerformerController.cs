@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IdentityModel.Tokens.Jwt;
+using EM.Data.Entities;
 
 namespace EM.Api.Controllers
 {
@@ -37,25 +38,22 @@ namespace EM.Api.Controllers
         }
 
 
-        [Authorize(Policy = "UserPolicy")]
+        //[Authorize(Policy = "UserPolicy")]
         [HttpPost("performer")]
         public async Task<IActionResult> AddPerformer(PerformerDTO performerDto)
         {
             try
             {
-                //var authHeader = Request.Headers.Authorization;
-                //var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-
-                //This method will now get performer ID
-                //string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, organizerId, 3);
-                //var performerBo = await _performerService.AddPerformer(performerDto, createdImageName);
-                //var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
-                return Ok("response");
+                var performerBo = await _performerService.AddPerformer(performerDto);
+                string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, performerBo.Id, 3);
+                await _performerService.UpdatePerformerImage(createdImageName, performerBo.Id);
+                performerBo.Profile = createdImageName;
+                var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
+                return Ok(response);
             }catch(Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
-            }
-            
+            }            
         }
 
         private readonly string _imagesDirectory = Path.Combine(Directory.GetCurrentDirectory(),"");
@@ -74,15 +72,13 @@ namespace EM.Api.Controllers
             return File(image, "application/octet-stream", filePath);
         }
 
-        [Authorize(Policy ="UserPolicy")]
+        //[Authorize(Policy ="UserPolicy")]
         [HttpGet("performer")]
         public async Task<IActionResult> GetPerformers()
         {
-            var authHeader = Request.Headers.Authorization;
-            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-            //var performerList = _performerService.GetPerformers(organizerId);
-            //var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
-            return Ok("response");
+            var performerList = await _performerService.GetPerformers();
+            var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
+            return Ok(response);
         }
         /// <summary>
         /// update the exisitng performer
@@ -90,12 +86,12 @@ namespace EM.Api.Controllers
         /// <param name="performerDto"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Policy ="UserPolicy")]
+        //[Authorize(Policy ="UserPolicy")]
         [HttpPut("performer/{id}")]
         public async Task<IActionResult> UpdatePerformer(PerformerUpdateDTO performerDto, int id)
         {
-            var authHeader = Request.Headers.Authorization;
-            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+            //var authHeader = Request.Headers.Authorization;
+            //var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
             var existingPerformer = await _performerService.GetPerformerById(id);
             if (existingPerformer == null)
             {
@@ -105,7 +101,7 @@ namespace EM.Api.Controllers
             var updatedImageName = existingPerformer.Profile;
             if (performerDto.Base64String != null)
             {
-                updatedImageName = await _fileService.UpdateImageAsync(performerDto.Base64String, organizerId, id);
+                updatedImageName = await _fileService.UpdateImageAsync(performerDto.Base64String, id);
             }
 
             PerformerBO performerBo = new PerformerBO();
