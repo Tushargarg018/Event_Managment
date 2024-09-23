@@ -43,16 +43,6 @@ namespace EM.Data.RepositoryImpl
         }
 
         public async Task<Event> GetEventByIdAsync(int eventId) {
-            //IQueryable<Event> query = context.Set<Event>()
-            //                                .Include(e => e.Performer)
-            //                                .Include(e => e.EventDocuments)
-            //                                .Include(e => e.EventOffers)
-            //                                .Include(e => e.EventTicketCategories)
-            //                                .Include(e => e.Venue)
-            //                                    .ThenInclude(v => v.State)
-            //                                .Include(e => e.Venue)
-            //                                    .ThenInclude(v => v.City);
-            //return await query.FirstOrDefaultAsync(e=>e.Id == eventId);
             return await context.Set<Event>()
                                 .Include(e => e.Performer)
                                 .Include(e => e.EventDocuments)

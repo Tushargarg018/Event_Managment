@@ -37,11 +37,11 @@ namespace EM.Data.RepositoryImpl
         } 
 
 
-        public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId)
-        {
-            var performer = context.Performers.Where(p=>p.OrganizerId == organizerId).ToList();
-            return performer;  
-        }
+        //public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId)
+        //{
+        //    var performer = context.Performers.Where(p=>p.OrganizerId == organizerId).ToList();
+        //    return performer;  
+        //}
 
         public async Task<bool> PerformerExistsAsync(int performerId)
         {

@@ -29,16 +29,16 @@ namespace EM.Data.RepositoryImpl
 			return newVenue;   
         }
 
-        public async Task<IEnumerable<Venue>> GetVenueList(int organizerId)
-        {
-			var venues = await appDbContext.Venues
-	                        .Where(v => v.OrganizerId == organizerId)
-	                        .Include(v => v.City) 
-	                        .Include(v => v.State) 
-	                        .ToListAsync();
-            return venues;
+  //      public async Task<IEnumerable<Venue>> GetVenueList(int organizerId)
+  //      {
+		//	var venues = await appDbContext.Venues
+	 //                       .Where(v => v.OrganizerId == organizerId)
+	 //                       .Include(v => v.City) 
+	 //                       .Include(v => v.State) 
+	 //                       .ToListAsync();
+  //          return venues;
 
-		}
+		//}
 
         public async Task<Venue> GetVenue(int venueId)
         {

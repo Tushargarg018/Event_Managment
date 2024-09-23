@@ -43,12 +43,14 @@ namespace EM.Api.Controllers
         {
             try
             {
-                var authHeader = Request.Headers.Authorization;
-                var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-                string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, organizerId, 3);
-                var performerBo = await _performerService.AddPerformer(performerDto, organizerId, createdImageName);
-                var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
-                return Ok(response);
+                //var authHeader = Request.Headers.Authorization;
+                //var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+
+                //This method will now get performer ID
+                //string createdImageName = await _fileService.SaveImageFromBase64(performerDto.Base64String, organizerId, 3);
+                //var performerBo = await _performerService.AddPerformer(performerDto, createdImageName);
+                //var response = new ResponseDTO<PerformerBO>(performerBo, "success", "Performer Added Successfully", null);
+                return Ok("response");
             }catch(Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<object>(), "failure", "An unexpected error occurred", new List<string> { ex.Message }));
@@ -78,9 +80,9 @@ namespace EM.Api.Controllers
         {
             var authHeader = Request.Headers.Authorization;
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
-            var performerList = _performerService.GetPerformers(organizerId);
-            var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
-            return Ok(response);
+            //var performerList = _performerService.GetPerformers(organizerId);
+            //var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
+            return Ok("response");
         }
         /// <summary>
         /// update the exisitng performer

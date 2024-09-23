@@ -22,8 +22,5 @@ namespace EM.Business.BOs
 
         [JsonPropertyName("modified_on")]
         public DateTime ModifiedOn { get; set; }
-
-        [JsonPropertyName("organizer_id")]
-        public int OrganizerId { get; set; }
     }
 }

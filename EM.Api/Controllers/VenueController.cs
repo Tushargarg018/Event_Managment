@@ -40,13 +40,13 @@ namespace EM.Api.Controllers
         [HttpPost("venue")]
         public async Task<IActionResult> AddVenue(VenueRequestDTO venueRequestDTO)
         {
-            var handler = new JwtSecurityTokenHandler();
-            var authHeader = Request.Headers.Authorization;
-            var token = authHeader.ToString().Substring("Bearer ".Length).Trim();
-            var jwtToken = handler.ReadJwtToken(token);
-            var claims = jwtToken.Claims;
-            var organizerClaim = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
-            int organizerId = int.Parse(organizerClaim);
+            //var handler = new JwtSecurityTokenHandler();
+            //var authHeader = Request.Headers.Authorization;
+            //var token = authHeader.ToString().Substring("Bearer ".Length).Trim();
+            //var jwtToken = handler.ReadJwtToken(token);
+            //var claims = jwtToken.Claims;
+            //var organizerClaim = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+            //int organizerId = int.Parse(organizerClaim);
 
 
             // Validate the incoming request DTO
@@ -60,17 +60,17 @@ namespace EM.Api.Controllers
             try
             {
 
-                var venueResponse = await venueService.AddVenue(venueRequestDTO , organizerId);
-                var venueResponseDTO = new VenueResponseDTO();
-                mapper.Map(venueResponse, venueResponseDTO); 
+                //var venueResponse = await venueService.AddVenue(venueRequestDTO);
+                //var venueResponseDTO = new VenueResponseDTO();
+                //mapper.Map(venueResponse, venueResponseDTO); 
 
-                if (venueResponse == null)
-                {
-                  return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No venue added yet"));
-                }
+                //if (venueResponse == null)
+                //{
+                //  return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No venue added yet"));
+                //}
 
-                return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue added successfully"));
-
+                //return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue added successfully"));
+                return Ok("result");
             }
             catch (Exception ex)
             {
@@ -102,11 +102,11 @@ namespace EM.Api.Controllers
 
             try
             {
-				var venueResponse = await venueService.GetAllVenue(organizerId);
-				var venueResponseDTO = mapper.Map<List<VenueResponseDTO>>(venueResponse);
+                //var venueResponse = await venueService.GetAllVenue(organizerId);
+                //var venueResponseDTO = mapper.Map<List<VenueResponseDTO>>(venueResponse);
 
-				return Ok(new ResponseDTO<List<VenueResponseDTO>>(venueResponseDTO, "success", "Venue list retrieved successfully"));   
-
+                //return Ok(new ResponseDTO<List<VenueResponseDTO>>(venueResponseDTO, "success", "Venue list retrieved successfully"));   
+                return Ok("result");
             }
             catch (Exception ex)
             {

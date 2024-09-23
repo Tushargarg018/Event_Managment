@@ -32,13 +32,12 @@ namespace EM.Business.ServiceImpl
         /// <param name="organizer_id"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public async Task<PerformerBO> AddPerformer(PerformerDTO performerDto, int organizer_id, string imageName)
+        public async Task<PerformerBO> AddPerformer(PerformerDTO performerDto, string imageName)
         {
             Performer performer = new Performer{
                 Name = performerDto.Name,
                 Bio = performerDto.Bio,
                 Profile = imageName,
-                OrganizerId = organizer_id,
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };
@@ -52,18 +51,18 @@ namespace EM.Business.ServiceImpl
         /// </summary>
         /// <param name="organizerId"></param>
         /// <returns></returns>
-        public List<PerformerBO> GetPerformers(int organizerId)
-        {
-            var performerList = _repository.GetPerformersUsingOrganizer(organizerId);
-            var performerBoList = new List<PerformerBO>();
-            foreach (var performer in performerList)
-            {
-                var performerBo = new PerformerBO();
-                _mapper.Map(performer, performerBo);
-                performerBoList.Add(performerBo);
-            }
-            return performerBoList;
-        }
+        //public List<PerformerBO> GetPerformers(int organizerId)
+        //{
+        //    var performerList = _repository.GetPerformersUsingOrganizer(organizerId);
+        //    var performerBoList = new List<PerformerBO>();
+        //    foreach (var performer in performerList)
+        //    {
+        //        var performerBo = new PerformerBO();
+        //        _mapper.Map(performer, performerBo);
+        //        performerBoList.Add(performerBo);
+        //    }
+        //    return performerBoList;
+        //}
 
         public async Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id, string imagePath)
         {
