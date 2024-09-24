@@ -20,5 +20,7 @@ namespace EM.Data.Repositories
         public Task<(List<Event> Events, int TotalCount)> GetEventsAsync(EventFilterDTO filter);
 
         public Task<Event> PublishEvent(Event e);
+
+        public Task<TaxConfiguration> GetTaxConfigurationById(int CountryId , int StateId);
     }
 }
