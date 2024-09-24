@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EM.Core.Helpers
 {
@@ -47,7 +48,14 @@ namespace EM.Core.Helpers
         public static string ToCustomDateTimeString(DateTime dateTime)
         {
             // Convert to local time and format without milliseconds or time zone
-            return dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+            return dateTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
+        }
+
+        public static DateTime ToUTCDateTime(string dateTime)
+        {
+            //DateTime utcDateTime = DateTime.ParseExact(dateTime, "yyyy-MM-ddTHH:mm:ssZ", null);
+            DateTime utcDateTime = DateTime.Parse(dateTime, null, System.Globalization.DateTimeStyles.RoundtripKind);
+            return utcDateTime;
         }
     }
 }

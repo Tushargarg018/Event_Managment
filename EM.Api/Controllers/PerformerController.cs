@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IdentityModel.Tokens.Jwt;
 using EM.Data.Entities;
+using EM.Api.Validations;
 
 namespace EM.Api.Controllers
 {
@@ -23,18 +24,19 @@ namespace EM.Api.Controllers
         //private readonly ILogger<OrganizerController> _logger;
         private readonly IAuthService _authservice;
         private readonly IMapper _mapper;
-        //private readonly IValidator<LoginDto> _loginValidator;
+        private readonly IValidator<PerformerDTO> _performerValidator;
         private readonly IFileService _fileService;
         private readonly IPerformerService _performerService;
         private readonly IConfiguration _config;
 
-        public PerformerController(IMapper mapper, IFileService fileService, IPerformerService performerService, IAuthService authservice, IConfiguration configuration)
+        public PerformerController(IMapper mapper, IFileService fileService, IPerformerService performerService, IAuthService authservice, IConfiguration configuration, IValidator<PerformerDTO> performerValidator)
         {
             _mapper = mapper;
             _fileService = fileService;
             _performerService = performerService;
             _authservice = authservice;
             _config = configuration;
+            _performerValidator = performerValidator;
         }
 
 
@@ -42,6 +44,13 @@ namespace EM.Api.Controllers
         [HttpPost("performer")]
         public async Task<IActionResult> AddPerformer(PerformerDTO performerDto)
         {
+            var validationResult = await _performerValidator.ValidateAsync(performerDto);
+            if (!validationResult.IsValid)
+            {
+                // Return a bad request response if validation fails
+                return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation failed", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
+
+            }
             try
             {
                 var performerBo = await _performerService.AddPerformer(performerDto);
@@ -58,20 +67,6 @@ namespace EM.Api.Controllers
 
         private readonly string _imagesDirectory = Path.Combine(Directory.GetCurrentDirectory(),"");
 
-        [Authorize(Policy ="UserPolicy")]
-        [HttpGet("getProfilePic")]
-        public async Task<IActionResult> GetImage(string filePath)
-        {
-            string fileLocation = Path.Combine(_imagesDirectory, filePath);
-
-            if (!System.IO.File.Exists(fileLocation))
-            {
-                return NotFound(new ResponseDTO<PerformerBO>(null, "failure", "File Not Found", null));
-            }
-            var image = _fileService.GetImageAsByteArray(fileLocation);
-            return File(image, "application/octet-stream", filePath);
-        }
-
         //[Authorize(Policy ="UserPolicy")]
         [HttpGet("performer")]
         public async Task<IActionResult> GetPerformers()
@@ -80,6 +75,19 @@ namespace EM.Api.Controllers
             var response = new ResponseDTO<List<PerformerBO>>(performerList, "success", "Performers Returned Successfully", null);
             return Ok(response);
         }
+
+        /// <summary>
+        /// Get a performer by it's Id
+        /// </summary>
+        /// <returns>Performer</returns>
+        [HttpGet("performer/{id}")]
+        public async Task<IActionResult> GetPerformerById(int id)
+        {
+            var performer = await _performerService.GetPerformerById(id);
+            var response = new ResponseDTO<PerformerBO>(performer, "success", "Performer Returned Successfully", null);
+            return Ok(response);
+        }
+
         /// <summary>
         /// update the exisitng performer
         /// </summary>

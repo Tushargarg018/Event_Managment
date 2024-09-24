@@ -42,15 +42,16 @@ namespace EM.Business.ServiceImpl
             };
 
             var newVenue = await venueRepository.AddVenue(venue);
-			return mapper.Map<VenueBO>(newVenue);
-
+			VenueBO venueBo =  mapper.Map<VenueBO>(newVenue);
+            venueBo.TypeId = (int)newVenue.Type;
+            return venueBo;
         }
 
-  //      public async Task<IEnumerable<VenueBO>> GetAllVenue(int organizerId)
-  //      {
-  //          var venues = await venueRepository.GetVenueList(organizerId);
-  //          return mapper.Map<List<VenueBO>>(venues);
-		//}
+        public async Task<IEnumerable<VenueBO>> GetAllVenue()
+        {
+            var venues = await venueRepository.GetVenueList();
+            return mapper.Map<List<VenueBO>>(venues);
+        }
 
         public async Task<VenueBO> GetVenue(int venueId)
         {

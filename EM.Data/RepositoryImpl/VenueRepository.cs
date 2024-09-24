@@ -29,16 +29,14 @@ namespace EM.Data.RepositoryImpl
 			return newVenue;   
         }
 
-  //      public async Task<IEnumerable<Venue>> GetVenueList(int organizerId)
-  //      {
-		//	var venues = await appDbContext.Venues
-	 //                       .Where(v => v.OrganizerId == organizerId)
-	 //                       .Include(v => v.City) 
-	 //                       .Include(v => v.State) 
-	 //                       .ToListAsync();
-  //          return venues;
-
-		//}
+        public async Task<IEnumerable<Venue>> GetVenueList()
+        {
+            var venues = await appDbContext.Venues
+                            .Include(v => v.City)
+                            .Include(v => v.State)
+                            .ToListAsync();
+            return venues;
+        }
 
         public async Task<Venue> GetVenue(int venueId)
         {
@@ -88,6 +86,11 @@ namespace EM.Data.RepositoryImpl
         {
             var venue = await appDbContext.Venues.FindAsync(venueId);
             return venue?.MaxCapacity ?? 0;
+        }
+
+        public async Task<bool> VenueNameExistsAsync(string venueName)
+        {
+            return await appDbContext.Venues.AnyAsync(v => v.Name.ToLower()==venueName.ToLower());
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using EM.Core.DTOs.Request;
 using EM.Data.Entities;
+using EM.Data.Repository;
 using FluentValidation;
 using System.Diagnostics.Metrics;
 using System.Reflection.Emit;
@@ -9,10 +10,13 @@ namespace EM.Api.Validations
 {
     public class VenueRequestValidator : AbstractValidator<VenueRequestDTO>
     {
-        public VenueRequestValidator()
+        private readonly IVenueRepository _venueRepository;
+        public VenueRequestValidator(IVenueRepository venueRepository)
         {
+            _venueRepository = venueRepository;
             RuleFor(venue => venue.Name)
-                .NotEmpty().WithMessage("Name is Required").Length(1,100).WithMessage("limit exceeded");
+                .NotEmpty().WithMessage("Name is Required").Length(1,100).WithMessage("limit exceeded")
+                .MustAsync(VenueNotExist).WithMessage("Venue Already Exist");
 
             RuleFor(venue => venue.Type)
                 .IsInEnum().WithMessage("Select Valid Venue Type");
@@ -38,9 +42,14 @@ namespace EM.Api.Validations
                 .NotEmpty().WithMessage("Country is Required");
 
             RuleFor(venue => venue.Description)
+                .NotEmpty().WithMessage("Description is required")
                 .Length(1, 250).WithMessage("Please describe in less than 250 character");
+        }
 
-
+        private async Task<bool> VenueNotExist(string venueName, CancellationToken cancellationToken)
+        {
+            var result = await _venueRepository.VenueNameExistsAsync(venueName);
+            return !result;
         }
     }
 }

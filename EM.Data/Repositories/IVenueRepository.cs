@@ -12,7 +12,7 @@ namespace EM.Data.Repository
     {
         public Task<Venue> AddVenue(Venue venue);
 
-        //public Task<IEnumerable<Venue>> GetVenueList(int organizerId);
+        public Task<IEnumerable<Venue>> GetVenueList();
 
         public Task<Venue> GetVenue(int VenueId);
 
@@ -21,6 +21,8 @@ namespace EM.Data.Repository
         public Task<Venue> GetVenueById(int VenueId);   
         public Task<bool> VenueExistsAsync(int venueId);
         public Task<int> GetVenueCapacityByIdAsync(int venueId);
+
+        public Task<bool> VenueNameExistsAsync(string venueName);
 
     }
 }

@@ -27,6 +27,9 @@ namespace EM.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<EventDocument> EventDocuments { get; set; }
         public DbSet<EventTicketCategory> EventTicketCategories { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<TaxConfiguration> TaxConfigurations { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +43,9 @@ namespace EM.Data
 			modelBuilder.Entity<EventDocument>().ToTable("event_document");
 			modelBuilder.Entity<EventOffer>().ToTable("event_offer");
 			modelBuilder.Entity<EventTicketCategory>().ToTable("event_ticket_category");
+            modelBuilder.Entity<Currency>().ToTable("currency");
+            modelBuilder.Entity<TaxConfiguration>().ToTable("tax_configuration");
+            modelBuilder.Entity<Country>().ToTable("country");
 
             modelBuilder.Entity<Organizer>()
                     .HasMany(o => o.Events)
@@ -70,12 +76,21 @@ namespace EM.Data
                     .WithOne(og => og.State)
                     .HasForeignKey(p => p.StateId)
                     .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<State>()
+                    .HasOne(s => s.TaxConfiguration)
+                    .WithOne(tc => tc.State)
+                    .HasForeignKey<TaxConfiguration>(tc=>tc.StateId);
+            modelBuilder.Entity<Country>()
+                    .HasMany(o=>o.States)
+                    .WithOne(s => s.Countries)
+                    .HasForeignKey(tc=>tc.CountryId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<State>().HasData(StateSeed.GetStates());
 
             modelBuilder.Entity<City>().HasData(CitySeed.GetCities());
-
-
+            modelBuilder.Entity<Currency>().HasData(CurrencySeed.GetCurrencies());
+            modelBuilder.Entity<Country>().HasData(CountrySeed.GetCountries());
         }
 
     }

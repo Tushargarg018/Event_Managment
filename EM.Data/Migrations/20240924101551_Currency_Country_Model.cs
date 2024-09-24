@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -9,11 +10,24 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Currency_Country_Model : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "country",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_country", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "organizer",
                 columns: table => new
@@ -33,6 +47,44 @@ namespace EM.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "performer",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    bio = table.Column<string>(type: "text", nullable: false),
+                    profile = table.Column<string>(type: "text", nullable: true),
+                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_performer", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "currency",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    country_id = table.Column<int>(type: "integer", nullable: false),
+                    currency_code = table.Column<string>(type: "text", nullable: false),
+                    symbol = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_currency", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_currency_country_country_id",
+                        column: x => x.country_id,
+                        principalTable: "country",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "state",
                 columns: table => new
                 {
@@ -44,60 +96,11 @@ namespace EM.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_state", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "performer",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    bio = table.Column<string>(type: "text", nullable: false),
-                    profile = table.Column<string>(type: "text", nullable: true),
-                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    organizer_id = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_performer", x => x.id);
                     table.ForeignKey(
-                        name: "FK_performer_organizer_organizer_id",
-                        column: x => x.organizer_id,
-                        principalTable: "organizer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "venue",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    type = table.Column<int>(type: "integer", nullable: false),
-                    max_capacity = table.Column<int>(type: "integer", nullable: false),
-                    address_line1 = table.Column<string>(type: "text", nullable: false),
-                    address_line2 = table.Column<string>(type: "text", nullable: true),
-                    zip_code = table.Column<int>(type: "integer", nullable: false),
-                    city = table.Column<int>(type: "integer", nullable: false),
-                    state = table.Column<int>(type: "integer", nullable: false),
-                    country = table.Column<int>(type: "integer", nullable: false),
-                    organizer_id = table.Column<int>(type: "integer", nullable: false),
-                    description = table.Column<string>(type: "text", nullable: false),
-                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_venue", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_venue_organizer_organizer_id",
-                        column: x => x.organizer_id,
-                        principalTable: "organizer",
-                        principalColumn: "Id",
+                        name: "FK_state_country_country_id",
+                        column: x => x.country_id,
+                        principalTable: "country",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -116,6 +119,69 @@ namespace EM.Data.Migrations
                     table.ForeignKey(
                         name: "FK_city_state_state_id",
                         column: x => x.state_id,
+                        principalTable: "state",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tax_configuration",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    country_id = table.Column<int>(type: "integer", nullable: false),
+                    state_id = table.Column<int>(type: "integer", nullable: false),
+                    tax_details = table.Column<JsonDocument>(type: "jsonb", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tax_configuration", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_tax_configuration_country_country_id",
+                        column: x => x.country_id,
+                        principalTable: "country",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tax_configuration_state_state_id",
+                        column: x => x.state_id,
+                        principalTable: "state",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "venue",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    type = table.Column<int>(type: "integer", nullable: false),
+                    max_capacity = table.Column<int>(type: "integer", nullable: false),
+                    address_line1 = table.Column<string>(type: "text", nullable: false),
+                    address_line2 = table.Column<string>(type: "text", nullable: true),
+                    zip_code = table.Column<int>(type: "integer", nullable: false),
+                    city = table.Column<int>(type: "integer", nullable: false),
+                    state = table.Column<int>(type: "integer", nullable: false),
+                    country = table.Column<int>(type: "integer", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_venue", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_venue_city_city",
+                        column: x => x.city,
+                        principalTable: "city",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_venue_state_state",
+                        column: x => x.state,
                         principalTable: "state",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -172,7 +238,7 @@ namespace EM.Data.Migrations
                     event_id = table.Column<int>(type: "integer", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
                     file_path = table.Column<string>(type: "text", nullable: false),
-                    file_type = table.Column<string>(type: "text", nullable: false),
+                    file_type = table.Column<string>(type: "text", nullable: true),
                     created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -236,6 +302,16 @@ namespace EM.Data.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "country",
+                columns: new[] { "id", "name" },
+                values: new object[] { 1, "India" });
+
+            migrationBuilder.InsertData(
+                table: "currency",
+                columns: new[] { "id", "country_id", "currency_code", "symbol" },
+                values: new object[] { 1, 1, "INR", "₹" });
 
             migrationBuilder.InsertData(
                 table: "state",
@@ -895,6 +971,11 @@ namespace EM.Data.Migrations
                 column: "state_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_currency_country_id",
+                table: "currency",
+                column: "country_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_event_organizer_id",
                 table: "event",
                 column: "organizer_id");
@@ -925,21 +1006,37 @@ namespace EM.Data.Migrations
                 column: "event_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_performer_organizer_id",
-                table: "performer",
-                column: "organizer_id");
+                name: "IX_state_country_id",
+                table: "state",
+                column: "country_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_venue_organizer_id",
+                name: "IX_tax_configuration_country_id",
+                table: "tax_configuration",
+                column: "country_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tax_configuration_state_id",
+                table: "tax_configuration",
+                column: "state_id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_venue_city",
                 table: "venue",
-                column: "organizer_id");
+                column: "city");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_venue_state",
+                table: "venue",
+                column: "state");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "city");
+                name: "currency");
 
             migrationBuilder.DropTable(
                 name: "event_document");
@@ -951,10 +1048,13 @@ namespace EM.Data.Migrations
                 name: "event_ticket_category");
 
             migrationBuilder.DropTable(
-                name: "state");
+                name: "tax_configuration");
 
             migrationBuilder.DropTable(
                 name: "event");
+
+            migrationBuilder.DropTable(
+                name: "organizer");
 
             migrationBuilder.DropTable(
                 name: "performer");
@@ -963,7 +1063,13 @@ namespace EM.Data.Migrations
                 name: "venue");
 
             migrationBuilder.DropTable(
-                name: "organizer");
+                name: "city");
+
+            migrationBuilder.DropTable(
+                name: "state");
+
+            migrationBuilder.DropTable(
+                name: "country");
         }
     }
 }

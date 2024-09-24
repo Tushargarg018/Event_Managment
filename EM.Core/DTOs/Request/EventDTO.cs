@@ -17,8 +17,8 @@ namespace EM.Core.DTOs.Request
         [JsonPropertyName("venue_id")]
         public int VenueId { get; set; }
         [JsonPropertyName("start_datetime")]
-        public string? StartDateTime { get; set; }
+        public string StartDateTime { get; set; }
         [JsonPropertyName("end_datetime")]
-        public string? EndDateTime { get; set; }
+        public string EndDateTime { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace EM.Business.BOs
         public int Id { get; set; }
         public string Name { get; set; }
         public VenueTypeEnum Type { get; set; }
+        public int TypeId { get; set; }
         public int MaxCapacity { get; set; }
         public string? AddressLine1 { get; set; }
         public string? AddressLine2 { get; set; }
@@ -22,7 +23,7 @@ namespace EM.Business.BOs
         public int StateId { get; set; }
         public string? StateName { get; set; }
         public int Country { get; set; }
-        public DateTime Created_on { get; set; }
+        public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string Description { get; set; }
          

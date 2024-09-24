@@ -88,5 +88,10 @@ namespace EM.Data.RepositoryImpl
             performer.Profile = fileName;
             await context.SaveChangesAsync();
         }
+
+        public async Task<bool> PerformerNameExistAsync(string performerName)
+        {
+            return await context.Performers.AnyAsync(p=>p.Name.ToLower()==performerName.ToLower());
+        }
     }
 }
