@@ -141,15 +141,15 @@ namespace EM.Business.ServiceImpl
             return relativePath.Replace('\\', '/');
         }
 
-        public async Task<string> UpdateImageAsync(string base64String, int organizer_id, int performer_id)
+        public async Task<string> UpdateImageAsync(string base64String, int performer_id)
         {
             string profile_path = await _performerRepository.GetPerformerProfilePath(performer_id);
             DeleteImage(profile_path);
-            var createdImageName = SaveImageFromBase64(base64String, organizer_id, 3);
+            var createdImageName = SaveImageFromBase64(base64String, performer_id, 3);
             return createdImageName.Result;
         }
 
-        public async Task<string> SaveImageFromBase64(string base64String, int organizer_id, int documentType)
+        public async Task<string> SaveImageFromBase64(string base64String, int id, int documentType)
         {
             if(string.IsNullOrEmpty(base64String))
             {
@@ -164,12 +164,12 @@ namespace EM.Business.ServiceImpl
             if(documentType==0 || documentType == 1)
             {
                 folderPath = documentType == 0 ? _logoPath : _bannerPath;
-                fileDbName = $"{organizer_id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
+                fileDbName = $"{id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
             }
             else
             {
                 folderPath = _profilePath;
-                fileDbName = $"ProfilePic_{organizer_id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
+                fileDbName = $"ProfilePic_{id}_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.jpg";
             }
                 
             string fullPath = Path.Combine(contentPath, folderPath);

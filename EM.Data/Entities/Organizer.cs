@@ -43,8 +43,6 @@ namespace EM.Data.Entities
         [Column("modified_on")]
         public DateTime ModifiedOn { get; set; }
 		public UserStatus Status { get; set; }
-		public virtual ICollection<Performer> Performers { get; set; }
-        public virtual ICollection<Venue> Venues { get; set; }
         public virtual ICollection<Event> Events { get; set; }
     }
 }

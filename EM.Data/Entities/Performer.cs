@@ -44,13 +44,6 @@ namespace EM.Data.Entities
         /// </summary>
         [Column("modified_on")]
 		public DateTime ModifiedOn { get; set; }
-
-        /// <summary>
-        /// organizer id for which performer is created
-        /// </summary>
-        [Column("organizer_id")]
-		public int OrganizerId { get; set; }
-        public Organizer Organizer { get; set; }
         public virtual ICollection<Event> Events { get; set; }
     }
 }

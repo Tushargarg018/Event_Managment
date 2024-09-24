@@ -22,7 +22,7 @@ namespace EM.Business.ServiceImpl
             this.mapper = mapper;
         }
 
-        public async Task<VenueBO> AddVenue(VenueRequestDTO venueRequestDTO , int organizerId)
+        public async Task<VenueBO> AddVenue(VenueRequestDTO venueRequestDTO)
         {
 
             Venue venue = new Venue
@@ -36,7 +36,6 @@ namespace EM.Business.ServiceImpl
                 CityId = venueRequestDTO.City,
                 StateId = venueRequestDTO.State,
                 Country = venueRequestDTO.Country,
-                OrganizerId = organizerId,  
                 Description = venueRequestDTO.Description,
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
@@ -47,11 +46,11 @@ namespace EM.Business.ServiceImpl
 
         }
 
-        public async Task<IEnumerable<VenueBO>> GetAllVenue(int organizerId)
-        {
-            var venues = await venueRepository.GetVenueList(organizerId);
-			return mapper.Map<List<VenueBO>>(venues);
-		}
+  //      public async Task<IEnumerable<VenueBO>> GetAllVenue(int organizerId)
+  //      {
+  //          var venues = await venueRepository.GetVenueList(organizerId);
+  //          return mapper.Map<List<VenueBO>>(venues);
+		//}
 
         public async Task<VenueBO> GetVenue(int venueId)
         {
@@ -61,17 +60,13 @@ namespace EM.Business.ServiceImpl
 
         public async Task<VenueBO> UpdateVenue(VenueUpdateDTO venueUpdateDTO, int VenueId)
         {
-
             var newVenue = await venueRepository.UpdateVenue(venueUpdateDTO , VenueId);
             if(newVenue == null)
             {
                 return null;
             }
-
             var newVenueBO = new VenueBO();
-
             mapper.Map(newVenue, newVenueBO);
-
             return newVenueBO;
         }
     }

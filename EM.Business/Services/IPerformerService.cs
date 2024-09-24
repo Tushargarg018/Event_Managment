@@ -11,9 +11,10 @@ namespace EM.Business.Services
 {
     public interface IPerformerService
     {
-        public Task<PerformerBO> AddPerformer(PerformerDTO performerDto, int organizerId, string imageName);
-        public List<PerformerBO> GetPerformers(int organizerId);
+        public Task<PerformerBO> AddPerformer(PerformerDTO performerDto);
+        public Task<List<PerformerBO>> GetPerformers();
         public Task<PerformerBO> UpdatePerformer(PerformerUpdateDTO performerDto, int id, string imagePath);
         public Task<PerformerBO> GetPerformerById(int performerId);
+        public Task UpdatePerformerImage(string imagePath, int performerId);
     }
 }

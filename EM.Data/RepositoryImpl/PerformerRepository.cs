@@ -37,11 +37,11 @@ namespace EM.Data.RepositoryImpl
         } 
 
 
-        public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId)
-        {
-            var performer = context.Performers.Where(p=>p.OrganizerId == organizerId).ToList();
-            return performer;  
-        }
+        //public IEnumerable<Performer> GetPerformersUsingOrganizer(int organizerId)
+        //{
+        //    var performer = context.Performers.Where(p=>p.OrganizerId == organizerId).ToList();
+        //    return performer;  
+        //}
 
         public async Task<bool> PerformerExistsAsync(int performerId)
         {
@@ -55,20 +55,38 @@ namespace EM.Data.RepositoryImpl
 
         public async Task<Performer> UpdatePerformer(string bio, string name, string profile_pic, int performer_id)
         {
-            var performer = context.Performers.FirstOrDefaultAsync(p => p.Id == performer_id).Result;
+            var performer = await context.Performers.FirstOrDefaultAsync(p => p.Id == performer_id);
             if (performer == null)
-                return null;
+            {
+                throw new Exception("Performer does not exist");
+            }
             performer.Bio = bio;
             performer.Name = name;
             performer.Profile = profile_pic;
             await context.SaveChangesAsync();
             return performer;
-        }
+        }   
 
         public async Task<string> GetPerformerProfilePath(int performerId)
         {
             var performer = await context.Performers.FirstOrDefaultAsync(p => p.Id == performerId);
             return performer.Profile;
+        }
+
+        public async Task<IEnumerable<Performer>> GetPerformers()
+        {
+            return await context.Performers.ToListAsync(); 
+        }
+
+        public async Task UpdatePerformerImage(string fileName, int id)
+        {
+            Performer performer = await context.Performers.FirstOrDefaultAsync(p => p.Id == id);
+            if (performer == null)
+            {
+                throw new Exception("Performer Does not Exist");
+            }
+            performer.Profile = fileName;
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -32,13 +32,11 @@ namespace EM.Business.ServiceImpl
         /// <param name="organizer_id"></param>
         /// <param name="imageName"></param>
         /// <returns></returns>
-        public async Task<PerformerBO> AddPerformer(PerformerDTO performerDto, int organizer_id, string imageName)
+        public async Task<PerformerBO> AddPerformer(PerformerDTO performerDto)
         {
             Performer performer = new Performer{
                 Name = performerDto.Name,
                 Bio = performerDto.Bio,
-                Profile = imageName,
-                OrganizerId = organizer_id,
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };
@@ -52,9 +50,9 @@ namespace EM.Business.ServiceImpl
         /// </summary>
         /// <param name="organizerId"></param>
         /// <returns></returns>
-        public List<PerformerBO> GetPerformers(int organizerId)
+        public async Task<List<PerformerBO>> GetPerformers()
         {
-            var performerList = _repository.GetPerformersUsingOrganizer(organizerId);
+            var performerList = await _repository.GetPerformers();
             var performerBoList = new List<PerformerBO>();
             foreach (var performer in performerList)
             {
@@ -79,6 +77,11 @@ namespace EM.Business.ServiceImpl
             var performerBo = new PerformerBO();
             _mapper.Map(performer, performerBo);
             return performerBo;
+        }
+
+        public async Task UpdatePerformerImage(string imagePath, int performerId)
+        {
+            await _repository.UpdatePerformerImage(imagePath, performerId);
         }
     }
 }

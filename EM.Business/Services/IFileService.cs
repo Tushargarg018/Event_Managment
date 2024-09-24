@@ -14,7 +14,7 @@ namespace EM.Business.Services
             Task<string> SaveImageAsync(IFormFile imageFile, string organizerId);
             void DeleteImage(string imageFileName);            
             Task<string> UploadEventDocument(IFormFile imageFile, int eventId, int type);
-            Task<string> UpdateImageAsync(string base64String, int organizer_id, int performer_id);
+            Task<string> UpdateImageAsync(string base64String, int performer_id);
             Task<string> SaveImageFromBase64(string base64String, int organizer_id, int documentType);
 
     }

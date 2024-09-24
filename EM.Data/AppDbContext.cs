@@ -41,14 +41,6 @@ namespace EM.Data
 			modelBuilder.Entity<EventOffer>().ToTable("event_offer");
 			modelBuilder.Entity<EventTicketCategory>().ToTable("event_ticket_category");
 
-			modelBuilder.Entity<Organizer>()
-                    .HasMany(o => o.Performers)
-                    .WithOne(og => og.Organizer)
-                    .HasForeignKey(p => p.OrganizerId);
-            modelBuilder.Entity<Organizer>()
-                    .HasMany(o => o.Venues)
-                    .WithOne(og => og.Organizer)
-                    .HasForeignKey(p => p.OrganizerId);
             modelBuilder.Entity<Organizer>()
                     .HasMany(o => o.Events)
                     .WithOne(og => og.Organizer)
