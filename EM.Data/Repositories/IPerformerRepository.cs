@@ -17,5 +17,6 @@ namespace EM.Data.Repositories
         public Task<Performer> GetPerformerById(int id);
         public Task<string> GetPerformerProfilePath(int id);
         public Task UpdatePerformerImage(string fileName, int id);
+        public Task<bool> PerformerNameExistAsync(string performerName);
     }
 }

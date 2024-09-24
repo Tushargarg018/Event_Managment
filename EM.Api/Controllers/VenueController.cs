@@ -40,15 +40,6 @@ namespace EM.Api.Controllers
         [HttpPost("venue")]
         public async Task<IActionResult> AddVenue(VenueRequestDTO venueRequestDTO)
         {
-            //var handler = new JwtSecurityTokenHandler();
-            //var authHeader = Request.Headers.Authorization;
-            //var token = authHeader.ToString().Substring("Bearer ".Length).Trim();
-            //var jwtToken = handler.ReadJwtToken(token);
-            //var claims = jwtToken.Claims;
-            //var organizerClaim = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
-            //int organizerId = int.Parse(organizerClaim);
-
-
             // Validate the incoming request DTO
             var validationResult = await venueRequestValidator.ValidateAsync(venueRequestDTO);
             if (!validationResult.IsValid)
@@ -59,29 +50,22 @@ namespace EM.Api.Controllers
             }
             try
             {
+                var venueResponse = await venueService.AddVenue(venueRequestDTO);
+                var venueResponseDTO = new VenueResponseDTO();
+                mapper.Map(venueResponse, venueResponseDTO);
 
-                //var venueResponse = await venueService.AddVenue(venueRequestDTO);
-                //var venueResponseDTO = new VenueResponseDTO();
-                //mapper.Map(venueResponse, venueResponseDTO); 
+                if (venueResponse == null)
+                {
+                    return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No venue added yet"));
+                }
 
-                //if (venueResponse == null)
-                //{
-                //  return Ok(new ResponseDTO<object>(Array.Empty<object>(), "success", "No venue added yet"));
-                //}
-
-                //return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue added successfully"));
-                return Ok("result");
+                return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue added successfully"));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDTO<Object>(Array.Empty<Object>(), "failure" , "An unexpected error occurred" , new List<string> { ex.Message}));
             }
         }
-
-
-
-
-
 
 
         /// <summary>
@@ -91,22 +75,13 @@ namespace EM.Api.Controllers
         [HttpGet("venue")]
         public async Task<IActionResult> GetVenues()
         {
-
-            var handler = new JwtSecurityTokenHandler();
-            var authHeader = Request.Headers.Authorization;
-            var token = authHeader.ToString().Substring("Bearer ".Length).Trim();
-            var jwtToken = handler.ReadJwtToken(token);
-            var claims = jwtToken.Claims;
-            var organizerClaim = claims.FirstOrDefault(c => c.Type == "Id")?.Value;
-            int organizerId = int.Parse(organizerClaim);
-
             try
             {
-                //var venueResponse = await venueService.GetAllVenue(organizerId);
-                //var venueResponseDTO = mapper.Map<List<VenueResponseDTO>>(venueResponse);
+                var venueResponse = await venueService.GetAllVenue();
+                var venueResponseDTO = mapper.Map<List<VenueResponseDTO>>(venueResponse);
 
-                //return Ok(new ResponseDTO<List<VenueResponseDTO>>(venueResponseDTO, "success", "Venue list retrieved successfully"));   
-                return Ok("result");
+                return Ok(new ResponseDTO<List<VenueResponseDTO>>(venueResponseDTO, "success", "Venue list retrieved successfully"));
+                //return Ok("result");
             }
             catch (Exception ex)
             {
@@ -127,17 +102,12 @@ namespace EM.Api.Controllers
                 // Retrieve the venue by ID using the service layer
                 var venueResponse = await venueService.GetVenue(venueId);
                 var venueResponseDTO = new VenueResponseDTO();
-                //mapper.Map(venueResponse, venueResponseDTO);
                 venueResponseDTO = mapper.Map<VenueResponseDTO>(venueResponse);
-                venueResponseDTO.Created_on = TimeConversionHelper.ConvertFromUTCAndTruncate(venueResponseDTO.Created_on);
-                venueResponseDTO.ModifiedOn = TimeConversionHelper.ConvertFromUTCAndTruncate(venueResponseDTO.ModifiedOn);
                 if (venueResponse == null)
                 {
                     return Ok(new ResponseDTO<Object>(Array.Empty<object>(), "success", "no venue exist"));
                 }
                 // Return a success response with the venue data
-                
-                        
                 return Ok(new ResponseDTO<VenueResponseDTO>(venueResponseDTO, "success", "Venue retrieved successfully"));
 
             }

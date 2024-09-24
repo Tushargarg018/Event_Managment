@@ -20,6 +20,9 @@ namespace EM.Core.DTOs.Response.Success
         [JsonPropertyName("type")]
         public VenueTypeEnum Type { get; set; }
 
+        [JsonPropertyName("type_id")]
+        public int TypeId { get; set; }
+
         [JsonPropertyName("max_capacity")]
         public int MaxCapacity { get; set; }
 
@@ -47,14 +50,11 @@ namespace EM.Core.DTOs.Response.Success
 		[JsonPropertyName("country")]
         public int Country { get; set; }
 
-        [JsonPropertyName("organizer_id")]
-        public int OrganizerId { get; set; }
-
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
         [JsonPropertyName("created_on")]
-        public DateTime Created_on { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [JsonPropertyName("modified_on")]
         public DateTime ModifiedOn { get; set; }

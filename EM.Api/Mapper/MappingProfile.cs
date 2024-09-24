@@ -56,8 +56,7 @@ namespace EM.Api.Mapper
             CreateMap<Venue, VenueBO>()
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
                 .ForMember(dest => dest.StateName, opt => opt.MapFrom(src => src.State.Name))
-                .ForMember(dest => dest.Created_on, opt => opt.MapFrom(src => TimeConversionHelper.ConvertFromUTCAndTruncate(src.CreatedOn)))
-                .ForMember(dest => dest.ModifiedOn, opt => opt.MapFrom(src => TimeConversionHelper.ConvertFromUTCAndTruncate(src.ModifiedOn)));
+                .ForMember(dest=>dest.TypeId, opt=>opt.MapFrom(src=>(int)src.Type));
             CreateMap<VenueBO, VenueResponseDTO>();
             CreateMap<EventDocument, EventDocumentBO>();
             CreateMap<EventDocumentBO, EventDocumentResponseDTO>();
