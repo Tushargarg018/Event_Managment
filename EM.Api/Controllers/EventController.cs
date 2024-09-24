@@ -50,8 +50,8 @@ namespace EM.Api.Controllers
             var authHeader = Request.Headers.Authorization;
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
             var eventResponse = await _eventService.AddEvent(eventDto, organizerId);
-            var eventResponseDTO = new EventResponseDTO();
-            _mapper.Map(eventResponse, eventResponseDTO);
+            var eventResponseDTO = _mapper.Map<EventResponseDTO>(eventResponse);
+            //_mapper.Map(eventResponse, eventResponseDTO);
             return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Added Successfully"));        
         }
         /// <summary>

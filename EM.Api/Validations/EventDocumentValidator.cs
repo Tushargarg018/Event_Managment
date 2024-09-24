@@ -1,7 +1,6 @@
 ﻿using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
 using EM.Data.Entities;
-using EM.Data.Migrations;
 using FluentValidation;
 
 namespace EM.Api.Validations

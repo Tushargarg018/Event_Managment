@@ -7,25 +7,18 @@ using System.Threading.Tasks;
 
 namespace EM.Data.Entities
 {
-    public class State
+    public class Country
     {
         [Column("id")]
         public int Id { get; set; }
-
         /// <summary>
-        /// Name of the state
+        /// Name of the Country
         /// </summary>
         [Column("name")]
         public required string Name { get; set; }
 
-        /// <summary>
-        /// country id
-        /// </summary>
-        [Column("country_id")]
-        public int? CountryId { get; set; }
-
-        public ICollection<City> Cities { get; set; }
-        public Country Countries { get; set; }
-        public TaxConfiguration TaxConfiguration { get; set; }
+        public ICollection<State> States { get; set; }
+        public ICollection<TaxConfiguration> TaxConfigurations { get; set; }
     }
+
 }

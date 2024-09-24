@@ -31,8 +31,6 @@ namespace EM.Business.ServiceImpl
         public async Task<EventBO> AddEvent(EventDTO eventDto, int organizerId)
         {
             //Converting string to datetime objects
-            string startDateString = eventDto.StartDateTime;
-            string endDateString = eventDto.EndDateTime;
             var createEvent = new Event
             {
                 Title = eventDto.Title,
@@ -42,8 +40,8 @@ namespace EM.Business.ServiceImpl
                 PerformerId = eventDto.PerformerId,
                 VenueId = eventDto.VenueId,
                 Status = Core.Enums.StatusEnum.Draft,
-                StartDatetime = TimeConversionHelper.ConvertISTToUTC(startDateString),
-                EndDatetime = TimeConversionHelper.ConvertISTToUTC(endDateString),
+                StartDatetime = TimeConversionHelper.ToUTCDateTime(eventDto.StartDateTime),
+                EndDatetime = TimeConversionHelper.ToUTCDateTime(eventDto.EndDateTime),
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };

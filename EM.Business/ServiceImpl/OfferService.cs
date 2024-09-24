@@ -67,8 +67,6 @@ namespace EM.Business.ServiceImpl
                 _mapper.Map(offerDto, offer);
                 var createdOffer = await _offerRepository.AddEventOffer(offer, eventId);
                 var offerBo = _mapper.Map<OfferBO>(createdOffer);
-                //offerBo.CreatedOn = TimeConversionHelper.ConvertFromUTCAndTruncate(offerBo.CreatedOn);
-                //offerBo.ModifiedOn = TimeConversionHelper.ConvertFromUTCAndTruncate(offerBo.ModifiedOn);
                 return offerBo;
             }catch(Exception ex)
             {
@@ -86,10 +84,6 @@ namespace EM.Business.ServiceImpl
             _mapper.Map(offerDto, offer);
             var updatedOffer = await _offerRepository.UpdateEventOffer(offer, eventId, offerId);
             var offerBo = _mapper.Map<OfferBO>(updatedOffer);
-            offerBo.CreatedOn = TimeConversionHelper.ConvertTimeFromUTC(offerBo.CreatedOn);
-            offerBo.ModifiedOn = TimeConversionHelper.ConvertTimeFromUTC(offerBo.ModifiedOn);
-            offerBo.CreatedOn = TimeConversionHelper.TruncateSeconds(offerBo.CreatedOn);
-            offerBo.ModifiedOn = TimeConversionHelper.TruncateSeconds(offerBo.ModifiedOn);
             return offerBo;
         }
         /// <summary>
