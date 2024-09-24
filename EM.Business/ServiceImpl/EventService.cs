@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EM.Business.BOs;
+using EM.Business.Exceptions;
 using EM.Business.Services;
 using EM.Core.DTOs.Request;
 using EM.Core.DTOs.Response;
@@ -52,7 +53,7 @@ namespace EM.Business.ServiceImpl
 
         public async Task<EventBO> GetEventById(int eventId)
         {
-            var _event = await _eventRepository.GetEventByIdAsync(eventId);
+            var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
             var eventBo = _mapper.Map<EventBO>(_event);
             return eventBo;
         }
@@ -98,7 +99,7 @@ namespace EM.Business.ServiceImpl
             var eventExists = await _eventRepository.EventExistsAsync(eventId);
             if (!eventExists)
             {
-                throw new InvalidOperationException("Event does not exist.");
+                throw new NotFoundException("Event");
             }
         }
 
@@ -113,7 +114,7 @@ namespace EM.Business.ServiceImpl
             var eventNotPublished = await _eventRepository.EventNotPublished(eventId);
             if (!eventNotPublished)
             {
-                throw new InvalidOperationException("Event is already published.");
+                throw new EventAlreadyPublishedException("Event is already published.");
             }
         }
         /// <summary>

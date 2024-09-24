@@ -10,6 +10,10 @@ namespace EM.Api.Validations
     {
         public EventDocumentValidator()
         {
+            RuleFor(x => x.Type)
+            .IsInEnum()
+            .WithMessage("Invalid Document Type. Allowed values are 0 (Logo) and 1 (Banner).");
+
             RuleFor(doc => doc.Title)
                  .NotEmpty().WithMessage("Title is Required").Length(1, 250).WithMessage("title length exceeded");
 
