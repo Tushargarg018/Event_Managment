@@ -31,5 +31,9 @@ namespace EM.Business.BOs
         public List<EventPriceCategoryBO> EventPriceCategory { get; set; }
 
         public List<OfferBO> Offer { get; set; }
+
+        public TaxDetailBO? TaxDetail { get; set; }
+
+        
     }
 }

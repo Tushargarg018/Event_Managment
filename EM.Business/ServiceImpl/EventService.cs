@@ -31,6 +31,8 @@ namespace EM.Business.ServiceImpl
         public async Task<EventBO> AddEvent(EventDTO eventDto, int organizerId)
         {
             //Converting string to datetime objects
+            string startDateString = eventDto.StartDateTime;
+            string endDateString = eventDto.EndDateTime;
             var createEvent = new Event
             {
                 Title = eventDto.Title,
@@ -40,8 +42,8 @@ namespace EM.Business.ServiceImpl
                 PerformerId = eventDto.PerformerId,
                 VenueId = eventDto.VenueId,
                 Status = Core.Enums.StatusEnum.Draft,
-                StartDatetime = TimeConversionHelper.ToUTCDateTime(eventDto.StartDateTime),
-                EndDatetime = TimeConversionHelper.ToUTCDateTime(eventDto.EndDateTime),
+                StartDatetime = TimeConversionHelper.ConvertISTToUTC(startDateString),
+                EndDatetime = TimeConversionHelper.ConvertISTToUTC(endDateString),
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };
@@ -53,6 +55,7 @@ namespace EM.Business.ServiceImpl
         {
             var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
             var eventBo = _mapper.Map<EventBO>(_event);
+            eventBo.TaxDetail = 
             return eventBo;
         }
 

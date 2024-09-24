@@ -116,6 +116,11 @@ namespace EM.Data.RepositoryImpl
             return (events, totalRecords);
         }
 
+        public async Task<TaxConfiguration> GetTaxConfigurationById(int CountryId, int? StateId = null)
+        {
+            return await context.TaxConfigurations.FirstOrDefaultAsync(tc => tc.Country)
+        }
+
         public async Task<Event> PublishEvent(Event e)
         {
             context.Update(e);
