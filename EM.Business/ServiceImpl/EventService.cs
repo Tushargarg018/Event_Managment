@@ -58,18 +58,16 @@ namespace EM.Business.ServiceImpl
             var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
             Venue venue = _event.Venue;
             TaxConfiguration taxDetail = await _eventRepository.GetTaxConfigurationById(venue.CountryId, venue.StateId);
-            TaxDetailBO td = _mapper.Map<TaxDetailBO>(taxDetail);
             var eventBo = _mapper.Map<EventBO>(_event);
             if (_event.Flag == 0)
             {
-                eventBo.TaxDetail = new TaxDetailBO
-                {
-                    TaxDetails = JsonDocument.Parse("{}")
-                };
+               
+                eventBo.TaxDetail = JsonDocument.Parse("{}");
             }
-            else
+            else if (taxDetail != null && taxDetail.TaxDetails != null)
             {
-                eventBo.TaxDetail = td;
+                // Directly assign the JSON content from taxDetail
+                eventBo.TaxDetail = JsonDocument.Parse(taxDetail.TaxDetails.RootElement.ToString());
             }
             return eventBo;
         }

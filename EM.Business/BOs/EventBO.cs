@@ -33,7 +33,8 @@ namespace EM.Business.BOs
 
         public List<OfferBO> Offer { get; set; }
 
-        public required TaxDetailBO TaxDetail { get; set; }
+
+        public required JsonDocument TaxDetail { get; set; }
         //public required JsonDocument TaxDetails { get; set; }
 
     }

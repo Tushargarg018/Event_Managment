@@ -77,14 +77,17 @@ namespace EM.Data.Entities
         /// 
         [Column("modified_on")]
 		public DateTime ModifiedOn { get; set; }
-		public Organizer Organizer { get; set; }
+
+        [Column("flag")]
+        public int Flag { get; set; }
+        public Organizer Organizer { get; set; }
 		public Performer Performer { get; set; }
 		public Venue Venue { get; set; }
 		public virtual ICollection<EventOffer>? EventOffers { get; set; }
         public virtual ICollection<EventDocument>? EventDocuments { get; set; }
         public virtual ICollection<EventTicketCategory>? EventTicketCategories { get; set; }
 
-        public int Flag { get; set; }
+        
 
     }
 }

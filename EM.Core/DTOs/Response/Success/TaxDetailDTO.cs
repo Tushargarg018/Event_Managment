@@ -11,6 +11,6 @@ namespace EM.Core.DTOs.Response.Success
     public class TaxDetailDTO
     {
         [JsonPropertyName("tax_details")]
-        public required JsonDocument TaxDetails { get; set; }
+        public required string TaxDetails { get; set; }
     }
 }
