@@ -62,7 +62,7 @@ namespace EM.Api.Controllers
         /// <param name="eventDto"></param>
         /// <returns></returns>
         [Authorize(Policy ="UserPolicy")]
-        [HttpPost("event/{id}")]
+        [HttpPut("event/{id}")]
         public async Task<IActionResult> UpdateEvent(int id, [FromBody] EventDTO eventDto)
         {
             var validationResult = await _eventValidator.ValidateAsync(eventDto);
@@ -74,8 +74,6 @@ namespace EM.Api.Controllers
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
             var eventUpdateResponse = await _eventService.UpdateEvent(eventDto, id, organizerId);
             var eventResponseDTO = _mapper.Map<EventResponseDTO>(eventUpdateResponse);
-            eventResponseDTO.StartDateTime = TimeConversionHelper.ToUTCDateTime(eventResponseDTO.StartDateTime).ToString("dd-MM-yyyyTHH:mm:ssZ");
-            eventResponseDTO.EndDateTime = TimeConversionHelper.ToUTCDateTime(eventResponseDTO.EndDateTime).ToString("dd-MM-yyyyTHH:mm:ssZ");
             return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Updated Successfully"));
         }
         /// <summary>
