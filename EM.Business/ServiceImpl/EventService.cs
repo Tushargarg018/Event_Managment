@@ -30,6 +30,8 @@ namespace EM.Business.ServiceImpl
         }
         public async Task<EventBO> AddEvent(EventDTO eventDto, int organizerId)
         {
+            await ValidateVenueAvailability(eventDto.VenueId, eventDto.StartDateTime, eventDto.EndDateTime);
+            await ValidatePerformerAvailability(eventDto.PerformerId, eventDto.StartDateTime, eventDto.EndDateTime);
             //Converting string to datetime objects
             var createEvent = new Event
             {
@@ -116,11 +118,32 @@ namespace EM.Business.ServiceImpl
                 throw new EventAlreadyPublishedException("Event is already published.");
             }
         }
-        /// <summary>
-        /// Validate the event details
-        /// </summary>
-        /// <param name="eventEntity"></param>
-        /// <exception cref="InvalidOperationException"></exception>
-       
+        
+        private async Task ValidateVenueAvailability(int venueId, string startDate, string endDate)
+        {
+            DateTime startDateTime = TimeConversionHelper.ToUTCDateTime(startDate);
+            DateTime endDateTime = TimeConversionHelper.ToUTCDateTime(endDate);
+   
+            List<Event> events = await _eventRepository.GetEventsByVenue(venueId, startDateTime, endDateTime);
+            
+                if (events.Count != 0)
+                {
+                    throw new VenueNotAvailableException("Venue not available on the mentioned dates");
+                }
+            
+        }
+
+        private async Task ValidatePerformerAvailability(int performerId, string startDate, string endDate)
+        {
+
+            DateTime startDateTime = TimeConversionHelper.ToUTCDateTime(startDate);
+            DateTime endDateTime = TimeConversionHelper.ToUTCDateTime(endDate);
+            
+            List<Event> events = await _eventRepository.GetEventsByPerformer(performerId, startDateTime, endDateTime);
+            if (events.Count != 0)
+            {
+                throw new PerformerNotAvailableException("Performer not available on the mentioned dates");
+            }
+        }
     }
 }
