@@ -47,8 +47,8 @@ namespace EM.Api.Controllers
             }
             EventPriceCategoryBO eventPriceCategoryBO = await eventPriceCategoryService.AddorUpdateEventPriceCategory(eventPriceCategoryRequestDTO);
             EventPriceCategoryResponseDTO eventPriceCategoryResponseDTO = new EventPriceCategoryResponseDTO();
-             mapper.Map(eventPriceCategoryBO, eventPriceCategoryResponseDTO);
-             return Ok(new ResponseDTO<EventPriceCategoryResponseDTO>(eventPriceCategoryResponseDTO, "success", "Price Category set successfully"));
+            mapper.Map(eventPriceCategoryBO, eventPriceCategoryResponseDTO);
+            return Ok(new ResponseDTO<EventPriceCategoryResponseDTO>(eventPriceCategoryResponseDTO, "success", "Price Category set successfully"));
         }
 
     }

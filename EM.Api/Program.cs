@@ -70,6 +70,10 @@ builder.Services.AddScoped<IEventService, EventService>();
 //Venue
 builder.Services.AddScoped<IVenueRepository, VenueRepository>();
 
+//Currency
+builder.Services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+builder.Services.AddScoped<ICurrencyService, CurrencyService>();
+
 //Event Offers
 builder.Services.AddScoped<IOfferRepository, OfferRepository>();
 builder.Services.AddScoped<IOfferService, OfferService>();

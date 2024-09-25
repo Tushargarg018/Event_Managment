@@ -36,6 +36,7 @@ namespace EM.Business.ServiceImpl
                 Title = eventDto.Title,
                 Description = eventDto.Description,
                 BasePrice = eventDto.Price,
+                Currency = eventDto.Currency,
                 OrganizerId = organizerId,
                 PerformerId = eventDto.PerformerId,
                 VenueId = eventDto.VenueId,
