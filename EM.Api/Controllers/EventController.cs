@@ -23,10 +23,9 @@ namespace EM.Api.Controllers
         private readonly IEventService _eventService;
         private readonly IAuthService _authService;
         private readonly IValidator<EventDTO> _eventValidator;
-        private readonly IValidator<EventUpdateDTO> _eventUpdateValidator;
         private readonly EventMapper _eventMapper;
 
-        public EventController(IMapper mapper, IEventService eventService, IAuthService authService, IValidator<EventDTO> eventValidator, IValidator<EventUpdateDTO> eventUpdateValidator, EventMapper eventMapper)
+        public EventController(IMapper mapper, IEventService eventService, IAuthService authService, IValidator<EventDTO> eventValidator, EventMapper eventMapper)
         {
             _mapper = mapper;
             _eventService = eventService;
@@ -55,6 +54,13 @@ namespace EM.Api.Controllers
             var eventResponseDTO = _mapper.Map<EventResponseDTO>(eventResponse);
             return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Added Successfully"));        
         }
+
+        /// <summary>
+        /// Update an event with the basic details, having parameter as id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="eventDto"></param>
+        /// <returns></returns>
         [Authorize(Policy ="UserPolicy")]
         [HttpPost("event/{id}")]
         public async Task<IActionResult> UpdateEvent(int id, [FromBody] EventDTO eventDto)
@@ -64,10 +70,12 @@ namespace EM.Api.Controllers
             {
                 return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation Errors", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
             }
-            var authHeader = Request.Headers.Authorization;
+            var authHeader = Request.Headers.Authorization; 
             var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
             var eventUpdateResponse = await _eventService.UpdateEvent(eventDto, id, organizerId);
             var eventResponseDTO = _mapper.Map<EventResponseDTO>(eventUpdateResponse);
+            eventResponseDTO.StartDateTime = TimeConversionHelper.ToUTCDateTime(eventResponseDTO.StartDateTime).ToString("dd-MM-yyyyTHH:mm:ssZ");
+            eventResponseDTO.EndDateTime = TimeConversionHelper.ToUTCDateTime(eventResponseDTO.EndDateTime).ToString("dd-MM-yyyyTHH:mm:ssZ");
             return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Updated Successfully"));
         }
         /// <summary>

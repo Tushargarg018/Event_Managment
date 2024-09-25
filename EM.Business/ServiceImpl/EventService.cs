@@ -83,7 +83,8 @@ namespace EM.Business.ServiceImpl
                 Flag = eventDto.Flag
             };
             var createdEvent = await _eventRepository.UpdateEvent(createEvent);
-            return _mapper.Map<EventBO>(createdEvent);
+            var responseEvent =  _mapper.Map<EventBO>(createdEvent);
+            return responseEvent;
         }
 
         public async Task<EventBO> GetEventById(int eventId)

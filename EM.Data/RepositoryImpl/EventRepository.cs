@@ -144,7 +144,8 @@ namespace EM.Data.RepositoryImpl
         {
             context.Update(eventToUpdate);
             await context.SaveChangesAsync();
-            return eventToUpdate;
+            Event updatedEvent = await context.Events.FirstOrDefaultAsync(e=>e.Id == eventToUpdate.Id);
+            return updatedEvent;
         }
 
         public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime, int eventId)

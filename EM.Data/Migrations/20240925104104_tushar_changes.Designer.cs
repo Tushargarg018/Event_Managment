@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240924162953_add-tax-flow")]
-    partial class addtaxflow
+    [Migration("20240925104104_tushar_changes")]
+    partial class tushar_changes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -3706,6 +3706,11 @@ namespace EM.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("country_code");
+
                     b.Property<int>("CountryId")
                         .HasColumnType("integer")
                         .HasColumnName("country_id");
@@ -3729,6 +3734,7 @@ namespace EM.Data.Migrations
                         new
                         {
                             Id = 1,
+                            CountryCode = "IN",
                             CountryId = 1,
                             CurrencyCode = "INR",
                             Symbol = "₹"
@@ -3752,6 +3758,11 @@ namespace EM.Data.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("currency");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text")
@@ -3760,6 +3771,10 @@ namespace EM.Data.Migrations
                     b.Property<DateTime>("EndDatetime")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("end_datetime");
+
+                    b.Property<int>("Flag")
+                        .HasColumnType("integer")
+                        .HasColumnName("flag");
 
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("timestamp with time zone")
@@ -4302,7 +4317,7 @@ namespace EM.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("city");
 
-                    b.Property<int>("Country")
+                    b.Property<int>("CountryId")
                         .HasColumnType("integer")
                         .HasColumnName("country");
 
