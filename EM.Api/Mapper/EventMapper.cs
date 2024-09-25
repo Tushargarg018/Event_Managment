@@ -38,7 +38,8 @@ public class EventMapper
             Venue = _mapper.Map<VenueResponseDTO>(e.Venue),
             EventDocument = e.EventDocument.Select(ed => _mapper.Map<EventDocumentResponseDTO>(ed)).ToList(),
             EventPriceCategories = e.EventPriceCategory.Select(epc => _mapper.Map<EventPriceCategoryResponseDTO>(epc)).ToList(),
-            Offers = e.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList()
+            Offers = e.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList(),
+            TaxDetail = _mapper.Map<TaxDetailDTO>(e.TaxDetail),
         }).ToList();
     }
     /// <summary>
@@ -66,7 +67,8 @@ public class EventMapper
             Venue = _mapper.Map<VenueResponseDTO>(_event.Venue),
             EventDocument = _event.EventDocument.Select(ed => _mapper.Map<EventDocumentResponseDTO>(ed)).ToList(),
             EventPriceCategories = _event.EventPriceCategory.Select(epc => _mapper.Map<EventPriceCategoryResponseDTO>(epc)).ToList(),
-            Offers = _event.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList()
+            Offers = _event.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList(),
+            TaxDetail = _mapper.Map<TaxDetailDTO>(_event.TaxDetail)
         };
     }
 }

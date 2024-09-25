@@ -22,7 +22,7 @@ namespace EM.Business.BOs
         public string? CityName { get; set; }
         public int StateId { get; set; }
         public string? StateName { get; set; }
-        public int Country { get; set; }
+        public int CountryId { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string Description { get; set; }

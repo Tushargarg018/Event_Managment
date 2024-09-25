@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EM.Business.ServiceImpl
@@ -42,10 +43,11 @@ namespace EM.Business.ServiceImpl
                 PerformerId = eventDto.PerformerId,
                 VenueId = eventDto.VenueId,
                 Status = Core.Enums.StatusEnum.Draft,
-                StartDatetime = TimeConversionHelper.ConvertISTToUTC(startDateString),
-                EndDatetime = TimeConversionHelper.ConvertISTToUTC(endDateString),
+                StartDatetime = TimeConversionHelper.ToUTCDateTime(startDateString),
+                EndDatetime = TimeConversionHelper.ToUTCDateTime(endDateString),
                 CreatedOn = DateTime.UtcNow,
-                ModifiedOn = DateTime.UtcNow
+                ModifiedOn = DateTime.UtcNow,
+                Flag  = eventDto.Flag
             };
             var createdEvent = await _eventRepository.AddEvent(createEvent);
             return _mapper.Map<EventBO>(createdEvent);
@@ -54,8 +56,21 @@ namespace EM.Business.ServiceImpl
         public async Task<EventBO> GetEventById(int eventId)
         {
             var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
+            Venue venue = _event.Venue;
+            TaxConfiguration taxDetail = await _eventRepository.GetTaxConfigurationById(venue.CountryId, venue.StateId);
+            TaxDetailBO td = _mapper.Map<TaxDetailBO>(taxDetail);
             var eventBo = _mapper.Map<EventBO>(_event);
-            eventBo.TaxDetail = 
+            if (_event.Flag == 0)
+            {
+                eventBo.TaxDetail = new TaxDetailBO
+                {
+                    TaxDetails = JsonDocument.Parse("{}")
+                };
+            }
+            else
+            {
+                eventBo.TaxDetail = td;
+            }
             return eventBo;
         }
 

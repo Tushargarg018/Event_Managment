@@ -38,7 +38,7 @@ namespace EM.Api.Validations
             RuleFor(venue => venue.State)
                 .NotEmpty().WithMessage("State is Required");
 
-            RuleFor(venue => venue.Country)
+            RuleFor(venue => venue.CountryId)
                 .NotEmpty().WithMessage("Country is Required");
 
             RuleFor(venue => venue.Description)

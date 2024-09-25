@@ -41,7 +41,7 @@ namespace EM.Api.Controllers
         [Authorize(Policy = "UserPolicy")]
         [HttpPost("event")]
         public async Task<IActionResult> AddEvent(EventDTO eventDto)
-        {
+         {
             var validationResult = await _eventValidator.ValidateAsync(eventDto);
             if (!validationResult.IsValid)
             {

@@ -63,9 +63,7 @@ namespace EM.Core.DTOs.Response.Success
         public List <OfferResponseDTO> Offers { get; set; }
 
         [JsonPropertyName("tax_details")]
-        public TaxDetailDTO TaxDetail { get; set; }
-        
-
+        public required TaxDetailDTO TaxDetail { get; set; }
 
     }
 }

@@ -64,6 +64,8 @@ namespace EM.Api.Mapper
             CreateMap<EventTicketCategory, EventPriceCategoryBO>();
             CreateMap<EventPriceCategoryBO, EventPriceCategoryResponseDTO>();
             CreateMap<OfferBO, OfferResponseDTO>();
+            CreateMap<TaxDetailBO, TaxDetailDTO>();
+            CreateMap<TaxConfiguration, TaxDetailBO>();
         }
     }
 }
