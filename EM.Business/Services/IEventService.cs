@@ -12,6 +12,7 @@ namespace EM.Business.Services
     public interface IEventService
     {
         public Task<EventBO> AddEvent(EventDTO eventDto, int organizerId);
+        public Task<EventBO> UpdateEvent(EventDTO eventUpdateDTO, int eventId, int organizerId);
         Task<PagedEventBO> GetEventsAsync(EventFilterDTO filter);
         Task<EventBO> GetEventById(int eventId); 
 

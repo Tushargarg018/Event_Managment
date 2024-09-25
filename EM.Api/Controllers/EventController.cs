@@ -31,6 +31,7 @@ namespace EM.Api.Controllers
             _eventService = eventService;
             _authService = authService;
             _eventValidator = eventValidator;
+            //_eventUpdateValidator = eventUpdateValidator;
             _eventMapper = eventMapper;
         }
         /// <summary>
@@ -52,6 +53,30 @@ namespace EM.Api.Controllers
             var eventResponse = await _eventService.AddEvent(eventDto, organizerId);
             var eventResponseDTO = _mapper.Map<EventResponseDTO>(eventResponse);
             return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Added Successfully"));        
+        }
+
+        /// <summary>
+        /// Update an event with the basic details, having parameter as id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="eventDto"></param>
+        /// <returns></returns>
+        [Authorize(Policy ="UserPolicy")]
+        [HttpPost("event/{id}")]
+        public async Task<IActionResult> UpdateEvent(int id, [FromBody] EventDTO eventDto)
+        {
+            var validationResult = await _eventValidator.ValidateAsync(eventDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(new ResponseDTO<object>(Array.Empty<object>(), "failure", "Validation Errors", validationResult.Errors.Select(e => e.ErrorMessage).ToList()));
+            }
+            var authHeader = Request.Headers.Authorization; 
+            var organizerId = JwtTokenHelper.GetOrganizerIdFromToken(authHeader.ToString());
+            var eventUpdateResponse = await _eventService.UpdateEvent(eventDto, id, organizerId);
+            var eventResponseDTO = _mapper.Map<EventResponseDTO>(eventUpdateResponse);
+            eventResponseDTO.StartDateTime = TimeConversionHelper.ToUTCDateTime(eventResponseDTO.StartDateTime).ToString("dd-MM-yyyyTHH:mm:ssZ");
+            eventResponseDTO.EndDateTime = TimeConversionHelper.ToUTCDateTime(eventResponseDTO.EndDateTime).ToString("dd-MM-yyyyTHH:mm:ssZ");
+            return Ok(new ResponseDTO<EventResponseDTO>(eventResponseDTO, "success", "Event Updated Successfully"));
         }
         /// <summary>
         /// To fetch the events based on the filter

@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class event_flag : Migration
+    public partial class tushar_changes : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,6 +70,7 @@ namespace EM.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     country_id = table.Column<int>(type: "integer", nullable: false),
+                    country_code = table.Column<string>(type: "text", nullable: false),
                     currency_code = table.Column<string>(type: "text", nullable: false),
                     symbol = table.Column<string>(type: "text", nullable: true)
                 },
@@ -196,6 +197,7 @@ namespace EM.Data.Migrations
                     title = table.Column<string>(type: "text", nullable: false),
                     description = table.Column<string>(type: "text", nullable: false),
                     base_price = table.Column<decimal>(type: "numeric", nullable: false),
+                    currency = table.Column<string>(type: "text", nullable: false),
                     organizer_id = table.Column<int>(type: "integer", nullable: false),
                     performer_id = table.Column<int>(type: "integer", nullable: false),
                     venue_id = table.Column<int>(type: "integer", nullable: false),
@@ -204,7 +206,7 @@ namespace EM.Data.Migrations
                     end_datetime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Flag = table.Column<int>(type: "integer", nullable: false)
+                    flag = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -311,8 +313,8 @@ namespace EM.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "currency",
-                columns: new[] { "id", "country_id", "currency_code", "symbol" },
-                values: new object[] { 1, 1, "INR", "₹" });
+                columns: new[] { "id", "country_code", "country_id", "currency_code", "symbol" },
+                values: new object[] { 1, "IN", 1, "INR", "₹" });
 
             migrationBuilder.InsertData(
                 table: "state",

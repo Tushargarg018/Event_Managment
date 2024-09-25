@@ -140,14 +140,23 @@ namespace EM.Data.RepositoryImpl
             return e;
         }
 
-        public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime)
+        public async Task<Event> UpdateEvent(Event eventToUpdate)
         {
-            return await context.Events.Where(e => (e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
+            context.Update(eventToUpdate);
+            await context.SaveChangesAsync();
+            Event updatedEvent = await context.Events.FirstOrDefaultAsync(e=>e.Id == eventToUpdate.Id);
+            return updatedEvent;
         }
 
-        public async Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime)
+        public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime, int eventId)
         {
-            return await context.Events.Where(e => (e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
+            return await context.Events.Where(e => (e.Id != eventId && e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
+        }
+
+        //eventId for the same event (when Updating)
+        public async Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime, int eventId)
+        {
+            return await context.Events.Where(e => (e.Id != eventId && e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
         }
     }
 }

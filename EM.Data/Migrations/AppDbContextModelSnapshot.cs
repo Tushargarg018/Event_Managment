@@ -3770,7 +3770,8 @@ namespace EM.Data.Migrations
                         .HasColumnName("end_datetime");
 
                     b.Property<int>("Flag")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("flag");
 
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("timestamp with time zone")
