@@ -21,9 +21,10 @@ namespace EM.Data.Repositories
 
         public Task<Event> PublishEvent(Event e);
 
+        public Task<Event> UpdateEvent(Event eventToUpdate);
 
-        public Task<List<Event>> GetEventsByVenue(int id, DateTime StartDateTime, DateTime EndDateTime);
-        public Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime);
+        public Task<List<Event>> GetEventsByVenue(int id, DateTime StartDateTime, DateTime EndDateTime, int eventId);
+        public Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime, int eventId);
 
         public Task<TaxConfiguration> GetTaxConfigurationById(int CountryId , int? stateId = null);
     }   
