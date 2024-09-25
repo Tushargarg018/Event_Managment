@@ -16,6 +16,7 @@ namespace EM.Business.BOs
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal BasePrice { get; set; }
+        public string Currency { get; set; }
         public int OrganizerId { get; set; }
         public int PerformerId { get; set; }
         public int VenueId { get; set; }

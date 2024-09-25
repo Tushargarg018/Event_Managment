@@ -27,6 +27,9 @@ namespace EM.Data.Entities
         [Column("base_price")]
 		public decimal BasePrice { get; set; }
 
+        [Column("currency")]
+        public string Currency { get; set; }
+
         /// <summary>
         /// Organizer Id
         /// </summary>        

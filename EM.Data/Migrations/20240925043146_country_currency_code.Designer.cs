@@ -4,6 +4,7 @@ using System.Text.Json;
 using EM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240925043146_country_currency_code")]
+    partial class country_currency_code
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3769,9 +3772,6 @@ namespace EM.Data.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("end_datetime");
 
-                    b.Property<int>("Flag")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
@@ -4313,7 +4313,7 @@ namespace EM.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("city");
 
-                    b.Property<int>("CountryId")
+                    b.Property<int>("Country")
                         .HasColumnType("integer")
                         .HasColumnName("country");
 

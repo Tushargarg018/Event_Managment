@@ -21,6 +21,9 @@ namespace EM.Core.DTOs.Response.Success
         [JsonPropertyName("base_price")]
         public decimal BasePrice { get; set; }
 
+        [JsonPropertyName("currency")]
+        public string Currency {  get; set; }
+
         [JsonPropertyName("organizer_id")]
         public int OrganizerId { get; set; }
 

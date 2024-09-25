@@ -21,8 +21,6 @@ namespace EM.Data.Repository
         public Task<Venue> GetVenueById(int VenueId);   
         public Task<bool> VenueExistsAsync(int venueId);
         public Task<int> GetVenueCapacityByIdAsync(int venueId);
-
         public Task<bool> VenueNameExistsAsync(string venueName);
-
     }
 }

@@ -13,7 +13,7 @@ namespace EM.Data.Seeding
         {
             return new List<Currency>
             {
-                new Currency{Id = 1, CountryId = 1, CurrencyCode = "INR", Symbol="\u20B9"}
+                new Currency{Id = 1, CountryId = 1, CurrencyCode = "INR", CountryCode="IN", Symbol="\u20B9"}
             };
         }
     }

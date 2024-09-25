@@ -43,8 +43,8 @@ namespace EM.Api.Mapper
                 .ForMember(dest => dest.Offer, opt => opt.MapFrom(src => src.EventOffers));
 
             CreateMap<EventBO, EventResponseDTO>();
-                //.ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => src.StartDateTime))
-                //.ForMember(dest => dest.EndDateTime, opt => opt.MapFrom(src => src.EndDateTime));
+
+            CreateMap<Currency, CurrencyDTO>();
 
             CreateMap<Performer, PerformerBO>();
             CreateMap<PerformerBO, PerformerResponseDTO>();

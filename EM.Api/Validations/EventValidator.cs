@@ -29,6 +29,11 @@ namespace EM.Api.Validations
                 .NotEmpty().WithMessage("Event Base price is Required")
                 .GreaterThan(0).WithMessage("Event Base price should be greater than 0");
 
+            RuleFor(e => e.Currency)
+                .NotEmpty().WithMessage("Currency is required")
+                .MinimumLength(3).WithMessage("Invalid Currency format")
+                .MaximumLength(3).WithMessage("Invalid Currency format");
+
             RuleFor(e => e.PerformerId)
                 .NotEmpty().WithMessage("Performer Id is Required")
                 .GreaterThan(0).WithMessage("Performer Id must be greater than 0.")
