@@ -55,6 +55,16 @@ namespace EM.Api
                 statusCode = HttpStatusCode.NotFound;
                 message = ex.Message;
             } 
+            else if(ex is VenueNotAvailableException)
+            {
+                statusCode = HttpStatusCode.Conflict;
+                message = ex.Message;
+            }
+            else if(ex is PerformerNotAvailableException)
+            {
+                statusCode = HttpStatusCode.Conflict;
+                message = ex.Message;
+            }
             string[] data = [];
             string[] errors = [message];
             var result = JsonConvert.SerializeObject(new { data = data, status="failure", message="Request Failed with errors.", errors = errors});

@@ -122,5 +122,15 @@ namespace EM.Data.RepositoryImpl
             await context.SaveChangesAsync();
             return e;
         }
+
+        public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime)
+        {
+            return await context.Events.Where(e => (e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
+        }
+
+        public async Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime)
+        {
+            return await context.Events.Where(e => (e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
+        }
     }
 }
