@@ -93,7 +93,12 @@ namespace EM.Business.ServiceImpl
             var responseEvent =  _mapper.Map<EventBO>(createdEvent);
             return responseEvent;
         }
-
+        /// <summary>
+        /// Get the event by id
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public async Task<EventBO> GetEventById(int eventId)
         {
             var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");

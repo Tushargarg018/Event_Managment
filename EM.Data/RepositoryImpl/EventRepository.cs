@@ -117,19 +117,18 @@ namespace EM.Data.RepositoryImpl
             return (events, totalRecords);
         }
 
-        public async Task<TaxConfiguration> GetTaxConfigurationById(int CountryId, int? StateId = null)
+        public async Task<TaxConfiguration> GetTaxConfigurationById(int countryId, int? stateId = null)
         {
-            /*var taxConfig = await context.TaxConfigurations
-                                 .FirstOrDefaultAsync(tc => tc.CountryId == CountryId &&
-                                                            tc.StateId == StateId);
-*/
-            // If no match is found and StateId was provided, fallback to CountryId match with StateId == null
-            /*if (taxConfig == null && StateId != null)
-            {*/
-                var taxConfig = await context.TaxConfigurations
-                                         .FirstOrDefaultAsync(tc => tc.CountryId == CountryId);
-            /*}*/
-
+            IQueryable<TaxConfiguration> query = context.TaxConfigurations;
+            if (countryId == 1)
+            {
+                query = query.Where(tc => tc.CountryId == countryId);
+            }
+            else
+            {
+                query = query.Where(tc => tc.CountryId == countryId && tc.StateId == stateId);
+            }
+            var taxConfig = await query.FirstOrDefaultAsync();
             return taxConfig;
         }
 
