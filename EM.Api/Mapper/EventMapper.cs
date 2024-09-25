@@ -55,6 +55,7 @@ public class EventMapper
             Title = _event.Title,
             Description = _event.Description,
             BasePrice = _event.BasePrice,
+            Currency = _event.Currency,
             Status = _event.Status.ToString(),
             OrganizerId = _event.OrganizerId,
             PerformerId = _event.PerformerId,
