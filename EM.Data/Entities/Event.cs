@@ -84,5 +84,7 @@ namespace EM.Data.Entities
         public virtual ICollection<EventDocument>? EventDocuments { get; set; }
         public virtual ICollection<EventTicketCategory>? EventTicketCategories { get; set; }
 
+        public int Flag { get; set; }
+
     }
 }

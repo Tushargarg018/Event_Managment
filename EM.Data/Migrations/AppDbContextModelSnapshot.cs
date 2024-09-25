@@ -3758,6 +3758,9 @@ namespace EM.Data.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("end_datetime");
 
+                    b.Property<int>("Flag")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
@@ -4299,7 +4302,7 @@ namespace EM.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("city");
 
-                    b.Property<int>("Country")
+                    b.Property<int>("CountryId")
                         .HasColumnType("integer")
                         .HasColumnName("country");
 

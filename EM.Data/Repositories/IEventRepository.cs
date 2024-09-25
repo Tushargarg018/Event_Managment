@@ -21,6 +21,6 @@ namespace EM.Data.Repositories
 
         public Task<Event> PublishEvent(Event e);
 
-        public Task<TaxConfiguration> GetTaxConfigurationById(int CountryId , int StateId);
+        public Task<TaxConfiguration> GetTaxConfigurationById(int CountryId , int? stateId = null);
     }
 }

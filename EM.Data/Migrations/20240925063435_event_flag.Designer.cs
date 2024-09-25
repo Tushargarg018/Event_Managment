@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240924101551_Currency_Country_Model")]
-    partial class Currency_Country_Model
+    [Migration("20240925063435_event_flag")]
+    partial class event_flag
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -3761,6 +3761,9 @@ namespace EM.Data.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("end_datetime");
 
+                    b.Property<int>("Flag")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
@@ -4302,7 +4305,7 @@ namespace EM.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("city");
 
-                    b.Property<int>("Country")
+                    b.Property<int>("CountryId")
                         .HasColumnType("integer")
                         .HasColumnName("country");
 

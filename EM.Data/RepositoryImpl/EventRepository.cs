@@ -49,7 +49,8 @@ namespace EM.Data.RepositoryImpl
                                 .Include(e => e.EventOffers)
                                 .Include(e => e.EventTicketCategories)
                                 .Include(e => e.Venue)
-                                    .ThenInclude(v => v.State)  
+                                    .ThenInclude(v => v.State) 
+                                    
                                 .Include(e => e.Venue)
                                     .ThenInclude(v => v.City)  
                                 .FirstOrDefaultAsync(e => e.Id == eventId);
@@ -118,7 +119,18 @@ namespace EM.Data.RepositoryImpl
 
         public async Task<TaxConfiguration> GetTaxConfigurationById(int CountryId, int? StateId = null)
         {
-            return await context.TaxConfigurations.FirstOrDefaultAsync(tc => tc.Country)
+            /*var taxConfig = await context.TaxConfigurations
+                                 .FirstOrDefaultAsync(tc => tc.CountryId == CountryId &&
+                                                            tc.StateId == StateId);
+*/
+            // If no match is found and StateId was provided, fallback to CountryId match with StateId == null
+            /*if (taxConfig == null && StateId != null)
+            {*/
+                var taxConfig = await context.TaxConfigurations
+                                         .FirstOrDefaultAsync(tc => tc.CountryId == CountryId);
+            /*}*/
+
+            return taxConfig;
         }
 
         public async Task<Event> PublishEvent(Event e)
