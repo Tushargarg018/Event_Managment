@@ -35,7 +35,7 @@ namespace EM.Business.ServiceImpl
                 ZipCode = venueRequestDTO.ZipCode,
                 CityId = venueRequestDTO.City,
                 StateId = venueRequestDTO.State,
-                Country = venueRequestDTO.Country,
+                CountryId = venueRequestDTO.CountryId,
                 Description = venueRequestDTO.Description,
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow

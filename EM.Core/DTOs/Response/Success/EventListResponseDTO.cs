@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using EM.Core.DTOs.Request;
@@ -65,6 +66,8 @@ namespace EM.Core.DTOs.Response.Success
         [JsonPropertyName("event_offers")]
         public List <OfferResponseDTO> Offers { get; set; }
 
+        [JsonPropertyName("tax_details")]
+        public required JsonDocument TaxDetail { get; set; }
 
     }
 }

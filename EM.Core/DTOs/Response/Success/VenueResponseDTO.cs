@@ -47,8 +47,8 @@ namespace EM.Core.DTOs.Response.Success
 		[JsonPropertyName("state_name")]
 		public string? StateName { get; set; }
 
-		[JsonPropertyName("country")]
-        public int Country { get; set; }
+		[JsonPropertyName("country_id")]
+        public int CountryId { get; set; }
 
         [JsonPropertyName("description")]
         public string Description { get; set; }

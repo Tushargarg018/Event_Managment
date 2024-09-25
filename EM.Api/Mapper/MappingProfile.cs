@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EM.Api.Mapper
@@ -64,6 +65,19 @@ namespace EM.Api.Mapper
             CreateMap<EventTicketCategory, EventPriceCategoryBO>();
             CreateMap<EventPriceCategoryBO, EventPriceCategoryResponseDTO>();
             CreateMap<OfferBO, OfferResponseDTO>();
+            //CreateMap<TaxDetailBO, TaxDetailDTO>();
+            CreateMap<TaxConfiguration, TaxDetailBO>();
+
+
+            //CreateMap<TaxDetailBO, TaxDetailDTO>()
+            //.ForMember(dest => dest.TaxDetails, opt => opt.MapFrom(src => src.TaxDetails.RootElement.ToString()));
+
+            CreateMap<TaxDetailBO, TaxDetailDTO>()
+            .ForMember(dest => dest.TaxDetails,
+                       opt => opt.MapFrom(src => src.TaxDetails != null ? src.TaxDetails.RootElement.ToString() : null)); // Handle null check
+
+            //CreateMap<TaxDetailDTO, TaxDetailBO>()
+            //    .ForMember(dest => dest.TaxDetails, opt => opt.MapFrom(src => JsonDocument.Parse(src.TaxDetails)));
         }
     }
 }

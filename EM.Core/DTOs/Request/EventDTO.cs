@@ -23,5 +23,8 @@ namespace EM.Core.DTOs.Request
         public string StartDateTime { get; set; }
         [JsonPropertyName("end_datetime")]
         public string EndDateTime { get; set; }
+
+        [JsonPropertyName("flag")]
+        public int Flag { get; set; }
     }
 }

@@ -35,8 +35,8 @@ namespace EM.Core.DTOs.Request
         [JsonPropertyName("state")]
         public int State { get; set; }
 
-        [JsonPropertyName("country")]
-        public int Country { get; set; }
+        [JsonPropertyName("country_id")]
+        public int CountryId { get; set; }
 
         [JsonPropertyName("description")]
         public string Description { get; set; }

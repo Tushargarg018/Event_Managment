@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EM.Business.ServiceImpl
@@ -33,6 +34,8 @@ namespace EM.Business.ServiceImpl
             await ValidateVenueAvailability(eventDto.VenueId, eventDto.StartDateTime, eventDto.EndDateTime);
             await ValidatePerformerAvailability(eventDto.PerformerId, eventDto.StartDateTime, eventDto.EndDateTime);
             //Converting string to datetime objects
+            string startDateString = eventDto.StartDateTime;
+            string endDateString = eventDto.EndDateTime;
             var createEvent = new Event
             {
                 Title = eventDto.Title,
@@ -43,10 +46,11 @@ namespace EM.Business.ServiceImpl
                 PerformerId = eventDto.PerformerId,
                 VenueId = eventDto.VenueId,
                 Status = Core.Enums.StatusEnum.Draft,
-                StartDatetime = TimeConversionHelper.ToUTCDateTime(eventDto.StartDateTime),
-                EndDatetime = TimeConversionHelper.ToUTCDateTime(eventDto.EndDateTime),
+                StartDatetime = TimeConversionHelper.ToUTCDateTime(startDateString),
+                EndDatetime = TimeConversionHelper.ToUTCDateTime(endDateString),
                 CreatedOn = DateTime.UtcNow,
-                ModifiedOn = DateTime.UtcNow
+                ModifiedOn = DateTime.UtcNow,
+                Flag  = eventDto.Flag
             };
             var createdEvent = await _eventRepository.AddEvent(createEvent);
             return _mapper.Map<EventBO>(createdEvent);
@@ -55,7 +59,19 @@ namespace EM.Business.ServiceImpl
         public async Task<EventBO> GetEventById(int eventId)
         {
             var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
+            Venue venue = _event.Venue;
+            TaxConfiguration taxDetail = await _eventRepository.GetTaxConfigurationById(venue.CountryId, venue.StateId);
             var eventBo = _mapper.Map<EventBO>(_event);
+            if (_event.Flag == 0)
+            {
+               
+                eventBo.TaxDetail = JsonDocument.Parse("{}");
+            }
+            else if (taxDetail != null && taxDetail.TaxDetails != null)
+            {
+                // Directly assign the JSON content from taxDetail
+                eventBo.TaxDetail = JsonDocument.Parse(taxDetail.TaxDetails.RootElement.ToString());
+            }
             return eventBo;
         }
 

@@ -63,7 +63,7 @@ namespace EM.Data.Entities
         /// Country id of the venue
         /// </summary>
         [Column("country")]
-		public int Country { get; set; }
+		public int CountryId { get; set; }
 
 		/// <summary>
 		///  Description of the venue

@@ -87,7 +87,6 @@ namespace EM.Data
                     .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<State>().HasData(StateSeed.GetStates());
-
             modelBuilder.Entity<City>().HasData(CitySeed.GetCities());
             modelBuilder.Entity<Currency>().HasData(CurrencySeed.GetCurrencies());
             modelBuilder.Entity<Country>().HasData(CountrySeed.GetCountries());

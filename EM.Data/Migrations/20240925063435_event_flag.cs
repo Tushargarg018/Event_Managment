@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Currency_Country_Model : Migration
+    public partial class event_flag : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -203,7 +203,8 @@ namespace EM.Data.Migrations
                     start_datetime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     end_datetime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Flag = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

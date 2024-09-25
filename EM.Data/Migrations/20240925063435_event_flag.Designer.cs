@@ -4,6 +4,7 @@ using System.Text.Json;
 using EM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240925063435_event_flag")]
+    partial class event_flag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3703,11 +3706,6 @@ namespace EM.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("country_code");
-
                     b.Property<int>("CountryId")
                         .HasColumnType("integer")
                         .HasColumnName("country_id");
@@ -3731,7 +3729,6 @@ namespace EM.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CountryCode = "IN",
                             CountryId = 1,
                             CurrencyCode = "INR",
                             Symbol = "₹"
@@ -3754,11 +3751,6 @@ namespace EM.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("currency");
 
                     b.Property<string>("Description")
                         .IsRequired()

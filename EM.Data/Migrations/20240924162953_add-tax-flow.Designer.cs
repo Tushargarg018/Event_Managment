@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EM.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240924101551_Currency_Country_Model")]
-    partial class Currency_Country_Model
+    [Migration("20240924162953_add-tax-flow")]
+    partial class addtaxflow
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
