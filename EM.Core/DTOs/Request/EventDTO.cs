@@ -12,6 +12,9 @@ namespace EM.Core.DTOs.Request
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+
+        public string Currency {  get; set; }
+
         [JsonPropertyName("performer_id")]
         public int PerformerId { get; set; }
         [JsonPropertyName("venue_id")]

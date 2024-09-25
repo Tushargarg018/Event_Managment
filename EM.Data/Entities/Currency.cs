@@ -17,6 +17,9 @@ namespace EM.Data.Entities
         public int CountryId { get; set; }
         public Country Country { get; set; }
 
+        [Column("country_code")]
+        public string CountryCode { get; set; }
+
         [Column("currency_code")]
         public string CurrencyCode { get; set; }
 
