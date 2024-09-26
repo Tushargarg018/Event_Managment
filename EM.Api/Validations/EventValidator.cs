@@ -77,9 +77,8 @@ namespace EM.Api.Validations
         {
             DateTime startDateTime;
             bool isValidStartTime = DateTime.TryParseExact(e.StartDateTime, "yyyy-MM-ddTHH:mm:ssZ", null, System.Globalization.DateTimeStyles.None, out startDateTime);
-            return startDateTime > DateTime.UtcNow.AddDays(1);
+            return isValidStartTime && startDateTime > DateTime.UtcNow.AddHours(24);
         }
-
         private bool ValidateDateRange(EventDTO e)
         {
             DateTime startDateTime;
