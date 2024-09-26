@@ -141,6 +141,12 @@ namespace EM.Business.ServiceImpl
             await ValidateEventNotPublished(eventId);
 
             Event e = _eventRepository.GetEventById(eventId);
+
+            string startDate = TimeConversionHelper.ToCustomDateTimeString(e.StartDatetime);
+            string endDate = TimeConversionHelper.ToCustomDateTimeString(e.EndDatetime);
+
+            await ValidateVenueAvailability(e.VenueId, startDate, endDate, eventId);
+            await ValidatePerformerAvailability(e.PerformerId, startDate, endDate, eventId);
             DateTime dateTime = DateTime.UtcNow;
             if (e.StartDatetime <= dateTime)
             {

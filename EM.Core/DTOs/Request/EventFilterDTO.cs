@@ -26,7 +26,7 @@ namespace EM.Core.DTOs.Request
         public int? OrganizerId { get; set; }
 
         [JsonPropertyName("status")]
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         [JsonPropertyName("title")]
         public string? Title { get; set; }

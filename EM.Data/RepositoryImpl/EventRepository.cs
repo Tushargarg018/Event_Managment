@@ -85,8 +85,8 @@ namespace EM.Data.RepositoryImpl
             if (!string.IsNullOrEmpty(filter.Title))
                 query = query.Where(e => e.Title.ToLower() == filter.Title.ToLower());
 
-            //if (filter.Status!=null && filter.Status >= 0)  
-            //    query = query.Where(e => (int)e.Status == filter.Status);
+            if (filter.Status != null && (filter.Status == 0 || filter.Status == 1))
+                query = query.Where(e => (int)e.Status == filter.Status);
 
             if (filter.OrganizerId.HasValue)
                 query = query.Where(e => e.OrganizerId == filter.OrganizerId);
@@ -148,13 +148,13 @@ namespace EM.Data.RepositoryImpl
 
         public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime, int eventId)
         {
-            return await context.Events.Where(e => (e.Id != eventId && e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
+            return await context.Events.Where(e => (e.Id != eventId && e.Status == Core.Enums.StatusEnum.Published && e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
         }
 
         //eventId for the same event (when Updating)
         public async Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime, int eventId)
         {
-            return await context.Events.Where(e => (e.Id != eventId && e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
+            return await context.Events.Where(e => (e.Id != eventId && e.Status == Core.Enums.StatusEnum.Published && e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
         }
     }
 }
