@@ -84,6 +84,9 @@ namespace EM.Data.Entities
 		public DateTime ModifiedOn { get; set; }
 		public City City { get; set; }
 		public State State { get; set; }
+
+        public Country Country { get; set; }
+
 		public virtual ICollection<Event> Events { get; set; }
     }
 }

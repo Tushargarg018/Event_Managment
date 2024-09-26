@@ -74,7 +74,9 @@ public class EventMapper
             EventDocument = _event.EventDocument.Select(ed => _mapper.Map<EventDocumentResponseDTO>(ed)).ToList(),
             EventPriceCategories = _event.EventPriceCategory.Select(epc => _mapper.Map<EventPriceCategoryResponseDTO>(epc)).ToList(),
             Offers = _event.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList(),
+            Flag = _event.Flag,
             TaxDetail = _event.TaxDetail != null ? _event.TaxDetail : null
+
         };
     }
 }

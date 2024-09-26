@@ -69,5 +69,8 @@ namespace EM.Core.DTOs.Response.Success
         [JsonPropertyName("tax_details")]
         public required JsonDocument TaxDetail { get; set; }
 
+        [JsonPropertyName("flag")]
+        public int Flag { get; set; }
+
     }
 }

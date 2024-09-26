@@ -62,13 +62,11 @@ namespace EM.Api.Controllers
         [HttpGet("event")]
         public async Task<IActionResult> GetEvents([FromQuery] EventFilterDTO filter)
         {
-
             var events = await _eventService.GetEventsAsync(filter);
             var pagination = new PaginationMetadata(filter.Page, events.TotalRecords, filter.Size);
             var eventResponseDTO = _eventMapper.MapToEventListResponse(events.Events);
             var response = new PagedResponseDTO<List<EventListResponseDTO>>(eventResponseDTO, "success", "Event Successfully fetched.", pagination);
             return Ok(response);
-
         }
 
         /// <summary>

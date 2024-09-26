@@ -38,5 +38,8 @@ namespace EM.Business.BOs
         public required JsonDocument TaxDetail { get; set; }
         //public required JsonDocument TaxDetails { get; set; }
 
+        [JsonPropertyName("flag")]
+        public int Flag { get; set; }
+
     }
 }

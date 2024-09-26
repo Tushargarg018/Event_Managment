@@ -80,6 +80,8 @@ namespace EM.Business.ServiceImpl
             var (events, totalRecords) = await _eventRepository.GetEventsAsync(filter);
             var eventBo = _mapper.Map<List<EventBO>>(events);
 
+
+
             return new PagedEventBO(eventBo, totalRecords);
         }
         /// <summary>

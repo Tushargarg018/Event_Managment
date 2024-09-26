@@ -163,7 +163,7 @@ namespace EM.Business.ServiceImpl
 
             if(totalAllocatedCapacity + eventPriceCategoryDTO.Capacity > venueCapacity)
             {
-                throw new Exception("Seat category capacity exceeds available capacity for the event");
+                throw new CapacityException("Seat category's capacity exceeds the available capacity for the event");
             }
         }
     }

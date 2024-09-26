@@ -65,6 +65,11 @@ namespace EM.Api
                 statusCode = HttpStatusCode.Conflict;
                 message = ex.Message;
             }
+            else if(ex is CapacityException)
+            {
+                statusCode= HttpStatusCode.BadRequest;
+                message = ex.Message;
+            }
             string[] data = [];
             string[] errors = [message];
             var result = JsonConvert.SerializeObject(new { data = data, status="failure", message="Request Failed with errors.", errors = errors});

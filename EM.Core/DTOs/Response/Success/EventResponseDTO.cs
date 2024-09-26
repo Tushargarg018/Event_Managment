@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -47,6 +48,8 @@ namespace EM.Core.DTOs.Response.Success
 
         [JsonPropertyName("end_date_time")]
         public string EndDateTime { get; set; }
+
+        
 
 
     }
