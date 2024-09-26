@@ -29,11 +29,16 @@ namespace EM.Business.ServiceImpl
             _eventRepository = eventRepository;
             _mapper = mapper;
         }
+        /// <summary>
+        /// Add the event
+        /// </summary>
+        /// <param name="eventDto"></param>
+        /// <param name="organizerId"></param>
+        /// <returns></returns>
         public async Task<EventBO> AddEvent(EventDTO eventDto, int organizerId)
         {
-            await ValidateVenueAvailability(eventDto.VenueId, eventDto.StartDateTime, eventDto.EndDateTime);
-            await ValidatePerformerAvailability(eventDto.PerformerId, eventDto.StartDateTime, eventDto.EndDateTime);
-            //Converting string to datetime objects
+            await ValidateVenueAvailability(eventDto.VenueId, eventDto.StartDateTime, eventDto.EndDateTime, 0);
+            await ValidatePerformerAvailability(eventDto.PerformerId, eventDto.StartDateTime, eventDto.EndDateTime, 0);
             string startDateString = eventDto.StartDateTime;
             string endDateString = eventDto.EndDateTime;
             var createEvent = new Event
@@ -55,7 +60,45 @@ namespace EM.Business.ServiceImpl
             var createdEvent = await _eventRepository.AddEvent(createEvent);
             return _mapper.Map<EventBO>(createdEvent);
         }
-
+        /// <summary>
+        /// Update the event
+        /// </summary>
+        /// <param name="eventDto"></param>
+        /// <param name="eventId"></param>
+        /// <param name="organizerId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
+        public async Task<EventBO> UpdateEvent(EventDTO eventDto, int eventId, int organizerId)
+        {
+            await ValidateEventExists(eventId);
+            await ValidateEventNotPublished(eventId);
+            await ValidateVenueAvailability(eventDto.VenueId, eventDto.StartDateTime, eventDto.EndDateTime, eventId);
+            await ValidatePerformerAvailability(eventDto.PerformerId, eventDto.StartDateTime, eventDto.EndDateTime, eventId);
+            string startDateString = eventDto.StartDateTime;
+            string endDateString = eventDto.EndDateTime;
+            Event existingEvent = _eventRepository.GetEventById(eventId) ?? throw new NotFoundException("Event does not exists");
+            existingEvent.Title = eventDto.Title;
+            existingEvent.Description = eventDto.Description;
+            existingEvent.BasePrice = eventDto.Price;
+            existingEvent.Currency = eventDto.Currency;
+            existingEvent.OrganizerId = organizerId;
+            existingEvent.PerformerId = eventDto.PerformerId;
+            existingEvent.VenueId = eventDto.VenueId;
+            existingEvent.Status = Core.Enums.StatusEnum.Draft; 
+            existingEvent.StartDatetime = TimeConversionHelper.ToUTCDateTime(startDateString);
+            existingEvent.EndDatetime = TimeConversionHelper.ToUTCDateTime(endDateString);
+            existingEvent.ModifiedOn = DateTime.UtcNow;
+            existingEvent.Flag = eventDto.Flag;
+            var createdEvent = await _eventRepository.UpdateEvent(existingEvent);
+            var responseEvent =  _mapper.Map<EventBO>(createdEvent);
+            return responseEvent;
+        }
+        /// <summary>
+        /// Get the event by id
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public async Task<EventBO> GetEventById(int eventId)
         {
             var _event = await _eventRepository.GetEventByIdAsync(eventId) ?? throw new NotFoundException("Event");
@@ -63,18 +106,20 @@ namespace EM.Business.ServiceImpl
             TaxConfiguration taxDetail = await _eventRepository.GetTaxConfigurationById(venue.CountryId, venue.StateId);
             var eventBo = _mapper.Map<EventBO>(_event);
             if (_event.Flag == 0)
-            {
-               
+            {               
                 eventBo.TaxDetail = JsonDocument.Parse("{}");
             }
             else if (taxDetail != null && taxDetail.TaxDetails != null)
-            {
-                // Directly assign the JSON content from taxDetail
+            {       
                 eventBo.TaxDetail = JsonDocument.Parse(taxDetail.TaxDetails.RootElement.ToString());
             }
             return eventBo;
         }
-
+        /// <summary>
+        /// Fetch the events
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public async Task<PagedEventBO> GetEventsAsync(EventFilterDTO filter)
         {
             var (events, totalRecords) = await _eventRepository.GetEventsAsync(filter);
@@ -137,12 +182,12 @@ namespace EM.Business.ServiceImpl
             }
         }
         
-        private async Task ValidateVenueAvailability(int venueId, string startDate, string endDate)
+        private async Task ValidateVenueAvailability(int venueId, string startDate, string endDate, int eventId)
         {
             DateTime startDateTime = TimeConversionHelper.ToUTCDateTime(startDate);
             DateTime endDateTime = TimeConversionHelper.ToUTCDateTime(endDate);
    
-            List<Event> events = await _eventRepository.GetEventsByVenue(venueId, startDateTime, endDateTime);
+            List<Event> events = await _eventRepository.GetEventsByVenue(venueId, startDateTime, endDateTime, eventId);
             
                 if (events.Count != 0)
                 {
@@ -151,13 +196,13 @@ namespace EM.Business.ServiceImpl
             
         }
 
-        private async Task ValidatePerformerAvailability(int performerId, string startDate, string endDate)
+        private async Task ValidatePerformerAvailability(int performerId, string startDate, string endDate, int eventId)
         {
 
             DateTime startDateTime = TimeConversionHelper.ToUTCDateTime(startDate);
             DateTime endDateTime = TimeConversionHelper.ToUTCDateTime(endDate);
             
-            List<Event> events = await _eventRepository.GetEventsByPerformer(performerId, startDateTime, endDateTime);
+            List<Event> events = await _eventRepository.GetEventsByPerformer(performerId, startDateTime, endDateTime, eventId);
             if (events.Count != 0)
             {
                 throw new PerformerNotAvailableException("Performer not available on the mentioned dates");

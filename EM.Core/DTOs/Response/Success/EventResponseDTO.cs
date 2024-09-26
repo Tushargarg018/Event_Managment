@@ -44,10 +44,10 @@ namespace EM.Core.DTOs.Response.Success
         public DateTime ModifiedOn { get; set; }
 
         [JsonPropertyName("start_date_time")]
-        public string StartDateTime { get; set; }
+        public DateTime StartDateTime { get; set; }
 
         [JsonPropertyName("end_date_time")]
-        public string EndDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
 
         
 

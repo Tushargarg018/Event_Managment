@@ -117,19 +117,18 @@ namespace EM.Data.RepositoryImpl
             return (events, totalRecords);
         }
 
-        public async Task<TaxConfiguration> GetTaxConfigurationById(int CountryId, int? StateId = null)
+        public async Task<TaxConfiguration> GetTaxConfigurationById(int countryId, int? stateId = null)
         {
-            /*var taxConfig = await context.TaxConfigurations
-                                 .FirstOrDefaultAsync(tc => tc.CountryId == CountryId &&
-                                                            tc.StateId == StateId);
-*/
-            // If no match is found and StateId was provided, fallback to CountryId match with StateId == null
-            /*if (taxConfig == null && StateId != null)
-            {*/
-                var taxConfig = await context.TaxConfigurations
-                                         .FirstOrDefaultAsync(tc => tc.CountryId == CountryId);
-            /*}*/
-
+            IQueryable<TaxConfiguration> query = context.TaxConfigurations;
+            if (countryId == 1)
+            {
+                query = query.Where(tc => tc.CountryId == countryId);
+            }
+            else
+            {
+                query = query.Where(tc => tc.CountryId == countryId && tc.StateId == stateId);
+            }
+            var taxConfig = await query.FirstOrDefaultAsync();
             return taxConfig;
         }
 
@@ -140,14 +139,22 @@ namespace EM.Data.RepositoryImpl
             return e;
         }
 
-        public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime)
+        public async Task<Event> UpdateEvent(Event eventToUpdate)
         {
-            return await context.Events.Where(e => (e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
+            context.Update(eventToUpdate);
+            await context.SaveChangesAsync();
+            return eventToUpdate;
         }
 
-        public async Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime)
+        public async Task<List<Event>> GetEventsByVenue(int id, DateTime startDateTime, DateTime endDateTime, int eventId)
         {
-            return await context.Events.Where(e => (e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
+            return await context.Events.Where(e => (e.Id != eventId && e.VenueId == id && (e.StartDatetime<=endDateTime && e.EndDatetime>=startDateTime))).ToListAsync();
+        }
+
+        //eventId for the same event (when Updating)
+        public async Task<List<Event>> GetEventsByPerformer(int id, DateTime startDateTime, DateTime endDateTime, int eventId)
+        {
+            return await context.Events.Where(e => (e.Id != eventId && e.PerformerId == id && (e.StartDatetime <= endDateTime && e.EndDatetime >= startDateTime))).ToListAsync();
         }
     }
 }
