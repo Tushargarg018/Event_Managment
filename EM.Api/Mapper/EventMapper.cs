@@ -8,10 +8,24 @@ using EM.Business.BOs;
 public class EventMapper
 {
     private readonly IMapper _mapper;
+    private readonly IConfiguration _config;
 
-    public EventMapper(IMapper mapper)
+    public EventMapper(IMapper mapper, IConfiguration config)
     {
         _mapper = mapper;
+        _config = config;
+    }
+    private PerformerResponseDTO setPerformerUrl(PerformerBO performerBo)
+    {
+        var performerResponseDto = _mapper.Map<PerformerResponseDTO>(performerBo);
+        performerResponseDto.Profile = _config["Appsettings:BaseUrl"] +'/'+ performerResponseDto.Profile;
+        return performerResponseDto;
+    }
+    private EventDocumentResponseDTO setEventDocumentUrl(EventDocumentBO eventDocumentBo)
+    {
+        var eventDocumentDto = _mapper.Map<EventDocumentResponseDTO>(eventDocumentBo);
+        eventDocumentDto.FilePath = _config["Appsettings:BaseUrl"] + '/' + eventDocumentDto.FilePath;
+        return eventDocumentDto;
     }
     /// <summary>
     /// Maps EventBO to EventListResponseDTO
@@ -20,7 +34,8 @@ public class EventMapper
     /// <returns></returns>
     public List<EventListResponseDTO> MapToEventListResponse(List<EventBO> events)
     {
-        return events.Select(e => new EventListResponseDTO
+
+        var eventListResponse =  events.Select(e => new EventListResponseDTO
         {
             Id = e.Id,
             Title = e.Title,
@@ -35,13 +50,14 @@ public class EventMapper
             ModifiedOn = e.ModifiedOn,
             StartDateTime = TimeConversionHelper.ToCustomDateTimeString(e.StartDateTime),
             EndDateTime = TimeConversionHelper.ToCustomDateTimeString(e.EndDateTime),
-            Performer = _mapper.Map<PerformerResponseDTO>(e.Performer),
+            Performer = setPerformerUrl(e.Performer),
             Venue = _mapper.Map<VenueResponseDTO>(e.Venue),
-            EventDocument = e.EventDocument.Select(ed => _mapper.Map<EventDocumentResponseDTO>(ed)).ToList(),
+            EventDocument = e.EventDocument.Select(ed => setEventDocumentUrl(ed)).ToList(),
             EventPriceCategories = e.EventPriceCategory.Select(epc => _mapper.Map<EventPriceCategoryResponseDTO>(epc)).ToList(),
             Offers = e.Offer.Select(o => _mapper.Map<OfferResponseDTO>(o)).ToList(),
             TaxDetail = e.TaxDetail != null ? e.TaxDetail : null
         }).ToList();
+        return eventListResponse;
     }
     /// <summary>
     /// Maps Event to EventListResponseDTO
@@ -54,7 +70,7 @@ public class EventMapper
         //var taxDetailDto = _event.TaxDetail != null
         //? new TaxDetailDTO { TaxDetails = _event.TaxDetail ?.RootElement.ToString() }
         //: null;
-        return new EventListResponseDTO
+        var eventResponse = new EventListResponseDTO
         {
             Id = _event.Id,
             Title = _event.Title,
@@ -78,5 +94,11 @@ public class EventMapper
             TaxDetail = _event.TaxDetail != null ? _event.TaxDetail : null
 
         };
+        eventResponse.Performer.Profile = _config["Appsettings:BaseUrl"] + '/' + eventResponse.Performer.Profile;
+        foreach(var ed in eventResponse.EventDocument)
+        {
+            ed.FilePath = _config["Appsettings:BaseUrl"] + '/' + ed.FilePath;
+        }
+        return eventResponse;
     }
 }

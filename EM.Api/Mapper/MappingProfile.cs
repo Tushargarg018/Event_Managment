@@ -18,8 +18,12 @@ namespace EM.Api.Mapper
 {
     public class MappingProfile : Profile
     {
+        //private readonly string _baseurl;
         public MappingProfile()
         {
+            //IConfiguration configuration
+            //_baseurl = configuration["Appsettings:BaseUrl"];
+
             CreateMap<State, StateBo>();
             CreateMap<StateBo, StateDto>();
 

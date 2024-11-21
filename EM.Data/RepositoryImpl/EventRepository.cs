@@ -4,6 +4,7 @@ using EM.Core.Helpers;
 using EM.Data.Entities;
 using EM.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,9 +112,20 @@ namespace EM.Data.RepositoryImpl
                 }
             }
             var totalRecords = await query.CountAsync();
-            var events = await query.Skip((pageIndex - 1) * pageSize)
+            List<Event> events;
+            if (pageSize <= 0)
+            {
+                events = await query.ToListAsync(); // Return all events
+            }
+            else
+            {
+                events = await query.Skip((pageIndex - 1) * pageSize)
                                     .Take(pageSize)
-                                    .ToListAsync();
+                                    .ToListAsync(); // Apply pagination
+            }
+            /*var events = await query.Skip((pageIndex - 1) * pageSize)
+                                    .Take(pageSize)
+                                    .ToListAsync();*/
             return (events, totalRecords);
         }
 
